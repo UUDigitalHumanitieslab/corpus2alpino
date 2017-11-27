@@ -10,7 +10,6 @@ pip install -r requirements.txt
 python folia2alpino -s localhost:7001 folia.xml
 ```
 
-
 ### As Library
 ```python
 from folia2alpino import folia2alpino

@@ -6,7 +6,7 @@ Wrapper for the Alpino parser.
 import socket
 
 
-class AlpinoWrapper:
+class AlpinoServiceWrapper:
     """
     Wrapper for connecting to an Alpino parser server.
     """
@@ -15,7 +15,21 @@ class AlpinoWrapper:
         self.host = host
         self.port = port
 
-    def parse(self, line, strip):
+    def parse_lines(self, lines):
+        """
+        Parse lines using the Alpino parser and wrap them in a treebank container.
+
+        Arguments:
+
+            strip: remove the xml header and remove the trailing newline
+        """
+
+        yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<treebank>"
+        for line in lines:
+            yield self.parse_line(line, True)
+        yield "</treebank>"
+
+    def parse_line(self, line, strip=False):
         """
         Parse a line using the Alpino parser.
 
@@ -44,3 +58,16 @@ class AlpinoWrapper:
             total_xml = "\n".join(lines)
 
         return total_xml
+
+
+class AlpinoPassthroughWrapper:
+    """
+    Wrapper for passing through the strings which can be parsed using Alpino.
+    """
+
+    def parse_lines(self, lines):
+        """
+        Passthrough input.
+        """
+
+        return lines

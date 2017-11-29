@@ -7,7 +7,7 @@ Converts [FoLiA](https://proycon.github.io/folia/) XML files to [Alpino](www.let
 ### Command Line
 ```bash
 pip install folia2alpino
-folia2alpino -s localhost:7001 folia.xml
+folia2alpino -s localhost:7001 folia.xml -o alpino.xml
 ```
 
 ### Library
@@ -31,6 +31,13 @@ print("\n".join(parses)) # <treebank><alpino ... /></treebank>
 
 ```bash
 python -m unittest
+```
+
+### Upload to PyPi
+
+```bash
+python setup.py sdist
+twine upload dist/*
 ```
 
 ## Requirements

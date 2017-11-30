@@ -1,6 +1,6 @@
 from distutils.core import setup
 setup(name='folia2alpino',
-      version='0.1.1',
+      version='0.1.2',
       description='Converts FoLiA files to Alpino XML files',
       url='https://github.com/UUDigitalHumanitieslab/folia2alpino',
       author='Digital Humanities Lab, Utrecht University',

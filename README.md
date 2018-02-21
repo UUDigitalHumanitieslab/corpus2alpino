@@ -42,5 +42,5 @@ twine upload dist/*
 
 ## Requirements
 
-* [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server.
+* [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
 * Python 3.6 or higher (developed using 3.6.1).

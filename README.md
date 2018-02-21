@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino)
+
 # FoLiA to Alpino XML
 
 Converts [FoLiA](https://proycon.github.io/folia/) XML files to [Alpino](www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input FoLiA file is parsed separately.

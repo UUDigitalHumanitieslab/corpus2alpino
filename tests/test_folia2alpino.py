@@ -1,13 +1,13 @@
 """
-Unit test for FoLiA to Alpino converter.
+Unit test for corpus to Alpino converter.
 """
 
 import glob
 import unittest
 from os import path
 
-from folia2alpino.alpino_wrappers import AlpinoPassthroughWrapper
-from folia2alpino.converter import Converter
+from corpus2alpino.alpino_wrappers import AlpinoPassthroughWrapper
+from corpus2alpino.converter import Converter
 
 
 class TestFolia2Alpino(unittest.TestCase):

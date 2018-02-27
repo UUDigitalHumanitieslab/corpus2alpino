@@ -10,14 +10,14 @@ from corpus2alpino.alpino_wrappers import AlpinoPassthroughWrapper
 from corpus2alpino.converter import Converter
 
 
-class TestFolia2Alpino(unittest.TestCase):
+class TestCorpus2Alpino(unittest.TestCase):
     """
     Unit test class.
     """
 
     def test_get_sentences(self):
         """
-        Test that sentences in a FoLiA file can be converted to Alpino-compatible input.
+        Test that sentences in a FoLiA/TEI file can be converted to Alpino-compatible input.
         """
 
         alpino = AlpinoPassthroughWrapper()

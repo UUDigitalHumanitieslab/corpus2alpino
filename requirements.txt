@@ -6,11 +6,13 @@
 #
 argparse==1.4.0
 beautifulsoup4==4.6.0     # via tei-reader
+cython==0.27.3            # via python-ucto
 httplib2==0.10.3          # via pynlpl
 isodate==0.6.0            # via rdflib
 lxml==4.1.1               # via pynlpl, tei-reader
 pynlpl==1.2.4
 pyparsing==2.2.0          # via rdflib
+python-ucto==0.4.2
 rdflib==4.2.2             # via pynlpl
 six==1.11.0               # via isodate
 tei-reader==0.0.7

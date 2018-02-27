@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino)
+[![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino)
 
 # FoLiA and TEI to Alpino XML
 

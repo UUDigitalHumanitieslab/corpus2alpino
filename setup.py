@@ -1,17 +1,17 @@
 from distutils.core import setup
-setup(name='folia2alpino',
-      version='0.1.2',
-      description='Converts FoLiA files to Alpino XML files',
+setup(name='corpus2alpino',
+      version='0.1.3',
+      description='Converts FoLiA and TEI files to Alpino XML files',
       url='https://github.com/UUDigitalHumanitieslab/folia2alpino',
       author='Digital Humanities Lab, Utrecht University',
       author_email='dh.developers@uu.nl',
       license='MIT',
-      packages=['folia2alpino'],
+      packages=['corpus2alpino'],
       install_requires=['argparse', 'PyNLPl', 'tei-reader'],
       python_requires='>=3.6',
       zip_safe=True,
       entry_points={
           'console_scripts': [
-              'folia2alpino = folia2alpino.__main__:main'
+              'corpus2alpino = corpus2alpino.__main__:main'
           ]
       })

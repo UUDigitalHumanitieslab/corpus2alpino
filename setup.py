@@ -7,7 +7,7 @@ setup(name='corpus2alpino',
       author_email='dh.developers@uu.nl',
       license='MIT',
       packages=['corpus2alpino'],
-      install_requires=['argparse', 'PyNLPl', 'python-ucto', 'tei-reader'],
+      install_requires=['argparse', 'Cython', 'PyNLPl', 'python-ucto', 'tei-reader'],
       python_requires='>=3.6',
       zip_safe=True,
       entry_points={

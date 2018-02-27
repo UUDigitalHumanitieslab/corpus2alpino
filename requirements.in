@@ -1,4 +1,5 @@
 argparse
+Cython
 PyNLPl
 python-ucto
 tei-reader>=0.0.7

@@ -1,0 +1,40 @@
+<TEI 
+    xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Goedendag!</title>
+                <author>Sheean Spoel</author>
+            </titleStmt>
+            <editionStmt>
+                <edition>
+                    <date>2018-02-27T10:32:08.110594794</date>
+                </edition>
+            </editionStmt>
+            <publicationStmt>
+                <p>no publication statement available</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Written by OpenOffice</p>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <listChange>
+                <change>
+                    <name>Sheean Spoel</name>
+                    <date>2018-02-27T10:33:38.490559117</date>
+                </change>
+            </listChange>
+        </revisionDesc>
+    </teiHeader>
+    <text xml:id="foo">
+        <body>
+            <head xml:id="bar">Goedendag!</head>
+            <p>Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit 
+                <hi rend="italic">TEI-formaat </hi>naar 
+                <hi rend="italic">Alpino/Lassy-formaat</hi>. Een 
+                <hi rend="underline">fijne</hi>  dag nog!
+            </p>
+        </body>
+    </text>
+</TEI>

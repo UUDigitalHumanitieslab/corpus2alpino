@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/folia2alpino)
 
-# FoLiA to Alpino XML
+# FoLiA and TEI to Alpino XML
 
-Converts [FoLiA](https://proycon.github.io/folia/) XML files to [Alpino](www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input FoLiA file is parsed separately.
+Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
 
 ## Usage
 
@@ -46,3 +46,8 @@ twine upload dist/*
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
 * Python 3.6 or higher (developed using 3.6.1).
+* [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
+* [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
+* [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
+* [ucto](https://packages.ubuntu.com/bionic/ucto)
+

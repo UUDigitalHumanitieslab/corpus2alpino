@@ -7,7 +7,7 @@ setup(name='folia2alpino',
       author_email='dh.developers@uu.nl',
       license='MIT',
       packages=['folia2alpino'],
-      install_requires=['argparse', 'PyNLPl'],
+      install_requires=['argparse', 'PyNLPl', 'tei-reader'],
       python_requires='>=3.6',
       zip_safe=True,
       entry_points={

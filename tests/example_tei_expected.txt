@@ -1,0 +1,21 @@
+@fileDesc::titleStmt=Goedendag!\nSheean Spoel
+@fileDesc::editionStmt=2018-02-27T10:32:08.110594794
+@fileDesc::publicationStmt=no publication statement available
+@fileDesc::sourceDesc=Written by OpenOffice
+@id=bar
+@tei-tag=head
+bar|Goedendag !
+@fileDesc::titleStmt=Goedendag!\nSheean Spoel
+@fileDesc::editionStmt=2018-02-27T10:32:08.110594794
+@fileDesc::publicationStmt=no publication statement available
+@fileDesc::sourceDesc=Written by OpenOffice
+@id=foo
+@tei-tag=p
+foo|Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit TEI-formaat naar Alpino / Lassy-formaat .
+@fileDesc::titleStmt=Goedendag!\nSheean Spoel
+@fileDesc::editionStmt=2018-02-27T10:32:08.110594794
+@fileDesc::publicationStmt=no publication statement available
+@fileDesc::sourceDesc=Written by OpenOffice
+@id=foo
+@tei-tag=p
+foo_1|Een fijne dag nog !

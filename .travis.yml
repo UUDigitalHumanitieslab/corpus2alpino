@@ -1,10 +1,15 @@
+sudo: required
 language: python
-python:
-  - "3.6"
+services:
+  - docker
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libfolia-dev libticcutils2-dev libucto-dev ucto
+  - tar -cvf files.tar *
+  - docker pull proycon/lamachine
+  - docker run -t -d --name lamachine proycon/lamachine
+  - docker cp files.tar lamachine:/tmp/
+  - docker exec lamachine tar -xf /tmp/files.tar -C /tmp
 install:
-  - pip install -r requirements.txt
+  - docker exec lamachine pip install -r /tmp/requirements.txt
 script:
-  - python -m unittest
+  - docker exec lamachine python -m unittest
+  - docker stop lamachine

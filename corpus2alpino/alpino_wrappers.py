@@ -14,9 +14,10 @@ class AlpinoServiceWrapper:
     Wrapper for connecting to an Alpino parser server.
     """
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, split_treebanks):
         self.host = host
         self.port = port
+        self.split_treebanks = split_treebanks
 
         self.prefix_id = True
         parsed = self.parse_line("hallo wereld !", '42', {})
@@ -43,10 +44,12 @@ class AlpinoServiceWrapper:
             strip: remove the xml header and remove the trailing newline
         """
 
-        yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<treebank>"
+        if not self.split_treebanks:
+            yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<treebank>"
         for (line, sentence_id, metadata) in lines:
-            yield self.parse_line(line, sentence_id, metadata, True)
-        yield "</treebank>"
+            yield self.parse_line(line, sentence_id, metadata, not self.split_treebanks)
+        if not self.split_treebanks:
+            yield "</treebank>"
 
     def parse_line(self, line, sentence_id, metadata, strip=False):
         """
@@ -104,4 +107,10 @@ class AlpinoPassthroughWrapper:
         Passthrough input.
         """
 
-        return lines
+        for line, line_id, metadata in lines:
+            metadata_display = '\n'.join(self.output_metadata_items(metadata)) + '\n' if metadata else ''
+            yield f'{metadata_display}{line_id}|{line}' 
+
+    def output_metadata_items(self, metadata):
+        for key, value in metadata.items():
+            yield f'##META text {key} = {value}'

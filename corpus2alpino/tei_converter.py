@@ -193,8 +193,8 @@ class TeiConverter:
         Determine whether this is a TEI XML file
         """
 
-        with open(file_name) as file:
-            for i in range(0, 5):
+        with open(file_name, encoding='utf-8') as file:
+            for _ in range(0, 5):
                 line = file.readline()
                 if not line:
                     return False

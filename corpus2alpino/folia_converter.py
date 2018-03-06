@@ -81,7 +81,7 @@ class FoliaConverter:
         Determine whether this is a FoLiA XML file
         """
 
-        with open(file_name) as file:
+        with open(file_name, encoding='utf-8') as file:
             for _ in range(0, 5):
                 line = file.readline()
                 if not line:

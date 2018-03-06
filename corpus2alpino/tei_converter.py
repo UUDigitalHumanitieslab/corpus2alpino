@@ -1,9 +1,59 @@
+#!/usr/bin/env python3
 """
 Module for converting TEI xml files to Alpino XML (input) files.
 """
 from tei_reader import TeiReader
+import os
+import re
 import ucto
 
+alignable_characters = re.compile(r'[A-Za-zàéëüïóò]')
+nonalignable_characters = re.compile(r'[^A-Za-zàéëüïóò]')
+
+class TokenizedSentenceEmitter:
+    offset = 0
+
+    def __init__(self, sentences):
+        self.sentences = sentences
+
+    def get_sentences(self, part_text, part_offset = 0):
+        if not self.sentences:
+            return
+        sentence = self.sentences[0] + '\n'
+
+        remaining_sentence = sentence[self.offset:]
+
+        alignable_text = nonalignable_characters.sub('', part_text)
+        
+        (sentence_length, part_offset, part_done) = self.get_part_length(remaining_sentence, alignable_text, part_offset)
+        yield remaining_sentence[:sentence_length]
+        if part_done:
+            self.offset += sentence_length
+        else:
+            self.offset = 0
+            # move to next sentence
+            self.sentences = self.sentences[1:]
+            yield from self.get_sentences(part_text, part_offset)
+            
+
+    def get_part_length(self, sentence, alignable_text, n = 0):
+        """
+        Return the actual string length of this part in the sentence and the index of the alignable character match
+        in this part. This index is relevant if a part is split over multiple sentences
+        """
+
+        for i, char in enumerate(sentence):
+            if alignable_characters.match(char):
+                if len(alignable_text) == n:
+                    # part of the sentence matches
+                    return (i, n, True)
+                if alignable_text[n] != char:
+                    # this part doesn't match
+                    raise Exception(f"Alignment error at ({i}, {n})! Sentence: {sentence} Part: {alignable_text}")
+                n += 1
+
+        # the entire sentence matches
+        return (len(sentence), n, False)
 
 class TeiConverter:
     """
@@ -37,21 +87,56 @@ class TeiConverter:
             for document in corpora.documents:
                 unique_ids = {}  # an id should be unique within a document
                 for division_path in self.get_lowest_divisions(document.divisions):
-                    self.tokenizer.process(division_path[-1].text)
-                    for sentence in self.tokenizer.sentences():
-                        # TODO: support quoted text
-                        # TODO: support some more word-specific annotations (@mwu, @skip, @phantom, @folia, @id ...)
-                        # Maybe try to align the tokenized sentences with the text parts and their attributes?
+                    division = division_path[-1]
+                    self.tokenizer.process(division.text)
+                    sentence_emitter = TokenizedSentenceEmitter(list(self.tokenizer.sentences()))
+
+                    for sentence in division.tostring(lambda part, text: self.add_word_metadata(sentence_emitter, part, text)).splitlines():
                         metadata = self.get_metadata(document, division_path)
-                        sentence_id = self.determine_id(
-                            sentence, file_name, metadata, unique_ids)
+                        # TODO: id from part if there is only one part?
+                        sentence_id = self.determine_id(file_name, metadata, unique_ids)
                         yield (sentence, sentence_id, metadata)
 
-    def determine_id(self, sentence, file_name, metadata, unique_ids):
+    def add_word_metadata(self, sentence_emitter, part, text):
+        if len(list(part.parts)) == 0:
+            text = ''.join(sentence_emitter.get_sentences(part.text))
+        
+        attributes = self.get_element_metadata(part.attributes)
+                
+        if 'tei-tag' in attributes:
+            tag = attributes['tei-tag']
+            if tag == 'q':
+                return self.modify_text(text, lambda text: f'" {text}"')
+
+        if 'id' in attributes:
+            identifier = attributes['id']
+            # TODO: I think this is a bug in Alpino? "ERROR: something went wrong in saving the XML in stream($stream(140026222726096))!"
+            #return self.modify_text(text, lambda text: f'[ @id {identifier} ] {text}')
+
+        if 'lemma' in attributes and 'pos' in attributes:
+            lemma = attributes['lemma']
+            pos_tag = attributes['pos']
+            return self.modify_text(text, lambda text: f'[ @folia {lemma} {pos_tag} {text}] ')
+                    
+        return text
+
+    def modify_text(self, text, modification):
+        """
+        Only modify the first line.
+        """
+
+        lines = text.splitlines()
+        if len(lines) > 1:
+            # if a text has newlines, end the quotation
+            return (modification(lines[0].replace('\n', '')) + '\n' + ''.join(lines[1:])).replace('  ', ' ')
+        else:
+            return modification(text)
+
+    def determine_id(self, file_name, metadata, unique_ids):
         if 'id' in metadata:
             sentence_id = self.escape_id(metadata['id'])
         else:
-            sentence_id = file_name
+            _, sentence_id = os.path.split(file_name)
 
         if sentence_id in unique_ids:
             unique_ids[sentence_id] += 1

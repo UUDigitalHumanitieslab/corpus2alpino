@@ -5,8 +5,8 @@ Entry point for converting FoLiA xml files to Alpino XML files.
 
 import sys
 import argparse
-from folia2alpino.alpino_wrappers import AlpinoPassthroughWrapper, AlpinoServiceWrapper
-from folia2alpino.converter import Converter
+from corpus2alpino.alpino_wrappers import AlpinoPassthroughWrapper, AlpinoServiceWrapper
+from corpus2alpino.converter import Converter
 
 
 def main(args=None):

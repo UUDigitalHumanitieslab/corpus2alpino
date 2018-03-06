@@ -8,14 +8,20 @@ Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.or
 
 ### Command Line
 ```bash
-pip install folia2alpino
-folia2alpino -s localhost:7001 folia.xml -o alpino.xml
+pip install corpus2alpino
+corpus2alpino -s localhost:7001 folia.xml -o alpino.xml
+```
+
+Or from project root:
+
+```bash
+python -m corpus2alpino -s localhost:7001 folia.xml -o alpino.xml
 ```
 
 ### Library
 ```python
-from folia2alpino.converter import Converter
-from folia2alpino.alpino_wrappers import AlpinoServiceWrapper
+from corpus2alpino.converter import Converter
+from corpus2alpino.alpino_wrappers import AlpinoServiceWrapper
 
 alpino = AlpinoServiceWrapper("localhost", 7001)
 converter = Converter(alpino)

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Module for converting FoLiA xml files to Alpino XML (input) files.
 """

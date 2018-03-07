@@ -5,6 +5,9 @@ Module for converting FoLiA xml files to Alpino XML (input) files.
 
 from pynlpl.formats import folia
 
+from .alpino_brackets import escape_id, escape_word, format_add_lex, format_folia
+
+
 class FoliaConverter:
     """
     Class for converting FoLiA xml files to Alpino XML (input) files.
@@ -31,20 +34,25 @@ class FoliaConverter:
 
         for file_name in file_names:
             doc = folia.Document(file=file_name)
+            metadata = self.get_metadata_dict(doc.metadata.items())
+
             # doc.sentences() will skip quotes
             for paragraph in doc.paragraphs():
                 for sentence in paragraph.sentences():
-                    yield self.get_sentence(sentence)
+                    yield self.get_sentence(sentence, metadata)
 
-    def get_sentence(self, sentence):
+    def get_sentence(self, sentence, doc_metadata):
         """
         Convert a FoLiA sentence object to an Alpino compatible string to parse.
         """
 
         words = sentence.words()
         line = " ".join(self.get_word_string(word) for word in words)
-        sentence_id = self.escape_id(sentence.id)
-        metadata = {}
+        sentence_id = escape_id(sentence.id)
+        metadata = {
+            **doc_metadata,
+            **self.get_metadata_dict(sentence.getmetadata().items())
+        }
 
         return (line, sentence_id, metadata)
 
@@ -53,28 +61,32 @@ class FoliaConverter:
         Get a string representing this word and any additional known properties to add to the parse.
         """
 
+        text = word.text()
+
         try:
             correction = word.getcorrection()
-            text = word.text()
-            return f"[ @add_lex {self.escape_word(correction.text())} {self.escape_word(text)} ]" \
-                if correction.hastext() and correction.text() != text \
-                else self.escape_word(text)
+
+            if correction.hastext() and correction.text() != text:
+                return format_add_lex(correction.text(), text)
         except folia.NoSuchAnnotation:
-            return self.escape_word(word.text())
+            pass
 
-    def escape_id(self, sentence_id):
-        """
-        Escape an id to be Alpino compatible.
-        """
+        try:
+            lemma = word.lemma()
+            pos = word.pos()
 
-        return self.escape_word(sentence_id.replace("|", "_"))
+            if lemma and pos:
+                return format_folia(lemma, pos, text)
+        except folia.NoSuchAnnotation:
+            pass
 
-    def escape_word(self, text):
-        """
-        Escape a word to be Alpino compatible.
-        """
+        return escape_word(text)
 
-        return text.replace("[", "\\[").replace("]", "\\]")
+    def get_metadata_dict(self, native_metadata):
+        metadata = {}
+        for key, value in native_metadata:
+            metadata[key] = value
+        return metadata
 
     def test_file(self, file_name):
         """
@@ -88,5 +100,5 @@ class FoliaConverter:
                     return False
                 if '<FoLiA' in line:
                     return True
-        
+
         return False

@@ -1,6 +1,6 @@
 from distutils.core import setup
 setup(name='corpus2alpino',
-      version='0.1.7',
+      version='0.1.8',
       description='Converts FoLiA and TEI files to Alpino XML files',
       url='https://github.com/UUDigitalHumanitieslab/corpus2alpino',
       author='Sheean Spoel, Digital Humanities Lab, Utrecht University',

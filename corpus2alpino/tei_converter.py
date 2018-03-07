@@ -7,6 +7,8 @@ import os
 import re
 import ucto
 
+from .alpino_brackets import escape_id, format_folia
+
 alignable_characters = re.compile(r'[A-Za-zàéëüïóò]')
 nonalignable_characters = re.compile(r'[^A-Za-zàéëüïóò]')
 
@@ -116,7 +118,7 @@ class TeiConverter:
         if 'lemma' in attributes and 'pos' in attributes:
             lemma = attributes['lemma']
             pos_tag = attributes['pos']
-            return self.modify_text(text, lambda text: f'[ @folia {lemma} {pos_tag} {text}] ')
+            return self.modify_text(text, lambda text: format_folia(lemma, pos_tag, text.strip()) + ' ')
                     
         return text
 
@@ -134,7 +136,7 @@ class TeiConverter:
 
     def determine_id(self, file_name, metadata, unique_ids):
         if 'id' in metadata:
-            sentence_id = self.escape_id(metadata['id'])
+            sentence_id = escape_id(metadata['id'])
         else:
             _, sentence_id = os.path.split(file_name)
 
@@ -173,20 +175,6 @@ class TeiConverter:
             else:
                 metadata[attribute.key] = attribute.text
         return metadata
-
-    def escape_id(self, sentence_id):
-        """
-        Escape an id to be Alpino compatible.
-        """
-
-        return self.escape_word(sentence_id.replace("|", "_"))
-
-    def escape_word(self, text):
-        """
-        Escape a word to be Alpino compatible.
-        """
-
-        return text.replace("[", "\\[").replace("]", "\\]")
 
     def test_file(self, file_name):
         """

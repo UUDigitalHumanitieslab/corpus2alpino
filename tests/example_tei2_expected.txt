@@ -4,13 +4,17 @@
 @note=Misschien question gebruiken?
 @note::rend=italic
 @note::xml:lang=en
-example_tei2.xml|Hier staat wat wunderschöne tekst om het importeren van TEI-geformatteerde tekst te evalueren .
+@note::lemma=gebruiken
+@note::pos=WW(inf,vrij,zonder)
+example_tei2.xml|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheisse tekst om het importeren van TEI-geformatteerde tekst te evalueren .
 @fileDesc::titleStmt=Quotes en andere talen\nSheean Spoel
 @fileDesc::editionStmt=2018-03-05T13:38:37.229008088
 @tei-tag=p
 @note=Misschien question gebruiken?
 @note::rend=italic
 @note::xml:lang=en
+@note::lemma=gebruiken
+@note::pos=WW(inf,vrij,zonder)
 example_tei2.xml_1|Zij zei hierover tegen hem " wat is de raison d ’ être van deze tekst ? "
 @fileDesc::titleStmt=Quotes en andere talen\nSheean Spoel
 @fileDesc::editionStmt=2018-03-05T13:38:37.229008088
@@ -18,4 +22,6 @@ example_tei2.xml_1|Zij zei hierover tegen hem " wat is de raison d ’ être van
 @note=Misschien question gebruiken?
 @note::rend=italic
 @note::xml:lang=en
+@note::lemma=gebruiken
+@note::pos=WW(inf,vrij,zonder)
 example_tei2.xml_2|, niets dan ontzag volgde op deze vraag .

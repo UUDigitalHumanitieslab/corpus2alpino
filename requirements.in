@@ -2,4 +2,4 @@ argparse
 Cython
 PyNLPl
 python-ucto
-tei-reader>=0.0.9
+tei-reader>=0.0.12

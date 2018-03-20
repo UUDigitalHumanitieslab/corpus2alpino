@@ -23,8 +23,8 @@
     </teiHeader>
     <text>
         <body>
-            <p>Hier staat wat
-                <hi rend="italic" xml:lang="de" xml:id="foo">wunderschöne</hi> tekst om het importeren van TEI-geformatteerde tekst te evalueren. Zij zei hierover tegen hem
+            <p>Hier <w lemma="staan" pos="WW(pv,tgw,met-t)">staat</w> wat
+                <hi rend="italic" xml:lang="de" xml:id="foo">scheiße</hi> tekst om het importeren van TEI-geformatteerde tekst te evalueren. Zij zei hierover tegen hem
                 <q>wat is de
                     <hi rend="italic" xml:lang="fr">raison d’être</hi> van deze tekst?
                 </q>, niets dan ontzag volgde op deze vraag

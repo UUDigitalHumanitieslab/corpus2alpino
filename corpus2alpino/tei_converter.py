@@ -12,23 +12,42 @@ from .alpino_brackets import escape_id, format_folia
 alignable_characters = re.compile(r'[A-Za-zàéëüïóò]')
 nonalignable_characters = re.compile(r'[^A-Za-zàéëüïóò]')
 
+ucto_ligatures = {
+    'æ': "ae",
+    'Æ': "AE",
+    'œ': "oe",
+    'Œ': "OE",
+    'ĳ': "ij",
+    'Ĳ': "IJ",
+    'ﬂ': "fl",
+    'ﬀ': "ff",
+    'ﬃ': "ffi",
+    'ﬄ': "ffl",
+    'ﬅ': "st",
+    'ß': "ss"
+}
+
+
 class TokenizedSentenceEmitter:
     offset = 0
 
     def __init__(self, sentences):
         self.sentences = sentences
 
-    def get_sentences(self, part_text, part_offset = 0):
+    def __get_alignable_text(self, text):
+        return nonalignable_characters.sub('', ''.join([ucto_ligatures[c] if c in ucto_ligatures else c for c in text]))
+
+    def get_sentences(self, part_text, part_offset=0):
         if not self.sentences:
             return
         sentence = self.sentences[0] + '\n'
 
         remaining_sentence = sentence[self.offset:]
 
-        alignable_text = nonalignable_characters.sub('', part_text)
-        
+        alignable_text = self.__get_alignable_text(part_text)
+
         (sentence_length, part_offset, part_done) = self.get_part_length(remaining_sentence, alignable_text, part_offset)
-        yield remaining_sentence[:sentence_length]
+        yield remaining_sentence[:sentence_length]        
         if part_done:
             self.offset += sentence_length
         else:
@@ -36,7 +55,7 @@ class TokenizedSentenceEmitter:
             # move to next sentence
             self.sentences = self.sentences[1:]
             yield from self.get_sentences(part_text, part_offset)
-            
+
 
     def get_part_length(self, sentence, alignable_text, n = 0):
         """
@@ -102,9 +121,9 @@ class TeiConverter:
     def add_word_metadata(self, sentence_emitter, part, text):
         if len(list(part.parts)) == 0:
             text = ''.join(sentence_emitter.get_sentences(part.text))
-        
+
         attributes = self.get_element_metadata(part.attributes)
-                
+
         if 'tei-tag' in attributes:
             tag = attributes['tei-tag']
             if tag == 'q':
@@ -113,13 +132,13 @@ class TeiConverter:
         if 'id' in attributes:
             identifier = attributes['id']
             # TODO: I think this is a bug in Alpino? "ERROR: something went wrong in saving the XML in stream($stream(140026222726096))!"
-            #return self.modify_text(text, lambda text: f'[ @id {identifier} ] {text}')
+            # return self.modify_text(text, lambda text: f'[ @id {identifier} ] {text}')
 
         if 'lemma' in attributes and 'pos' in attributes:
             lemma = attributes['lemma']
             pos_tag = attributes['pos']
             return self.modify_text(text, lambda text: format_folia(lemma, pos_tag, text.strip()) + ' ')
-                    
+
         return text
 
     def modify_text(self, text, modification):

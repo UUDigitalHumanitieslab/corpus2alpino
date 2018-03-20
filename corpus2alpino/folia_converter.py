@@ -33,7 +33,7 @@ class FoliaConverter:
         """
 
         for file_name in file_names:
-            doc = folia.Document(file=file_name)
+            doc = folia.Document(file=file_name, loadsetdefinitions=True)
             metadata = self.get_metadata_dict(doc.metadata.items())
 
             # doc.sentences() will skip quotes

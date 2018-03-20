@@ -25,7 +25,10 @@ class Converter:
         """
 
         for file_name in file_names:
-            for converter in self.converters:
-                if converter.test_file(file_name):
-                    for sentence in converter.get_sentences([file_name]):
-                        yield sentence
+            try:
+                for converter in self.converters:
+                    if converter.test_file(file_name):
+                        for sentence in converter.get_sentences([file_name]):
+                            yield sentence
+            except Exception as error:
+                raise Exception(f"Problem parsing {file_name}") from error

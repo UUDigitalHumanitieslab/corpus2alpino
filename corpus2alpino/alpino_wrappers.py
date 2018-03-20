@@ -78,6 +78,9 @@ class AlpinoServiceWrapper:
         if not self.prefix_id:
             xml = sentence_id_matcher.sub(sentence_id, xml)
 
+        # escape CHAT time alignment character
+        xml = xml.replace('', '&#21;')
+
         lines = xml.splitlines()
 
         if metadata:

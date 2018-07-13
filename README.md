@@ -7,6 +7,7 @@ Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.or
 ## Usage
 
 ### Command Line
+
 ```bash
 pip install corpus2alpino
 corpus2alpino -s localhost:7001 folia.xml -o alpino.xml
@@ -19,6 +20,7 @@ python -m corpus2alpino -s localhost:7001 folia.xml -o alpino.xml
 ```
 
 ### Library
+
 ```python
 from corpus2alpino.converter import Converter
 from corpus2alpino.alpino_wrappers import AlpinoServiceWrapper
@@ -53,8 +55,8 @@ twine upload dist/*
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
 * Python 3.6 or higher (developed using 3.6.1).
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
-** libicu-dev
-** libxml2-dev
+* [libicu-dev](https://packages.ubuntu.com/bionic/libicu-dev)
+* [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 * [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
 * [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
 * [ucto](https://packages.ubuntu.com/bionic/ucto)

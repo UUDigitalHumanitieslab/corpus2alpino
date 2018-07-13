@@ -34,14 +34,32 @@ class FoliaConverter:
 
         for file_name in file_names:
             doc = folia.Document(file=file_name, loadsetdefinitions=True)
-            metadata = self.get_metadata_dict(doc.metadata.items())
+            doc_metadata = self.get_metadata_dict(doc.metadata.items())
 
-            # doc.sentences() will skip quotes
-            for paragraph in doc.paragraphs():
-                for sentence in paragraph.sentences():
-                    yield self.get_sentence(sentence, metadata)
+            paragraph = None
+            sentence = None
+            words = []
 
-    def get_sentence(self, sentence, doc_metadata):
+            for word in doc.words():
+                for ancestor in word.ancestors():
+                    if type(ancestor) is folia.Sentence:
+                        if sentence != ancestor and words:
+                            yield self.get_sentence(sentence, words, doc_metadata)
+                            words = []
+
+                        sentence = ancestor
+                    elif type(ancestor) is folia.Paragraph:
+                        if paragraph != ancestor and words:
+                            yield self.get_sentence(sentence, words, doc_metadata)
+                            words = []
+
+                        paragraph = ancestor
+                words.append(word)
+
+            if words:
+                yield self.get_sentence(sentence, words, doc_metadata)
+
+    def get_sentence(self, sentence, words, doc_metadata):
         """
         Convert a FoLiA sentence object to an Alpino compatible string to parse.
         """
@@ -49,12 +67,11 @@ class FoliaConverter:
         words = sentence.words()
         line = " ".join(self.get_word_string(word) for word in words)
         sentence_id = escape_id(sentence.id)
-        metadata = {
-            **doc_metadata,
-            **self.get_metadata_dict(sentence.getmetadata().items())
-        }
+        sentence_metadata = self.get_metadata_dict(
+            sentence.getmetadata().items(),
+            doc_metadata)
 
-        return (line, sentence_id, metadata)
+        return (line, sentence_id, doc_metadata, sentence_metadata)
 
     def get_word_string(self, word):
         """
@@ -82,10 +99,12 @@ class FoliaConverter:
 
         return escape_word(text)
 
-    def get_metadata_dict(self, native_metadata):
+    def get_metadata_dict(self, native_metadata, filter_by=None):
         metadata = {}
         for key, value in native_metadata:
-            metadata[key] = value
+            if filter_by == None or not key in filter_by \
+                    or filter_by[key] != value:
+                metadata[key] = value
         return metadata
 
     def test_file(self, file_name):

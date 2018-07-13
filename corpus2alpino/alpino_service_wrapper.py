@@ -9,6 +9,7 @@ import re
 
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
 
+
 class AlpinoServiceWrapper:
     """
     Wrapper for connecting to an Alpino parser server.
@@ -22,18 +23,20 @@ class AlpinoServiceWrapper:
         self.prefix_id = True
         parsed = self.parse_line("hallo wereld !", '42', {})
         if '"42|hallo"' in parsed:
-            self.prefix_id = False # Add it ourselves
+            self.prefix_id = False  # Add it ourselves
             parsed = self.parse_line("hallo wereld !", '42', {})
             if not '"hallo"' in parsed:
                 raise Exception("Alpino has unsupported sentence ID behavior")
-        
+
         # validate that the match can be found
         match = sentence_id_matcher.search(parsed)
         if not match:
-            raise Exception("No sentence id returned in XML structure by Alpino")
-        
+            raise Exception(
+                "No sentence id returned in XML structure by Alpino")
+
         if self.prefix_id and match.group(0) != "42":
-            raise Exception(f"Unexpected sentence id: {match.group(0)} instead of 42")
+            raise Exception(
+                f"Unexpected sentence id: {match.group(0)} instead of 42")
 
     def parse_lines(self, lines):
         """
@@ -46,12 +49,12 @@ class AlpinoServiceWrapper:
 
         if not self.split_treebanks:
             yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<treebank>"
-        for (line, sentence_id, metadata) in lines:
-            yield self.parse_line(line, sentence_id, metadata, not self.split_treebanks)
+        for (line, sentence_id, doc_metadata, sentence_metadata) in lines:
+            yield self.parse_line(line, sentence_id, doc_metadata, sentence_metadata, not self.split_treebanks)
         if not self.split_treebanks:
             yield "</treebank>"
 
-    def parse_line(self, line, sentence_id, metadata, strip=False):
+    def parse_line(self, line, sentence_id, doc_metadata, sentence_metadata, strip=False):
         """
         Parse a line using the Alpino parser.
 
@@ -83,6 +86,11 @@ class AlpinoServiceWrapper:
 
         lines = xml.splitlines()
 
+        metadata = {
+            ** doc_metadata,
+            ** sentence_metadata
+        }
+        
         if metadata:
             lines.insert(-1, self.render_metadata(metadata))
 
@@ -99,21 +107,3 @@ class AlpinoServiceWrapper:
 
     def escape_xml_attribute(self, value):
         return escape(value).replace('\n', '&#10;').replace('\r', '')
-
-class AlpinoPassthroughWrapper:
-    """
-    Wrapper for passing through the strings which can be parsed using Alpino.
-    """
-
-    def parse_lines(self, lines):
-        """
-        Passthrough input.
-        """
-
-        for line, line_id, metadata in lines:
-            metadata_display = '\n'.join(self.output_metadata_items(metadata)) + '\n' if metadata else ''
-            yield f'{metadata_display}{line_id}|{line}' 
-
-    def output_metadata_items(self, metadata):
-        for key, value in metadata.items():
-            yield f'##META text {key} = {value}'

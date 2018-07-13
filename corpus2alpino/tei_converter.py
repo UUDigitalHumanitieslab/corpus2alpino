@@ -46,8 +46,9 @@ class TokenizedSentenceEmitter:
 
         alignable_text = self.__get_alignable_text(part_text)
 
-        (sentence_length, part_offset, part_done) = self.get_part_length(remaining_sentence, alignable_text, part_offset)
-        yield remaining_sentence[:sentence_length]        
+        (sentence_length, part_offset, part_done) = self.get_part_length(
+            remaining_sentence, alignable_text, part_offset)
+        yield remaining_sentence[:sentence_length]
         if part_done:
             self.offset += sentence_length
         else:
@@ -56,8 +57,7 @@ class TokenizedSentenceEmitter:
             self.sentences = self.sentences[1:]
             yield from self.get_sentences(part_text, part_offset)
 
-
-    def get_part_length(self, sentence, alignable_text, n = 0):
+    def get_part_length(self, sentence, alignable_text, n=0):
         """
         Return the actual string length of this part in the sentence and the index of the alignable character match
         in this part. This index is relevant if a part is split over multiple sentences
@@ -70,11 +70,13 @@ class TokenizedSentenceEmitter:
                     return (i, n, True)
                 if alignable_text[n] != char:
                     # this part doesn't match
-                    raise Exception(f"Alignment error at ({i}, {n})! Sentence: {sentence} Part: {alignable_text}")
+                    raise Exception(
+                        f"Alignment error at ({i}, {n})! Sentence: {sentence} Part: {alignable_text}")
                 n += 1
 
         # the entire sentence matches
         return (len(sentence), n, False)
+
 
 class TeiConverter:
     """
@@ -110,13 +112,16 @@ class TeiConverter:
                 for division_path in self.get_lowest_divisions(document.divisions):
                     division = division_path[-1]
                     self.tokenizer.process(division.text)
-                    sentence_emitter = TokenizedSentenceEmitter(list(self.tokenizer.sentences()))
+                    sentence_emitter = TokenizedSentenceEmitter(
+                        list(self.tokenizer.sentences()))
 
                     for sentence in division.tostring(lambda part, text: self.add_word_metadata(sentence_emitter, part, text)).splitlines():
-                        metadata = self.get_metadata(document, division_path)
+                        (doc_metadata, sentence_metadata) = self.get_metadata(
+                            document, division_path)
                         # TODO: id from part if there is only one part?
-                        sentence_id = self.determine_id(file_name, metadata, unique_ids)
-                        yield (sentence, sentence_id, metadata)
+                        sentence_id = self.determine_id(
+                            file_name, doc_metadata, sentence_metadata, unique_ids)
+                        yield (sentence, sentence_id, doc_metadata, sentence_metadata)
 
     def add_word_metadata(self, sentence_emitter, part, text):
         if len(list(part.parts)) == 0:
@@ -153,9 +158,11 @@ class TeiConverter:
         else:
             return modification(text)
 
-    def determine_id(self, file_name, metadata, unique_ids):
-        if 'id' in metadata:
-            sentence_id = escape_id(metadata['id'])
+    def determine_id(self, file_name, doc_metadata, sentence_metadata, unique_ids):
+        if 'id' in doc_metadata:
+            sentence_id = escape_id(doc_metadata['id'])
+        elif 'id' in sentence_metadata:
+            sentence_id = escape_id(sentence_metadata['id'])
         else:
             _, sentence_id = os.path.split(file_name)
 
@@ -177,14 +184,15 @@ class TeiConverter:
                 yield path + [division]
 
     def get_metadata(self, document, division_path):
-        metadata = self.get_element_metadata(document.attributes)
+        doc_metadata = self.get_element_metadata(document.attributes)
+        sentence_metadata = {}
         for division in division_path:
-            metadata = {
-                **metadata,
+            sentence_metadata = {
+                **sentence_metadata,
                 **self.get_element_metadata(division.attributes)
             }
 
-        return metadata
+        return (doc_metadata, sentence_metadata)
 
     def get_element_metadata(self, attributes):
         metadata = {}

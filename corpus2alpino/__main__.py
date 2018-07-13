@@ -5,7 +5,8 @@ Entry point for converting FoLiA xml files to Alpino XML files.
 
 import sys
 import argparse
-from corpus2alpino.alpino_wrappers import AlpinoPassthroughWrapper, AlpinoServiceWrapper
+from corpus2alpino.alpino_service_wrapper import AlpinoServiceWrapper
+from corpus2alpino.paqu_writer import PaQuWriter
 from corpus2alpino.converter import Converter
 
 
@@ -21,7 +22,7 @@ def main(args=None):
             formatter_class=argparse.HelpFormatter)
 
         parser.add_argument(
-            'file_names', metavar='FILE', type=str, nargs='+', help='FoLiA file(s) to parse')
+            'file_names', metavar='FILE', type=str, nargs='+', help='TEI/FoLiA file(s) to parse')
         parser.add_argument(
             '-s', '--server', metavar='SERVER', type=str, help='host:port of Alpino server')
         parser.add_argument(
@@ -35,7 +36,7 @@ def main(args=None):
             [host, port] = options.server.split(":")
             converter = Converter(AlpinoServiceWrapper(host, int(port), options.split_treebanks))
         else:
-            converter = Converter(AlpinoPassthroughWrapper())
+            converter = Converter(PaQuWriter())
 
         if options.output_file != None:
             output = FileOutput(options.output_file, options.split_treebanks)

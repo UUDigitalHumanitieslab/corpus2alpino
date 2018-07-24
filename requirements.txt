@@ -10,7 +10,7 @@ cython==0.27.3
 httplib2==0.10.3          # via pynlpl
 isodate==0.6.0            # via rdflib
 lxml==4.1.1               # via pynlpl, tei-reader
-pynlpl==1.2.4
+pynlpl==1.2.7
 pyparsing==2.2.0          # via rdflib
 python-ucto==0.4.2
 rdflib==4.2.2             # via pynlpl

@@ -3,14 +3,19 @@
 Wrapper for the Alpino parser.
 """
 
+ANNOTATION_KEY = 'alpino'
+
 from xml.sax.saxutils import escape
 import socket
 import re
 
+from corpus2alpino.abstracts import Annotator
+from corpus2alpino.models import Document
+
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
 
 
-class AlpinoServiceWrapper:
+class AlpinoAnnotator(Annotator):
     """
     Wrapper for connecting to an Alpino parser server.
     """
@@ -38,23 +43,14 @@ class AlpinoServiceWrapper:
             raise Exception(
                 f"Unexpected sentence id: {match.group(0)} instead of 42")
 
-    def parse_lines(self, lines):
-        """
-        Parse lines using the Alpino parser and wrap them in a treebank container.
+    def annotate(self, document: Document):
+        for utterance in document.utterances:
+            utterance.annotations[ANNOTATION_KEY] = self.parse_line(
+                utterance.text,
+                utterance.id,
+                utterance.metadata)
 
-        Arguments:
-
-            strip: remove the xml header and remove the trailing newline
-        """
-
-        if not self.split_treebanks:
-            yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<treebank>"
-        for (line, sentence_id, doc_metadata, sentence_metadata) in lines:
-            yield self.parse_line(line, sentence_id, doc_metadata, sentence_metadata, not self.split_treebanks)
-        if not self.split_treebanks:
-            yield "</treebank>"
-
-    def parse_line(self, line, sentence_id, doc_metadata, sentence_metadata, strip=False):
+    def parse_line(self, line, sentence_id, metadata):
         """
         Parse a line using the Alpino parser.
 
@@ -86,23 +82,14 @@ class AlpinoServiceWrapper:
 
         lines = xml.splitlines()
 
-        metadata = {
-            ** doc_metadata,
-            ** sentence_metadata
-        }
-        
         if metadata:
             lines.insert(-1, self.render_metadata(metadata))
-
-        if strip:
-            lines = lines[1:]
-            lines[-1] = lines[-1].rstrip()
 
         return "\n".join(lines)
 
     def render_metadata(self, metadata):
         return "<metadata>\n" + "\n".join(
-            f'<meta type="text" name="{key}" value="{self.escape_xml_attribute(value)}" />' for (key, value) in metadata.items()
+            f'<meta type="{item.type}" name="{key}" value="{self.escape_xml_attribute(item.value)}" />' for (key, item) in metadata.items()
         ) + "\n</metadata>"
 
     def escape_xml_attribute(self, value):

@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-Module for converting TEI xml files to Alpino XML (input) files.
+Module for reading TEI xml files to document, utterances and metadata.
 """
-from tei_reader import TeiReader
+from typing import Iterable
+from tei_reader import TeiReader as TeiParser
 import os
 import re
 import ucto
 
-from .alpino_brackets import escape_id, format_folia
+from corpus2alpino.abstracts import Reader
+from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
+
+from corpus2alpino.readers.alpino_brackets import escape_id, format_folia
 
 alignable_characters = re.compile(r'[A-Za-zàéëüïóò]')
 nonalignable_characters = re.compile(r'[^A-Za-zàéëüïóò]')
@@ -78,50 +82,47 @@ class TokenizedSentenceEmitter:
         return (len(sentence), n, False)
 
 
-class TeiConverter:
+class TeiReader(Reader):
     """
-    Class for converting a TEI xml files to Alpino XML (input) files.
-
-    Arguments:
-        wrapper --- Wrapper for communicating with the Alpino parser.
+    Class for converting a TEI xml file to documents.
     """
 
-    def __init__(self, wrapper):
-        self.wrapper = wrapper
-        self.reader = TeiReader()
+    def __init__(self):
+        self.reader = TeiParser()
         self.tokenizer = ucto.Tokenizer("tokconfig-nld")
 
-    def get_parses(self, file_names):
-        """
-        Get the parses and a wrapping treebank xml structure.
-        """
+    def read(self, collected_file: CollectedFile) -> Iterable[Document]:
+        corpora = self.reader.read_string(collected_file.content)
 
-        sentences = self.get_sentences(file_names)
-        return self.wrapper.parse_lines(sentences)
+        for document in corpora.documents:
+            unique_ids = {}  # an id should be unique within a document
+            doc_metadata = {}
+            utterances = []
+            for division_path in self.get_lowest_divisions(document.divisions):
+                division = division_path[-1]
+                self.tokenizer.process(division.text)
+                sentence_emitter = TokenizedSentenceEmitter(
+                    list(self.tokenizer.sentences()))
 
-    def get_sentences(self, file_names):
-        """
-        Read TEI files and return Alpino parsable sentences.
-        """
+                for sentence in division.tostring(
+                        lambda part,
+                        text: self.add_word_metadata(sentence_emitter,
+                                                     part,
+                                                     text)).splitlines():
+                    (doc_metadata, sentence_metadata) = self.get_metadata(
+                        document, division_path)
+                    # TODO: id from part if there is only one part?
+                    sentence_id = self.determine_id(
+                        collected_file.filename,
+                        doc_metadata,
+                        sentence_metadata,
+                        unique_ids)
 
-        for file_name in file_names:
-            corpora = self.reader.read_file(file_name)
+                    utterances.append(
+                        Utterance(sentence, sentence_id, sentence_metadata))
 
-            for document in corpora.documents:
-                unique_ids = {}  # an id should be unique within a document
-                for division_path in self.get_lowest_divisions(document.divisions):
-                    division = division_path[-1]
-                    self.tokenizer.process(division.text)
-                    sentence_emitter = TokenizedSentenceEmitter(
-                        list(self.tokenizer.sentences()))
-
-                    for sentence in division.tostring(lambda part, text: self.add_word_metadata(sentence_emitter, part, text)).splitlines():
-                        (doc_metadata, sentence_metadata) = self.get_metadata(
-                            document, division_path)
-                        # TODO: id from part if there is only one part?
-                        sentence_id = self.determine_id(
-                            file_name, doc_metadata, sentence_metadata, unique_ids)
-                        yield (sentence, sentence_id, doc_metadata, sentence_metadata)
+            # TODO: get document id/path?
+            yield Document(collected_file, utterances, doc_metadata)
 
     def add_word_metadata(self, sentence_emitter, part, text):
         if len(list(part.parts)) == 0:
@@ -160,9 +161,9 @@ class TeiConverter:
 
     def determine_id(self, file_name, doc_metadata, sentence_metadata, unique_ids):
         if 'id' in doc_metadata:
-            sentence_id = escape_id(doc_metadata['id'])
+            sentence_id = escape_id(doc_metadata['id'].value)
         elif 'id' in sentence_metadata:
-            sentence_id = escape_id(sentence_metadata['id'])
+            sentence_id = escape_id(sentence_metadata['id'].value)
         else:
             _, sentence_id = os.path.split(file_name)
 
@@ -198,22 +199,14 @@ class TeiConverter:
         metadata = {}
         for attribute in attributes:
             if attribute.key in metadata:
-                metadata[attribute.key] += ' | ' + attribute.text
+                metadata[attribute.key].value += ' | ' + attribute.text
             else:
-                metadata[attribute.key] = attribute.text
+                metadata[attribute.key] = MetadataValue(attribute.text)
         return metadata
 
-    def test_file(self, file_name):
+    def test_file(self, file):
         """
         Determine whether this is a TEI XML file
         """
 
-        with open(file_name, encoding='utf-8') as file:
-            for _ in range(0, 5):
-                line = file.readline()
-                if not line:
-                    return False
-                if '<TEI' in line:
-                    return True
-
-        return False
+        return '<TEI' in file.content[0:100]

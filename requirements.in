@@ -3,3 +3,4 @@ Cython
 PyNLPl>=1.2.7
 python-ucto
 tei-reader>=0.0.12
+typing

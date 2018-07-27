@@ -19,6 +19,7 @@ class FoliaReader(Reader):
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         doc = folia.Document(string=collected_file.content,
+                             autodeclare=True,
                              loadsetdefinitions=True)
         doc_metadata = self.get_metadata_dict(doc.metadata.items())
 

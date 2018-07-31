@@ -18,14 +18,19 @@ class FoliaReader(Reader):
     """
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
-        doc = folia.Document(string=collected_file.content,
-                             autodeclare=True,
-                             loadsetdefinitions=True)
-        doc_metadata = self.get_metadata_dict(doc.metadata.items())
+        try:
+            doc = folia.Document(string=collected_file.content,
+                                 autodeclare=True,
+                                 loadsetdefinitions=False)
 
-        yield Document(collected_file,
-                       list(self.get_utterances(doc, doc_metadata)),
-                       doc_metadata)
+            doc_metadata = self.get_metadata_dict(doc.metadata.items())
+
+            yield Document(collected_file,
+                           list(self.get_utterances(doc, doc_metadata)),
+                           doc_metadata)
+        except Exception as e:
+            raise Exception(collected_file.relpath + "/" +
+                            collected_file.filename) from e
 
     def get_utterances(self, doc, doc_metadata):
         """

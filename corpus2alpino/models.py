@@ -4,7 +4,7 @@ from typing import Dict, List
 
 class CollectedFile:
     def __init__(self, relpath: str, filename: str, mimetype: str,
-                 content: str):
+                 content: str) -> None:
         self.relpath = relpath
         self.filename = filename
         self.mimetype = mimetype
@@ -12,7 +12,7 @@ class CollectedFile:
 
 
 class MetadataValue:
-    def __init__(self, value, type='text'):
+    def __init__(self, value: str, type: str='text') -> None:
         self.value = value
         self.type = type
 
@@ -23,7 +23,7 @@ class Utterance:
                  id: str,
                  metadata: Dict[str, MetadataValue] = {},
                  line: int = 0,
-                 annotations: dict = {}):
+                 annotations: dict = {}) -> None:
         self.text = text
         self.id = id
         self.metadata = metadata
@@ -38,7 +38,7 @@ class Document:
                  collected_file: CollectedFile,
                  utterances: List[Utterance],
                  metadata: Dict[str, MetadataValue] = {},
-                 subpath: str = ''):
+                 subpath: str = '') -> None:
         """
         A document found in a file.
 

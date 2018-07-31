@@ -4,7 +4,7 @@ from corpus2alpino.models import Document
 
 
 class LassyWriter(Writer):
-    def __init__(self, merge_treebanks: bool):
+    def __init__(self, merge_treebanks: bool) -> None:
         self.merge_treebanks = merge_treebanks
 
     def write(self, document: Document, target: Target):

@@ -16,4 +16,5 @@ python-ucto==0.4.2
 rdflib==4.2.2             # via pynlpl
 six==1.11.0               # via isodate
 tei-reader==0.0.12
-typing-extensions==3.6.5
+tqdm==4.24.0
+typing==3.6.4

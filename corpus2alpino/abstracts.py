@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from abc import ABC, abstractmethod
-from typing import Iterable
+from typing import Any, Iterable, Union
 from os import path
 from pathlib import Path
 
@@ -61,16 +61,28 @@ class Target(ABC):
         if filename != None:
             output_path = path.join(output_path, filename)
         if suffix != None:
-            output_path = Path(output_path).with_suffix(suffix)
+            output_path = str(Path(output_path).with_suffix(suffix))
         return output_path
 
     @abstractmethod
     def write(self,
               document: Document,
               content: str,
-              filename: str = None,
-              suffix: str = None):
+              filename: Union[str, None] = None,
+              suffix: Union[str, None] = None) -> None:
         pass
+
+    @abstractmethod
+    def close(self) -> None:
+        return
+
+    @abstractmethod
+    def flush(self) -> Any:
+        """
+        Document has been written, return the result (if the target
+        is not streaming directly to some other output).
+        """
+        return
 
 
 class Writer(ABC):
@@ -79,5 +91,5 @@ class Writer(ABC):
     """
 
     @abstractmethod
-    def write(self, document: Document, target: Target):
+    def write(self, document: Document, target: Target) -> None:
         pass

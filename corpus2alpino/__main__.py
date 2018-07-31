@@ -5,6 +5,7 @@ Entry point for converting FoLiA xml files to Alpino XML files.
 
 import sys
 import argparse
+from tqdm import tqdm
 
 from corpus2alpino.annotators.alpino import AlpinoAnnotator
 from corpus2alpino.collectors.filesystem import FilesystemCollector
@@ -26,11 +27,17 @@ def main(args=None):
             formatter_class=argparse.HelpFormatter)
 
         parser.add_argument(
-            'file_names', metavar='FILE', type=str, nargs='+', help='TEI/FoLiA file(s) to parse')
+            'file_names', metavar='FILE', type=str, nargs='+',
+            help='TEI/FoLiA file(s) to parse')
         parser.add_argument(
-            '-s', '--server', metavar='SERVER', type=str, help='host:port of Alpino server')
+            '-s', '--server', metavar='SERVER', type=str,
+            help='host:port of Alpino server')
         parser.add_argument(
-            '-o', '--output_path', metavar='OUTPUT', type=str, help='Output path')
+            '-o', '--output_path', metavar='OUTPUT', type=str,
+            help='Output path')
+        parser.add_argument(
+            '-p', '--progress', metavar="BOOL", type=bool,
+            help='Show progress bar, automatically turned on file output')
         parser.add_argument('-t', '--split_treebanks', action='store_true',
                             help='Split treebanks to separate files')
 
@@ -38,16 +45,30 @@ def main(args=None):
 
         options = parser.parse_args(args)
 
-        converter = Converter(FilesystemCollector(options.file_names))
+        collector = FilesystemCollector(options.file_names)
+        converter = Converter(collector)
         if options.server != None:
             [host, port] = options.server.split(":")
-            converter.annotators.append(AlpinoAnnotator(host, int(port), options.split_treebanks))
+            converter.annotators.append(AlpinoAnnotator(
+                host, int(port), options.split_treebanks))
             converter.writer = LassyWriter(not options.split_treebanks)
 
         if options.output_path != None:
-            converter.target = FilesystemTarget(options.output_path, not options.split_treebanks)
+            converter.target = FilesystemTarget(
+                options.output_path, not options.split_treebanks)
 
-        converter.convert()
+        show_progress = options.progress if options.progress != None else options.output_path != None
+
+        if show_progress:
+            with tqdm(converter.convert(), total=len(options.file_names), unit='file') as progress:
+                last = collector.position
+                for _ in converter.convert():
+                    progress.update(collector.position - last)
+                    last = collector.position
+                    progress.total = collector.total
+        else:
+            for _ in converter.convert():
+                pass
 
     except Exception as exception:
         sys.stderr.write(repr(exception) + "\n")

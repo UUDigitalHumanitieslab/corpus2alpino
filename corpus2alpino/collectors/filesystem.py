@@ -19,7 +19,7 @@ class FilesystemCollector(Collector):
     def read(self) -> Iterable[CollectedFile]:
         self.position = 0
         for filepath in self.filepaths:
-            globbed = glob.glob(filepath, recursive=True)
+            globbed = glob.glob(path.expanduser(filepath), recursive=True)
             self.total += len(globbed) - 1
 
             for match in globbed:

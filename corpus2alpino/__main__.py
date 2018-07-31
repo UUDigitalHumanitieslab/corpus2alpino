@@ -49,8 +49,7 @@ def main(args=None):
         converter = Converter(collector)
         if options.server != None:
             [host, port] = options.server.split(":")
-            converter.annotators.append(AlpinoAnnotator(
-                host, int(port), options.split_treebanks))
+            converter.annotators.append(AlpinoAnnotator(host, int(port)))
             converter.writer = LassyWriter(not options.split_treebanks)
 
         if options.output_path != None:

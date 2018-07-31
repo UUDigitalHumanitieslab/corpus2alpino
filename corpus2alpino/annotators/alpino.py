@@ -20,10 +20,9 @@ class AlpinoAnnotator(Annotator):
     Wrapper for connecting to an Alpino parser server.
     """
 
-    def __init__(self, host, port, split_treebanks):
+    def __init__(self, host, port):
         self.host = host
         self.port = port
-        self.split_treebanks = split_treebanks
 
         self.prefix_id = True
         parsed = self.parse_line("hallo wereld !", '42', {})

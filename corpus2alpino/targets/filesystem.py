@@ -49,6 +49,9 @@ class FilesystemTarget(Target):
         self.__open_file(document, filename, suffix)
         self.file.write(content)
 
+    def flush(self):
+        return
+
     def close(self):
         """
         Release resources.

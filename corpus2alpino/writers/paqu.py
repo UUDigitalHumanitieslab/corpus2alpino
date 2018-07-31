@@ -38,7 +38,7 @@ class PaQuWriter(Writer):
         for utterance in utterances:
             metadata_display = '\n'.join(self.output_metadata_items(
                 utterance.metadata, prev_metadata)) + '\n' if utterance.metadata else ''
-            yield f'{metadata_display}{utterance.id}|{utterance.text}\n'
+            yield f'{metadata_display}{utterance.id}|{utterance.text}\n\n'
 
     def output_metadata_items(self, metadata, prev_metadata=None):
         for key, item in metadata.items():

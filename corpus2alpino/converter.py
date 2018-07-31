@@ -20,8 +20,8 @@ class Converter:
                  collector: Collector,
                  annotators: List[Annotator] = [],
                  reader: Reader = AutoReader(),
-                 writer: Writer = PaQuWriter(),
-                 target: Target = ConsoleTarget()):
+                 writer: Writer= PaQuWriter(),
+                 target: Target = ConsoleTarget()) -> None:
         self.collector = collector
         self.annotators = annotators
         self.reader = reader
@@ -34,3 +34,5 @@ class Converter:
                 for annotator in self.annotators:
                     annotator.annotate(document)
                 self.writer.write(document, self.target)
+                yield self.target.flush()
+        self.target.close()

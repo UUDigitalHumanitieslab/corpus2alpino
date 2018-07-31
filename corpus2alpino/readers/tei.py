@@ -2,8 +2,9 @@
 """
 Module for reading TEI xml files to document, utterances and metadata.
 """
-from typing import Iterable
+from typing import Dict, Iterable, List, Tuple
 from tei_reader import TeiReader as TeiParser
+from tei_reader.models.part import Part
 import os
 import re
 import ucto
@@ -35,13 +36,13 @@ ucto_ligatures = {
 class TokenizedSentenceEmitter:
     offset = 0
 
-    def __init__(self, sentences):
+    def __init__(self, sentences: List[str]) -> None:
         self.sentences = sentences
 
-    def __get_alignable_text(self, text):
+    def __get_alignable_text(self, text: str) -> str:
         return nonalignable_characters.sub('', ''.join([ucto_ligatures[c] if c in ucto_ligatures else c for c in text]))
 
-    def get_sentences(self, part_text, part_offset=0):
+    def get_sentences(self, part_text: str, part_offset: int=0) -> Iterable[str]:
         if not self.sentences:
             return
         sentence = self.sentences[0] + '\n'
@@ -61,7 +62,7 @@ class TokenizedSentenceEmitter:
             self.sentences = self.sentences[1:]
             yield from self.get_sentences(part_text, part_offset)
 
-    def get_part_length(self, sentence, alignable_text, n=0):
+    def get_part_length(self, sentence: str, alignable_text: str, n: int=0) -> Tuple[int, int, bool]:
         """
         Return the actual string length of this part in the sentence and the index of the alignable character match
         in this part. This index is relevant if a part is split over multiple sentences
@@ -87,7 +88,7 @@ class TeiReader(Reader):
     Class for converting a TEI xml file to documents.
     """
 
-    def __init__(self):
+    def __init__(self) ->None:
         self.reader = TeiParser()
         self.tokenizer = ucto.Tokenizer("tokconfig-nld")
 
@@ -95,9 +96,10 @@ class TeiReader(Reader):
         corpora = self.reader.read_string(collected_file.content)
 
         for document in corpora.documents:
-            unique_ids = {}  # an id should be unique within a document
-            doc_metadata = {}
-            utterances = []
+            # an id should be unique within a document
+            unique_ids: Dict[str, str] = {}
+            doc_metadata: Dict[str, MetadataValue] = {}
+            utterances: List[Utterance] = []
             for division_path in self.get_lowest_divisions(document.divisions):
                 division = division_path[-1]
                 self.tokenizer.process(division.text)
@@ -123,29 +125,6 @@ class TeiReader(Reader):
 
             # TODO: get document id/path?
             yield Document(collected_file, utterances, doc_metadata)
-
-    def add_word_metadata(self, sentence_emitter, part, text):
-        if len(list(part.parts)) == 0:
-            text = ''.join(sentence_emitter.get_sentences(part.text))
-
-        attributes = self.get_element_metadata(part.attributes)
-
-        if 'tei-tag' in attributes:
-            tag = attributes['tei-tag']
-            if tag == 'q':
-                return self.modify_text(text, lambda text: f'" {text}"')
-
-        if 'id' in attributes:
-            identifier = attributes['id']
-            # TODO: I think this is a bug in Alpino? "ERROR: something went wrong in saving the XML in stream($stream(140026222726096))!"
-            # return self.modify_text(text, lambda text: f'[ @id {identifier} ] {text}')
-
-        if 'lemma' in attributes and 'pos' in attributes:
-            lemma = attributes['lemma']
-            pos_tag = attributes['pos']
-            return self.modify_text(text, lambda text: format_folia(lemma, pos_tag, text.strip()) + ' ')
-
-        return text
 
     def modify_text(self, text, modification):
         """
@@ -184,9 +163,10 @@ class TeiReader(Reader):
                 # has no child
                 yield path + [division]
 
-    def get_metadata(self, document, division_path):
+    def get_metadata(self, document, division_path) -> \
+            Tuple[Dict[str, MetadataValue], Dict[str, MetadataValue]]:
         doc_metadata = self.get_element_metadata(document.attributes)
-        sentence_metadata = {}
+        sentence_metadata: Dict[str, MetadataValue] = {}
         for division in division_path:
             sentence_metadata = {
                 **sentence_metadata,
@@ -195,8 +175,8 @@ class TeiReader(Reader):
 
         return (doc_metadata, sentence_metadata)
 
-    def get_element_metadata(self, attributes):
-        metadata = {}
+    def get_element_metadata(self, attributes) -> Dict[str, MetadataValue]:
+        metadata: Dict[str, MetadataValue] = {}
         for attribute in attributes:
             if attribute.key in metadata:
                 metadata[attribute.key].value += ' | ' + attribute.text
@@ -210,3 +190,26 @@ class TeiReader(Reader):
         """
 
         return '<TEI' in file.content[0:100]
+
+    def add_word_metadata(self, sentence_emitter: TokenizedSentenceEmitter, part: Part, text: str):
+        if len(list(part.parts)) == 0:
+            text = ''.join(sentence_emitter.get_sentences(part.text))
+
+        attributes = self.get_element_metadata(part.attributes)
+
+        if 'tei-tag' in attributes:
+            tag = attributes['tei-tag'].value
+            if tag == 'q':
+                return self.modify_text(text, lambda text: f'" {text}"')
+
+        if 'id' in attributes:
+            identifier = attributes['id'].value
+            # TODO: I think this is a bug in Alpino? "ERROR: something went wrong in saving the XML in stream($stream(140026222726096))!"
+            # return self.modify_text(text, lambda text: f'[ @id {identifier} ] {text}')
+
+        if 'lemma' in attributes and 'pos' in attributes:
+            lemma = attributes['lemma'].value
+            pos_tag = attributes['pos'].value
+            return self.modify_text(text, lambda text: format_folia(lemma, pos_tag, text.strip()) + ' ')
+
+        return text

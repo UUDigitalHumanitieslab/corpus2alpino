@@ -5,10 +5,11 @@ from corpus2alpino.abstracts import Target
 from corpus2alpino.models import Document
 
 
-class ConsoleTarget(Target):
+class MemoryTarget(Target):
     """
-    Output chunks to the console on separate lines.
+    Combine output in memory.
     """
+    buffer = ''
 
     def write(self,
               document: Document,
@@ -18,10 +19,13 @@ class ConsoleTarget(Target):
         """
         Write all lines to stdout.
         """
-        print(content, end='')
+        self.buffer += content
 
     def flush(self):
-        return
+        try:
+            return self.buffer
+        finally:
+            self.buffer = ''
 
     def close(self):
         return

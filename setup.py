@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='corpus2alpino',
-      version='0.2.0',
+      version='0.2.1',
       description='Converts FoLiA and TEI files to Alpino XML files',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -24,3 +24,4 @@ setup(name='corpus2alpino',
               'corpus2alpino = corpus2alpino.__main__:main'
           ]
       })
+ 

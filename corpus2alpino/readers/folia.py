@@ -66,7 +66,8 @@ class FoliaReader(Reader):
         """
 
         words = sentence.words()
-        line = " ".join(self.get_word_string(word) for word in words)
+        word_strings = map(lambda word: self.get_word_string(word), words)
+        line = " ".join(filter(lambda word: word != '', word_strings))
         sentence_id = escape_id(sentence.id)
         sentence_metadata = self.get_metadata_dict(
             sentence.getmetadata().items(),
@@ -79,7 +80,10 @@ class FoliaReader(Reader):
         Get a string representing this word and any additional known properties to add to the parse.
         """
 
-        text = word.text()
+        try:
+            text = word.text()
+        except folia.NoSuchText:
+            return ''
 
         try:
             correction = word.getcorrection()

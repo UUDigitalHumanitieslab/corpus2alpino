@@ -189,7 +189,7 @@ class TeiReader(Reader):
         Determine whether this is a TEI XML file
         """
 
-        return '<TEI' in file.content[0:100]
+        return '<TEI' in file.content[0:400]
 
     def add_word_metadata(self, sentence_emitter: TokenizedSentenceEmitter, part: Part, text: str):
         if len(list(part.parts)) == 0:

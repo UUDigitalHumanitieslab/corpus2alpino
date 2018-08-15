@@ -12,7 +12,7 @@ def format_folia(lemma: str, pos_tag: str, word: str) -> str:
     Lexical assignment of the lemma and postag.
     """
 
-    return f'[ @folia {lemma} {pos_tag} {word} ]'
+    return f'[ @folia {lemma} {pos_tag} {word} ]' if word else ''
 
 
 def escape_id(sentence_id: str) -> str:

@@ -6,7 +6,7 @@ Writes utterances and metadata in PaQu format.
 from typing import Iterable
 
 from corpus2alpino.abstracts import Writer, Target
-from corpus2alpino.models import Document, Utterance
+from corpus2alpino.models import Document, MetadataValue, Utterance
 
 FILE_SUFFIX = '.txt'
 
@@ -36,16 +36,26 @@ class PaQuWriter(Writer):
         prev_metadata = {**doc_metadata}
 
         for utterance in utterances:
+            # Metadata of an utterance is only derived from the document
+            # itself. When read, it is done sequentially (based on
+            # previous utterances). If an utterance "reverts" to the
+            # meta data value of a document, this must be reset in the
+            # output.
+            metadata = {}
+
+            # Reset everything
+            for key in prev_metadata:
+                if not key in utterance.metadata:
+                    metadata[key] = MetadataValue('')
+
+            metadata = {**metadata, **doc_metadata, **utterance.metadata}
             metadata_display = '\n'.join(self.output_metadata_items(
-                utterance.metadata, prev_metadata)) + '\n' if utterance.metadata else ''
+                metadata, prev_metadata)) + '\n' if metadata else ''
             yield f'{metadata_display}{utterance.id}|{utterance.text}\n\n'
+            prev_metadata = {**prev_metadata, **metadata}
 
     def output_metadata_items(self, metadata, prev_metadata=None):
         for key, item in metadata.items():
             if prev_metadata == None or not key in prev_metadata or \
                     prev_metadata[key].value != item.value:
                 yield f'##META {item.type} {key} = {item.value}'
-
-        if prev_metadata != None:
-            prev_metadata.clear()
-            prev_metadata.update(metadata)

@@ -117,7 +117,8 @@ class TeiReader(Reader):
                         division.parts, sentence_emitter):
                     current = annotated_sentences[-1]
                     current[0] += text
-                    current[1] = {**current[1], **metadata}
+                    current[1] = self.merge_metadata_sibbling(current[1],
+                                                              metadata)
                     if newline:
                         annotated_sentences.append(['', {}])
 
@@ -127,7 +128,7 @@ class TeiReader(Reader):
                         continue
 
                     # assume the metadata of the divider is more relevant
-                    metadata = self.merge_metadata(
+                    metadata = self.merge_metadata_child(
                         sentence_metadata, div_metadata)
                     sentence_id = self.determine_id(
                         collected_file.filename,
@@ -183,7 +184,18 @@ class TeiReader(Reader):
 
         return '<TEI' in file.content[0:400]
 
-    def merge_metadata(self, child, parent):
+    def merge_metadata_sibbling(self, prev, current):
+        result = {**prev, **current}
+
+        for (key, data) in current.items():
+            if key in prev:
+                result[key] = MetadataValue(
+                    ' | '.join(sorted(set(
+                        prev[key].value.split(' | ') + 
+                        data.value.split(' | ')))))
+        return result
+
+    def merge_metadata_child(self, child, parent):
         result = {**parent, **child}
 
         for (key, value) in parent.items():
@@ -205,10 +217,12 @@ class TeiReader(Reader):
                     self.annotate_parts(part.parts, sentence_emitter):
                 empty = False
                 text += subpart_text
-                metadata = {**metadata, **subpart_metadata}
+                metadata = self.merge_metadata_sibbling(
+                    metadata, subpart_metadata)
 
                 if newline:
                     yield self.emit_part(text, metadata, part_metadata, True)
+                    metadata = {}
                     text = ''
 
             if empty:
@@ -233,7 +247,7 @@ class TeiReader(Reader):
             # Reverse priority for metadata: the attributes of the
             # highest node in the tree should take precedence.
         return self.inline_metadata(text, part_metadata), \
-            self.merge_metadata(subparts_metadata, part_metadata), \
+            self.merge_metadata_child(subparts_metadata, part_metadata), \
             newline
 
     def inline_metadata(self, text: str, metadata):

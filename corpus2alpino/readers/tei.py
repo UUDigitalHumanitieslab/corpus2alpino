@@ -90,9 +90,10 @@ class TeiReader(Reader):
     Class for converting a TEI xml file to documents.
     """
 
-    def __init__(self) ->None:
+    def __init__(self, tokenizer=None) ->None:
         self.reader = TeiParser()
-        self.tokenizer = ucto.Tokenizer("tokconfig-nld")
+        self.tokenizer = tokenizer if tokenizer else ucto.Tokenizer(
+            "tokconfig-nld")
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         corpora = self.reader.read_string(collected_file.content)
@@ -191,7 +192,7 @@ class TeiReader(Reader):
             if key in prev:
                 result[key] = MetadataValue(
                     ' | '.join(sorted(set(
-                        prev[key].value.split(' | ') + 
+                        prev[key].value.split(' | ') +
                         data.value.split(' | ')))))
         return result
 

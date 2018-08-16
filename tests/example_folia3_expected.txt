@@ -1,0 +1,73 @@
+##META text language = nld
+##META text publisher = Instituut voor Nederlandse Geschiedenis
+##META text authorLevel1 = De Veth
+##META text biblScope_page = 345-
+##META text biblScope_volume = 17
+##META text category = uitgave
+##META text copyrightHolder = Huygens ING
+##META text copyrightOwner = Huygens ING
+##META text corpusProvenance = HuygensING-heinsius
+##META text edition = 1
+##META text editorLevel1 = Dr. A.J. Veenendaal jr., Mw. M.T.A. Schouten
+##META text editorLevel2 = Dr. A.J. Veenendaal jr., Mw. M.T.A. Schouten
+##META text factuality = non-fictie
+##META text genre = egodocumenten
+##META text ingestTime = 2017-06-24T08:09
+##META text ipr = extern
+##META text isbn = 90-5216-104-6
+##META text medium = boek
+##META text pid = INT_ffea60c0-bf90-4161-95a1-aacb0738710a
+##META text placePublication = 's Gravenhage
+##META text primaryLanguage = nl
+##META text processingMethod = ongecorrigeerde OCR
+##META text pubYear_from = 1998
+##META text pubYear_to = 1998
+##META text resourceURI = http://resources.huygens.knaw.nl/retroboeken/heinsius/
+##META text sourceID = heinsius:vol17:454
+##META text statusText = geen vertaling
+##META text subgenre = brieven
+##META text subtitleLevel2 = Deel 17, 1 mei 1715 — 31 juli 1716
+##META text subtitleLevel3 = Grote Serie 243
+##META text textDay_from = 24
+##META text textDay_to = 24
+##META text textMonth_from = 9
+##META text textMonth_to = 9
+##META text textYear_from = 1715
+##META text textYear_to = 1715
+##META text titleLevel1 = 454. van De Veth, 24-9-1715
+##META text titleLevel2 = De briefwisseling van Anthonie Heinsius 1702-1720
+##META text titleLevel3 = Rijks Geschiedkundige Publicatiën uitgegeven in opdracht van de minister van Onderwijs en Wetenschappen onder toezicht van de Rijkscommissie voor Vaderlandse Geschiedenis
+##META text witnessDay_from = 24
+##META text witnessDay_to = 24
+##META text witnessMonth_from = 9
+##META text witnessMonth_to = 9
+##META text witnessYear_from = 1715
+##META text witnessYear_to = 1715
+
+
+TEI.1.text.1.body.1.div1.1.p.1.s.1|Weledele Ghestrenghe Heer , Mijn Heer , Het gepasseerde aan den griffier Fagel geschreven luydt als volgt .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.1|Naardat een dagh of drie hier ter reede hadde gelegen , is iemant wegens den admiraeliteyt van Coppenhagen bij mij gekomen om te versoeken dat eenige masten en hennip uyt de vloot wilde overgeven ten behoeve van coninghs vloot , waerop in antwoort gaf ’ tselve strijdigh te sijn tegens ’t tractaet van commersie met de coningh van Sweden gesloten , behalve ook dat het aan mij niet stont over koopluyden goederen te disponeren , terwijl het alle bevragte schepen waeren ; dat derhalve versoght mij sulx niet mogt werden gevergt , schoon in alle deelen kon versekeren de goede intelligentie van mijn heeren en meesters tusschen den coningh van Denemarken , en is naderhant daer ook over geschreven aan den Engelsen admirael , die een reschriptie van deselve natuer daerop deet .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.2|Soo is ’t dat drie dagen daernaer twee schippers bij mijn sijn gekomen van Coppenhagen , bekent maekende hoe dat in de naght van de Deene waeren overrompelt en in den donker , sonder het iemant gewaer wiert , uyt de vloot sijn gevoert en met haar schepen voor de boom van Coppenhagen gebragt , daer men aenstonts aan ’t lossen van deselve soude gaen om sigh van de masten te bedienen , dogh betaelende - soo sij seggen - nae de prijs soo die in Hollant komen te gelden .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.3|Ik hebbe hierop een expresse gesonden naer den secretaris van den heer envojé Goes , omme daertegens te protesteren en ’t Geheym Conseyl te vragen met wat meninghe dit was geschiet .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.4|Dogh alsoo deselve expresse nogh niet weder terugh is gekomen , soo kan U Ed .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.5|Ghestr .
+
+
+TEI.1.text.1.body.1.div1.1.p.2.s.6|daervan geen verdre onderregtingh geven , dogh twijfele niet of sulx sal door den voorn , secretaris geschieden ; hebbende van mijn plight geoordeelt van dit voorgevalle kennisse te geven , en blijven -
+
+
+TEI.1.text.1.body.1.div1.1.p.3.s.1|L. de Veth .
+
+
+TEI.1.text.1.body.1.div1.1.p.4.s.1|Actum in ’s Lants schip ’ Gelderlant ’ , ten anker in de Zont , den 24 septemb / 1715 .
+

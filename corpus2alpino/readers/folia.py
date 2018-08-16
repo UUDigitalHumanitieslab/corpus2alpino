@@ -5,6 +5,7 @@ Module for converting FoLiA xml files to parsable utterances.
 
 from typing import Iterable
 
+import ucto
 from pynlpl.formats import folia
 
 from .alpino_brackets import escape_id, escape_word, format_add_lex, format_folia
@@ -17,12 +18,16 @@ class FoliaReader(Reader):
     Class for converting FoLiA xml files to documents.
     """
 
+    def __init__(self, tokenizer=None) -> None:
+        self.tokenizer = tokenizer if tokenizer else ucto.Tokenizer(
+            "tokconfig-nld")
+
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         try:
             doc = folia.Document(string=collected_file.content,
                                  autodeclare=True,
                                  loadsetdefinitions=False)
-
+            self.tokenize(doc)
             doc_metadata = self.get_metadata_dict(doc.metadata.items())
 
             yield Document(collected_file,
@@ -31,6 +36,32 @@ class FoliaReader(Reader):
         except Exception as e:
             raise Exception(collected_file.relpath + "/" +
                             collected_file.filename) from e
+
+    def tokenize(self, element):
+        """
+        Tokenizes all the text which isn't tokenized yet.
+        """
+
+        for item in element:
+            if isinstance(item, folia.AbstractElement):
+                if isinstance(item, folia.Paragraph):
+                    for sentence in item.sentences():
+                        break
+                    else:
+                        self.tokenize_paragraph(item)
+                else:
+                    self.tokenize(item)
+
+    def tokenize_paragraph(self, paragraph):
+        text = ''
+        for textContent in paragraph.select(folia.TextContent):
+            text += textContent.text()
+        self.tokenizer.process(text)
+        for line in self.tokenizer.sentences():
+            sentence = paragraph.add(folia.Sentence)
+            for word in line.split(' '):
+                if word:
+                    sentence.add(folia.Word, word)
 
     def get_utterances(self, doc, doc_metadata):
         """
@@ -42,35 +73,45 @@ class FoliaReader(Reader):
         words = []
 
         for word in doc.words():
-            for ancestor in word.ancestors():
-                if type(ancestor) is folia.Sentence:
-                    if sentence != ancestor and words:
-                        yield self.get_sentence(sentence, words, doc_metadata)
-                        words = []
+            # new utterance: different sentence/paragraph
+            try:
+                word_sentence = word.sentence()
+            except folia.NoSuchAnnotation:
+                word_sentence = None
+            try:
+                word_paragraph = word.paragraph()
+            except folia.NoSuchAnnotation:
+                word_paragraph = None
 
-                    sentence = ancestor
-                elif type(ancestor) is folia.Paragraph:
-                    if paragraph != ancestor and words:
-                        yield self.get_sentence(sentence, words, doc_metadata)
-                        words = []
+            if word_sentence != sentence or word_paragraph != paragraph:
+                if words:
+                    if sentence or paragraph:
+                        yield self.create_utterance(paragraph, sentence, words, doc_metadata)
+                    words = []
+                sentence = word_sentence
+                paragraph = word_paragraph
 
-                    paragraph = ancestor
             words.append(word)
 
-        if words:
-            yield self.get_sentence(sentence, words, doc_metadata)
+        if words and (sentence or paragraph):
+            yield self.create_utterance(paragraph, sentence, words, doc_metadata)
 
-    def get_sentence(self, sentence, words, doc_metadata):
+    def create_utterance(self, paragraph, sentence, words, doc_metadata):
         """
-        Convert a FoLiA sentence object to an Alpino compatible string to parse.
+        Convert a FoLiA object to an Alpino compatible string to parse.
         """
 
-        words = sentence.words()
         word_strings = map(lambda word: self.get_word_string(word), words)
         line = " ".join(filter(lambda word: word != '', word_strings))
-        sentence_id = escape_id(sentence.id)
+
+        if sentence:
+            container = sentence
+        else:
+            container = paragraph
+
+        sentence_id = escape_id(container.id)
         sentence_metadata = self.get_metadata_dict(
-            sentence.getmetadata().items(),
+            container.getmetadata().items(),
             doc_metadata)
 
         return Utterance(line, sentence_id, sentence_metadata, line)
@@ -81,9 +122,18 @@ class FoliaReader(Reader):
         """
 
         try:
-            text = word.text()
+            text = word.toktext()
         except folia.NoSuchText:
-            return ''
+            text = None
+
+        if text == None:
+            data = word.data
+            for item in data:
+                if type(item) == folia.TextContent:
+                    text = item.text()
+                    break
+            else:
+                return ''
 
         try:
             correction = word.getcorrection()

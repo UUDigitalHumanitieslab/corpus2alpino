@@ -23,18 +23,23 @@ python -m corpus2alpino -s localhost:7001 folia.xml -o alpino.xml
 
 ```python
 from corpus2alpino.converter import Converter
-from corpus2alpino.alpino_wrappers import AlpinoServiceWrapper
+from corpus2alpino.annotators.alpino import AlpinoAnnotator
+from corpus2alpino.collectors.filesystem import FilesystemCollector
+from corpus2alpino.targets.memory import MemoryTarget
+from corpus2alpino.writers.lassy import LassyWriter
 
-alpino = AlpinoServiceWrapper("localhost", 7001)
-converter = Converter(alpino)
+alpino = AlpinoAnnotator("localhost", 7001)
+converter = Converter(FilesystemCollector(["folia.xml"]),
+    # Not needed when using the PaQuWriter
+    annotators=[alpino],
+    # This can also be ConsoleTarget, FilesystemTarget
+    target=MemoryTarget(),
+    # Set to merge treebanks, also possible to use PaQuWriter
+    writer=LassyWriter(True))
 
-# generate sentences which can be used as input for Alpino
-sentences = converter.get_sentences(["folia.xml"])
-print(next(sentences)) # sentence id|Dit is een voorbeeld .
-
-# get the Alpino XML files, combined into one treebank XML file
-parses = converter.get_parses(["folia.xml"])
-print("\n".join(parses)) # <treebank><alpino ... /></treebank>
+# get the Alpino XML output, combined into one treebank XML file
+parses = converter.convert()
+print(''.join(parses)) # <treebank><alpino_ds ... /></treebank>
 ```
 
 ### Unit Test
@@ -53,7 +58,7 @@ twine upload dist/*
 ## Requirements
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
-* Python 3.6 or higher (developed using 3.6.1).
+* Python 3.6 or higher (developed using 3.6.3).
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
 * [libicu-dev](https://packages.ubuntu.com/bionic/libicu-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)

@@ -1,18 +1,21 @@
-##META text fileDesc::titleStmt = Quotes en andere talen
-Sheean Spoel
-##META text fileDesc::editionStmt = 2018-03-05T13:38:37.229008088
+##META text fileDesc::titleStmt::title = Quotes en andere talen
+##META text fileDesc::titleStmt::author = Sheean Spoel
+##META text fileDesc::editionStmt::edition = 2018-03-05T13:38:37.229008088
 
 ##META text tei-tag = p
-##META text note = Misschien question gebruiken? 
-##META text note::rend = italic
-##META text note::xml:lang = en
-##META text note::lemma = gebruiken
-##META text note::pos = WW(inf,vrij,zonder)
-example_tei2.xml|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheisse tekst om het importeren van TEI-geformatteerde tekst te evalueren .  
+##META text note = Misschien question gebruiken ? 
+##META text id = foo
+##META text rend = italic
+##META text xml:lang = de
+foo|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheisse tekst om het importeren van TEI-geformatteerde tekst te evalueren . 
 
 
-example_tei2.xml_1|Zij zei hierover tegen hem " wat is de raison d ’ être van deze tekst ? "
+##META text id = 
+##META text xml:lang = fr
+example_tei2.xml|Zij zei hierover tegen hem " wat is de raison d ’ être van deze tekst ? " 
 
+##META text rend = 
+##META text xml:lang = 
+example_tei2.xml_1|, niets dan ontzag volgde op deze vraag . 
 
-example_tei2.xml_2|, niets dan ontzag volgde op deze vraag .  
 

@@ -1,17 +1,21 @@
-##META text fileDesc::titleStmt = Goedendag!
-Sheean Spoel
-##META text fileDesc::editionStmt = 2018-02-27T10:32:08.110594794
+##META text fileDesc::titleStmt::title = Goedendag!
+##META text fileDesc::titleStmt::author = Sheean Spoel
+##META text fileDesc::editionStmt::edition = 2018-02-27T10:32:08.110594794
 ##META text fileDesc::publicationStmt = no publication statement available
 ##META text fileDesc::sourceDesc = Written by OpenOffice
 
 ##META text id = bar
 ##META text tei-tag = head
-bar|Goedendag !  
+bar|Goedendag ! 
+
 
 ##META text id = foo
 ##META text tei-tag = p
-foo|Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit TEI-formaat naar Alpino / Lassy-formaat .  
+##META text rend = italic
+foo|Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit TEI-formaat naar Alpino / Lassy-formaat . 
 
 
-foo_1|Een fijne dag nog !  
+##META text rend = underline
+foo_1|Een fijne dag nog ! 
+
 

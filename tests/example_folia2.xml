@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FoLiA xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns="http://ilk.uvt.nl/folia" xml:id="ddd.010229100.mpeg21.a0095" generator="libfolia-v1.8" version="1.4.1">
+    <metadata type="native">
+        <annotations>
+            <string-annotation annotator="alto" datetime="2017-04-08T03:31:43" set="FoLia-alto-set"/>
+            <lang-annotation set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+            <token-annotation annotator="ucto" annotatortype="auto" datetime="2017-05-03T19:25:24" set="tokconfig-nld"/>
+            <pos-annotation annotator="frog-mbpos-1.0" annotatortype="auto" datetime="2017-05-03T19:25:24" set="http://ilk.uvt.nl/folia/sets/frog-mbpos-cgn"/>
+            <lemma-annotation annotator="frog-mblem-1.1" annotatortype="auto" datetime="2017-05-03T19:25:24" set="http://ilk.uvt.nl/folia/sets/frog-mblem-nl"/>
+            <entity-annotation annotator="frog-ner-1.0" annotatortype="auto" datetime="2017-05-03T19:25:24" set="http://ilk.uvt.nl/folia/sets/frog-ner-nl"/>
+        </annotations>
+        <meta id="language">nld</meta>
+        <meta id="genre">artikel</meta>
+    </metadata>
+    <text xml:id="ddd.010229100.mpeg21.a0095.text">
+        <p xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001">
+            <t class="OCR">Het Diggoel-Rapport.</t>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.P5_ST00001">
+                <t class="OCR" offset="0">Het</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00001" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.P5_ST00002">
+                <t class="OCR" offset="4">Diggoel-Rapport.</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00002" type="str"/>
+                </alignment>
+            </str>
+            <lang class="nld"/>
+            <s xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1">
+                <t class="OCR">Het Diggoel-Rapport.</t>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.w.1" class="WORD">
+                    <t class="OCR">Het</t>
+                    <pos class="LID(bep,stan,evon)" confidence="0.516709" head="LID">
+                        <feat class="bep" subset="lwtype"/>
+                        <feat class="stan" subset="naamval"/>
+                        <feat class="evon" subset="npagr"/>
+                    </pos>
+                    <lemma class="het"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.w.2" class="WORD-COMPOUND" space="no">
+                    <t class="OCR">Diggoel-Rapport</t>
+                    <pos class="N(soort,ev,basis,onz,stan)" confidence="0.555556" head="N">
+                        <feat class="soort" subset="ntype"/>
+                        <feat class="ev" subset="getal"/>
+                        <feat class="basis" subset="graad"/>
+                        <feat class="onz" subset="genus"/>
+                        <feat class="stan" subset="naamval"/>
+                    </pos>
+                    <lemma class="diggoel-rapport"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.w.3" class="PUNCTUATION">
+                    <t class="OCR">.</t>
+                    <pos class="LET()" confidence="1" head="LET"/>
+                    <lemma class="."/>
+                </w>
+                <entities xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.entities.1">
+                    <entity xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.entities.1.entity.1" class="misc" confidence="0.441928">
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1.w.2"/>
+                    </entity>
+                </entities>
+            </s>
+        </p>
+        <p xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002">
+            <t class="OCR">Antwoord der Regeering.</t>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.P5_ST00003">
+                <t class="OCR" offset="0">Antwoord</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00003" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.P5_ST00004">
+                <t class="OCR" offset="9">der</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00004" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.P5_ST00005">
+                <t class="OCR" offset="13">Regeering.</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00005" type="str"/>
+                </alignment>
+            </str>
+            <lang class="nld"/>
+            <s xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1">
+                <t class="OCR">Antwoord der Regeering.</t>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.1" class="WORD">
+                    <t class="OCR">Antwoord</t>
+                    <pos class="N(soort,ev,basis,onz,stan)" confidence="0.995716" head="N">
+                        <feat class="soort" subset="ntype"/>
+                        <feat class="ev" subset="getal"/>
+                        <feat class="basis" subset="graad"/>
+                        <feat class="onz" subset="genus"/>
+                        <feat class="stan" subset="naamval"/>
+                    </pos>
+                    <lemma class="antwoord"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.2" class="WORD">
+                    <t class="OCR">der</t>
+                    <pos class="LID(bep,gen,rest3)" confidence="0.753679" head="LID">
+                        <feat class="bep" subset="lwtype"/>
+                        <feat class="gen" subset="naamval"/>
+                        <feat class="rest3" subset="npagr"/>
+                    </pos>
+                    <lemma class="de"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.3" class="WORD" space="no">
+                    <t class="OCR">Regeering</t>
+                    <pos class="N(soort,ev,basis,zijd,stan)" confidence="1" head="N">
+                        <feat class="soort" subset="ntype"/>
+                        <feat class="ev" subset="getal"/>
+                        <feat class="basis" subset="graad"/>
+                        <feat class="zijd" subset="genus"/>
+                        <feat class="stan" subset="naamval"/>
+                    </pos>
+                    <lemma class="regeering"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.4" class="PUNCTUATION">
+                    <t class="OCR">.</t>
+                    <pos class="LET()" confidence="1" head="LET"/>
+                    <lemma class="."/>
+                </w>
+                <entities xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.entities.1">
+                    <entity xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.entities.1.entity.1" class="pro" confidence="0.813976">
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.1"/>
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.2"/>
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1.w.3"/>
+                    </entity>
+                </entities>
+            </s>
+        </p>
+        <p xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003">
+            <t class="OCR">Hulde voor Edeleer II ill en.</t>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00006">
+                <t class="OCR" offset="0">Hulde</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00006" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00007">
+                <t class="OCR" offset="6">voor</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00007" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00008">
+                <t class="OCR" offset="11">Edeleer</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00008" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00009">
+                <t class="OCR" offset="19">II</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00009" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00010">
+                <t class="OCR" offset="22">ill</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00010" type="str"/>
+                </alignment>
+            </str>
+            <str xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.P5_ST00011">
+                <t class="OCR" offset="26">en.</t>
+                <alignment xlink:href="DDD_010229100_005_alto.xml" xlink:type="simple">
+                    <aref id="P5_ST00011" type="str"/>
+                </alignment>
+            </str>
+            <lang class="nld"/>
+            <s xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1">
+                <t class="OCR">Hulde voor Edeleer II ill en.</t>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.1" class="WORD">
+                    <t class="OCR">Hulde</t>
+                    <pos class="N(soort,ev,basis,zijd,stan)" confidence="0.996374" head="N">
+                        <feat class="soort" subset="ntype"/>
+                        <feat class="ev" subset="getal"/>
+                        <feat class="basis" subset="graad"/>
+                        <feat class="zijd" subset="genus"/>
+                        <feat class="stan" subset="naamval"/>
+                    </pos>
+                    <lemma class="hulde"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.2" class="WORD">
+                    <t class="OCR">voor</t>
+                    <pos class="VZ(init)" confidence="0.899456" head="VZ">
+                        <feat class="init" subset="vztype"/>
+                    </pos>
+                    <lemma class="voor"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.3" class="WORD">
+                    <t class="OCR">Edeleer</t>
+                    <pos class="SPEC(deeleigen)" confidence="1" head="SPEC">
+                        <feat class="deeleigen" subset="spectype"/>
+                    </pos>
+                    <lemma class="Edeleer"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.4" class="WORD">
+                    <t class="OCR">II</t>
+                    <pos class="SPEC(deeleigen)" confidence="1" head="SPEC">
+                        <feat class="deeleigen" subset="spectype"/>
+                    </pos>
+                    <lemma class="II"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.5" class="ABBREVIATION-KNOWN">
+                    <t class="OCR">ill</t>
+                    <pos class="SPEC(afk)" confidence="1" head="SPEC">
+                        <feat class="afk" subset="spectype"/>
+                    </pos>
+                    <lemma class="ill"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.6" class="WORD" space="no">
+                    <t class="OCR">en</t>
+                    <pos class="VG(neven)" confidence="0.993174" head="VG">
+                        <feat class="neven" subset="conjtype"/>
+                    </pos>
+                    <lemma class="en"/>
+                </w>
+                <w xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.7" class="PUNCTUATION">
+                    <t class="OCR">.</t>
+                    <pos class="LET()" confidence="1" head="LET"/>
+                    <lemma class="."/>
+                </w>
+                <entities xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.entities.1">
+                    <entity xml:id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.entities.1.entity.1" class="misc" confidence="0.179697">
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.3"/>
+                        <wref id="ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1.w.4"/>
+                    </entity>
+                </entities>
+            </s>
+        </p>
+    </text>
+</FoLiA>

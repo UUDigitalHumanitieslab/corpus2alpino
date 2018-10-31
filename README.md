@@ -65,3 +65,4 @@ twine upload dist/*
 * [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
 * [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
 * [ucto](https://packages.ubuntu.com/bionic/ucto)
+* [tqdm](https://pypi.org/project/tqdm/)

@@ -50,8 +50,12 @@ python -m unittest
 
 ### Upload to PyPi
 
+See: https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives
+
+Make sure `setuptools` and `wheel` are installed. Then from the virtualenv:
+
 ```bash
-python setup.py sdist
+python setup.py sdist bdist_wheel
 twine upload dist/*
 ```
 

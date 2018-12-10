@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FoLiA xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns="http://ilk.uvt.nl/folia" xml:id="HuygensING-heinsius-1-1_ffea60c0-bf90-4161-95a1-aacb0738710a" generator="libfolia-v1.6.1" version="0.8.0">
+    <metadata type="native">
+        <annotations>
+            <sentence-annotation annotatortype="auto" set="unknown"/>
+            <entity-annotation annotatortype="auto" set="unknown"/>
+            <subjectivity-annotation annotatortype="auto" set="unknown"/>
+            <list-annotation annotatortype="auto" set="unknown"/>
+            <domain-annotation annotatortype="auto" set="unknown"/>
+            <figure-annotation annotatortype="auto" set="unknown"/>
+            <metric-annotation annotatortype="auto" set="unknown"/>
+            <gap-annotation annotatortype="auto" set="unknown"/>
+            <dependency-annotation annotatortype="auto" set="unknown"/>
+            <example-annotation annotatortype="auto" set="unknown"/>
+            <coreference-annotation annotatortype="auto" set="unknown"/>
+            <style-annotation annotatortype="auto" set="unknown"/>
+            <chunking-annotation annotatortype="auto" set="unknown"/>
+            <definition-annotation annotatortype="auto" set="unknown"/>
+            <text-annotation annotatortype="auto" set="unknown"/>
+            <utterance-annotation annotatortype="auto" set="unknown"/>
+            <lemma-annotation annotatortype="auto" set="unknown"/>
+            <part-annotation annotatortype="auto" set="unknown"/>
+            <pos-annotation annotatortype="auto" set="unknown"/>
+            <paragraph-annotation annotatortype="auto" set="unknown"/>
+            <complexalignment-annotation annotatortype="auto" set="unknown"/>
+            <whitespace-annotation annotatortype="auto" set="unknown"/>
+            <morphological-annotation annotatortype="auto" set="unknown"/>
+            <semrole-annotation annotatortype="auto" set="unknown"/>
+            <correction-annotation annotatortype="auto" set="unknown"/>
+            <entry-annotation annotatortype="auto" set="unknown"/>
+            <note-annotation annotatortype="auto" set="unknown"/>
+            <observation-annotation annotatortype="auto" set="unknown"/>
+            <table-annotation annotatortype="auto" set="unknown"/>
+            <statement-annotation annotatortype="auto" set="unknown"/>
+            <token-annotation annotatortype="auto" set="unknown"/>
+            <phon-annotation annotatortype="auto" set="unknown"/>
+            <term-annotation annotatortype="auto" set="unknown"/>
+            <predicate-annotation annotatortype="auto" set="unknown"/>
+            <string-annotation annotatortype="auto" set="unknown"/>
+            <alignment-annotation annotatortype="auto" set="unknown"/>
+            <sentiment-annotation annotatortype="auto" set="unknown"/>
+            <event-annotation annotatortype="auto" set="unknown"/>
+            <phonological-annotation annotatortype="auto" set="unknown"/>
+            <division-annotation annotatortype="auto" set="unknown"/>
+            <sense-annotation annotatortype="auto" set="unknown"/>
+            <errordetection-annotation annotatortype="auto" set="unknown"/>
+            <timesegment-annotation annotatortype="auto" set="unknown"/>
+            <lang-annotation annotatortype="auto" set="unknown"/>
+            <syntax-annotation annotatortype="auto" set="unknown"/>
+            <linebreak-annotation annotatortype="auto" set="unknown"/>
+            <lang-annotation set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+        </annotations>
+        <meta id="language">nld</meta>
+        <meta id="publisher">Instituut voor Nederlandse Geschiedenis</meta>
+        <meta id="authorLevel1">De Veth</meta>
+        <meta id="authorLevel2"></meta>
+        <meta id="authorLevel3"></meta>
+        <meta id="biblScope_page">345-</meta>
+        <meta id="biblScope_volume">17</meta>
+        <meta id="category">uitgave</meta>
+        <meta id="copyrightHolder">Huygens ING</meta>
+        <meta id="copyrightOwner">Huygens ING</meta>
+        <meta id="corpusProvenance">HuygensING-heinsius</meta>
+        <meta id="edition">1</meta>
+        <meta id="editorLevel1">Dr. A.J. Veenendaal jr., Mw. M.T.A. Schouten</meta>
+        <meta id="editorLevel2">Dr. A.J. Veenendaal jr., Mw. M.T.A. Schouten</meta>
+        <meta id="editorLevel3"></meta>
+        <meta id="factuality">non-fictie</meta>
+        <meta id="genre">egodocumenten</meta>
+        <meta id="ingestTime">2017-06-24T08:09</meta>
+        <meta id="ipr">extern</meta>
+        <meta id="isbn">90-5216-104-6</meta>
+        <meta id="localization_country"></meta>
+        <meta id="localization_kloekecode"></meta>
+        <meta id="localization_place"></meta>
+        <meta id="localization_province"></meta>
+        <meta id="localization_region"></meta>
+        <meta id="medium">boek</meta>
+        <meta id="pid">INT_ffea60c0-bf90-4161-95a1-aacb0738710a</meta>
+        <meta id="placePublication">'s Gravenhage</meta>
+        <meta id="primaryLanguage">nl</meta>
+        <meta id="processingMethod">ongecorrigeerde OCR</meta>
+        <meta id="pubDay_from"></meta>
+        <meta id="pubDay_to"></meta>
+        <meta id="pubMonth_from"></meta>
+        <meta id="pubMonth_to"></meta>
+        <meta id="pubYear_from">1998</meta>
+        <meta id="pubYear_to">1998</meta>
+        <meta id="resourceURI">http://resources.huygens.knaw.nl/retroboeken/heinsius/</meta>
+        <meta id="settingLocation"></meta>
+        <meta id="settingOrganization"></meta>
+        <meta id="settingPerson"></meta>
+        <meta id="sourceID">heinsius:vol17:454</meta>
+        <meta id="sourceLanguage"></meta>
+        <meta id="statusText">geen vertaling</meta>
+        <meta id="subgenre">brieven</meta>
+        <meta id="subtitleLevel1"></meta>
+        <meta id="subtitleLevel2">Deel 17, 1 mei 1715 — 31 juli 1716</meta>
+        <meta id="subtitleLevel3">Grote Serie 243</meta>
+        <meta id="textDay_from">24</meta>
+        <meta id="textDay_to">24</meta>
+        <meta id="textMonth_from">9</meta>
+        <meta id="textMonth_to">9</meta>
+        <meta id="textYear_from">1715</meta>
+        <meta id="textYear_to">1715</meta>
+        <meta id="titleLevel1">454. van De Veth, 24-9-1715</meta>
+        <meta id="titleLevel2">De briefwisseling van Anthonie Heinsius 1702-1720</meta>
+        <meta id="titleLevel3">Rijks Geschiedkundige Publicatiën uitgegeven in opdracht van de minister van Onderwijs en Wetenschappen onder toezicht van de Rijkscommissie voor Vaderlandse Geschiedenis</meta>
+        <meta id="witnessDay_from">24</meta>
+        <meta id="witnessDay_to">24</meta>
+        <meta id="witnessMonth_from">9</meta>
+        <meta id="witnessMonth_to">9</meta>
+        <meta id="witnessYear_from">1715</meta>
+        <meta id="witnessYear_to">1715</meta>
+    </metadata>
+    <text xml:id="TEI.1">
+        <part xml:id="TEI.1.text.1.body.1" class="bodymatter">
+            <div xml:id="TEI.1.text.1.body.1.div1.1" class="div1">
+                <head xml:id="TEI.1.text.1.body.1.div1.1.head.1">
+                    <t class="default">454 van DE VETH, 24 september 1715.                        <br/>
+Ondert. orig. H. A. 1928.</t>
+                    <lang class="nld" set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+                </head>
+                <p xml:id="TEI.1.text.1.body.1.div1.1.p.1">
+                    <t class="default">Weledele Ghestrenghe Heer, Mijn Heer, Het gepasseerde aan
+						den griffier Fagel                        <br/>
+geschreven luydt als volgt.</t>
+                    <lang class="nld" set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+                </p>
+                <p xml:id="TEI.1.text.1.body.1.div1.1.p.2">
+                    <t class="default">Naardat een dagh of drie hier ter reede hadde gelegen, is
+						iemant wegens den                        <t-correction class="correction" original="admi-|raeliteyt">admiraeliteyt</t-correction>
+                        <br/>
+ van Coppenhagen bij mij gekomen om te
+						versoeken dat eenige masten en hennip                        <br/>
+uyt de vloot wilde overgeven ten
+						behoeve van coninghs vloot, waerop in antwoort gaf                        <br/>
+’tselve strijdigh te
+						sijn tegens ’t tractaet van commersie met de coningh van Sweden
+                        <t-correction class="correction" original="geslo-|ten,">gesloten,</t-correction>
+                        <br/>
+ behalve ook dat het aan mij niet stont over koopluyden
+						goederen te disponeren,                        <t-correction class="correction" original="ter-|wijl">terwijl</t-correction>
+                        <br/>
+ het alle bevragte schepen waeren; dat
+						derhalve versoght mij sulx niet mogt werden                        <br/>
+gevergt, schoon in alle
+						deelen kon versekeren de goede intelligentie van mijn heeren en                        <br/>
+meesters
+						tusschen den coningh van Denemarken, en is naderhant daer ook over
+                        <t-correction class="correction" original="geschre-|ven">geschreven</t-correction>
+                        <br/>
+ aan den Engelsen admirael, die een reschriptie van deselve
+						natuer daerop deet. Soo is                        <br/>
+’t dat drie dagen daernaer twee schippers bij
+						mijn sijn gekomen van Coppenhagen, bekent                        <br/>
+maekende hoe dat in de naght
+						van de Deene waeren overrompelt en in den donker,                        <t-correction class="correction" original="son-|der">sonder</t-correction>
+                        <br/>
+ het iemant
+						gewaer wiert, uyt de vloot sijn gevoert en met haar schepen voor de
+						boom                        <br/>
+van Coppenhagen gebragt, daer men aenstonts aan ’t lossen van
+						deselve soude gaen om                        <br/>
+sigh van de masten te bedienen, dogh betaelende -
+						soo sij seggen - nae de prijs soo die in                        <br/>
+Hollant komen te gelden. Ik
+						hebbe hierop een expresse gesonden naer den secretaris van                        <br/>
+den heer
+						envojé Goes, omme daertegens te protesteren en ’t Geheym Conseyl te
+						vragen                        <br/>
+met wat meninghe dit was geschiet. Dogh alsoo deselve expresse
+						nogh niet weder terugh is                        <br/>
+gekomen, soo kan U Ed.Ghestr. daervan geen
+						verdre onderregtingh geven, dogh twijfele                        <br/>
+niet of sulx sal door den
+						voorn, secretaris geschieden; hebbende van mijn plight                        <t-correction class="correction" original="geoor-|deelt">geoordeelt</t-correction>
+                        <br/>
+ van
+						dit voorgevalle kennisse te geven, en blijven -</t>
+                    <lang class="nld" set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+                </p>
+                <p xml:id="TEI.1.text.1.body.1.div1.1.p.3">
+                    <t class="default">L. de Veth.</t>
+                    <lang class="nld" set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+                </p>
+                <p xml:id="TEI.1.text.1.body.1.div1.1.p.4">
+                    <t class="default">Actum in ’s Lants schip ’Gelderlant’, ten anker in de
+						Zont, den 24 septemb/ 1715.</t>
+                    <lang class="nld" set="http://raw.github.com/proycon/folia/master/setdefinitions/iso639_3.foliaset"/>
+                </p>
+            </div>
+        </part>
+    </text>
+</FoLiA>
+

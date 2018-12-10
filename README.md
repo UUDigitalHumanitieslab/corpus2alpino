@@ -2,7 +2,7 @@
 
 # FoLiA and TEI to Alpino XML
 
-Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
+Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
 
 ## Usage
 

@@ -29,6 +29,12 @@ WR-P-E-J-0000000001.p.1.s.7|[ @folia tenslotte BW() Tenslotte ] [ @folia gaan WW
 WR-P-E-J-0000000001.p.1.s.8|[ @folia een LID(onbep,stan,agr) Een ] [ @folia vol ADJ(prenom,basis,met-e,stan) volle ] [ @folia lijn N(soort,ev,basis,zijd,stan) lijn ] [ @folia duiden WW(pv,tgw,met-t) duidt ] [ @folia op VZ(init) op ] [ @folia een LID(onbep,stan,agr) een ] [ @folia verwantschap N(soort,ev,basis,zijd,stan) verwantschap ] [ @folia , LET() , ] [ @folia terweil VG(onder) terweil ] [ @folia een LID(onbep,stan,agr) een ] [ @folia stippelijn FOUTN(soort,ev,basis,zijd,stan) stippelijn ] [ @folia op VZ(init) op ] [ @folia een LID(onbep,stan,agr) een ] [ @folia onzeker ADJ(prenom,basis,met-e,stan) onzekere ] [ @folia verwantschap N(soort,ev,basis,zijd,stan) verwantschap ] [ @folia duiden WW(pv,tgw,met-t) duidt ] [ @folia . LET() . ]
 
 
+entry.1.def.1.p.1.s.1|Term uit de editiewetenschap en tekstkritiek voor de schematische weergave in de vorm van een boomdiagram van de onderlinge verwantschap van documentaire bronnen ( handschrift , codex , druk ) , waarin een tekst bewaard is gebleven .
+
+
+entry.1.def.2.p.1.s.1|Van het oud-Griekse " στέμμα " , via het Latijnse " stemma "
+
+
 sandbox.list.1.listitem.1.s.1|Eerste testitem
 
 

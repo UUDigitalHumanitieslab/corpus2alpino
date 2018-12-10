@@ -1,0 +1,12 @@
+##META text language = nld
+##META text genre = artikel
+
+
+ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1|[ @folia het LID(bep,stan,evon) Het ] [ @folia diggoel-rapport N(soort,ev,basis,onz,stan) Diggoel-Rapport ] [ @folia . LET() . ]
+
+
+ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00002.s.1|[ @folia antwoord N(soort,ev,basis,onz,stan) Antwoord ] [ @folia de LID(bep,gen,rest3) der ] [ @folia regeering N(soort,ev,basis,zijd,stan) Regeering ] [ @folia . LET() . ]
+
+
+ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00003.s.1|[ @folia hulde N(soort,ev,basis,zijd,stan) Hulde ] [ @folia voor VZ(init) voor ] [ @folia Edeleer SPEC(deeleigen) Edeleer ] [ @folia II SPEC(deeleigen) II ] [ @folia ill SPEC(afk) ill ] [ @folia en VG(neven) en ] [ @folia . LET() . ]
+

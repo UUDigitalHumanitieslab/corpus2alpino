@@ -28,7 +28,7 @@ def main(args=None):
 
         parser.add_argument(
             'file_names', metavar='FILE', type=str, nargs='+',
-            help='TEI/FoLiA file(s) to parse')
+            help='CHAT/TEI/FoLiA file(s) to parse')
         parser.add_argument(
             '-s', '--server', metavar='SERVER', type=str,
             help='host:port of Alpino server')

@@ -11,7 +11,7 @@ from corpus2alpino.models import CollectedFile
 class FilesystemCollector(Collector):
     position = 0
 
-    def __clear_pattern(self, filepath):
+    def __clear_pattern(self, filepath: str) -> str:
         realpath = filepath.split('*')[0]
         if path.isdir(realpath):
             return realpath
@@ -20,8 +20,8 @@ class FilesystemCollector(Collector):
 
     def __init__(self, filepaths: List[str]) -> None:
         # Only determine common directory up to the first pattern
-        self.common = path.commonpath(
-            self.__clear_pattern(filepath) for filepath in filepaths)
+        self.common = path.commonpath(list(
+            self.__clear_pattern(filepath) for filepath in filepaths))
         self.filepaths = filepaths
         self.total = len(filepaths)
 

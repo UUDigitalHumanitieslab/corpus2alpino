@@ -112,16 +112,16 @@ class TeiReader(Reader):
                     list(self.tokenizer.sentences()))
 
                 # aggregate all the metadata of the sentence parts
-                annotated_sentences = [['', {}]]
+                annotated_sentences: List[Tuple[str, Dict[str, MetadataValue]]] = [('', {})]
 
                 for (text, metadata, newline) in self.annotate_parts(
                         division.parts, sentence_emitter):
-                    current = annotated_sentences[-1]
-                    current[0] += text
-                    current[1] = self.merge_metadata_sibbling(current[1],
-                                                              metadata)
+                    (current_text, current_metadata) = annotated_sentences[-1]
+                    annotated_sentences[-1] = (
+                        current_text + text,
+                        self.merge_metadata_sibbling(current_metadata, metadata))
                     if newline:
-                        annotated_sentences.append(['', {}])
+                        annotated_sentences.append(('', {}))
 
                 for [sentence, sentence_metadata] in annotated_sentences:
                     if not sentence:
@@ -211,7 +211,7 @@ class TeiReader(Reader):
             self, parts, sentence_emitter: TokenizedSentenceEmitter):
         for part in parts:
             text = ''
-            metadata = {}
+            metadata: Dict[str, MetadataValue] = {}
             empty = True
             part_metadata = self.get_element_metadata(part.attributes)
             for (subpart_text, subpart_metadata, newline) in \

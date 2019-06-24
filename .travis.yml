@@ -9,9 +9,12 @@ before_install:
   - docker cp files.tar lamachine:/tmp/
   - docker exec lamachine tar -xf /tmp/files.tar -C /tmp
 install:
-  - docker exec lamachine pip install -r /tmp/requirements.txt
-  - docker exec lamachine pip install mypy
+  # needed for nltk
+  - docker exec lamachine sudo pip3 install singledispatch
+  - docker exec lamachine sudo pip3 install -r /tmp/requirements.txt
+before_script:
+  - docker exec lamachine env LANG=C.UTF-8
 script:
-  - docker exec lamachine python -m mypy **/*.py --ignore-missing-imports
-  - docker exec lamachine python -m unittest
+  - docker exec lamachine python3 -m unittest
   - docker stop lamachine
+  - mypy **/*.py --ignore-missing-imports

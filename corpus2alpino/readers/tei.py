@@ -78,7 +78,7 @@ class TokenizedSentenceEmitter:
                 if alignable_text[n] != char:
                     # this part doesn't match
                     raise Exception(
-                        f"Alignment error at ({i}, {n})! Sentence: {sentence} Part: {alignable_text}")
+                        "Alignment error at ({0}, {1})! Sentence: {2} Part: {3}".format(i, n, sentence, alignable_text))
                 n += 1
 
         # the entire sentence matches
@@ -100,9 +100,9 @@ class TeiReader(Reader):
 
         for document in corpora.documents:
             # an id should be unique within a document
-            unique_ids: Dict[str, str] = {}
+            unique_ids = {} # type: ignore
             doc_metadata = self.get_element_metadata(document.attributes)
-            utterances: List[Utterance] = []
+            utterances = []
             for (division_path, div_metadata) in self.get_lowest_divisions(
                     document.divisions):
                 division = division_path[-1]
@@ -112,7 +112,7 @@ class TeiReader(Reader):
                     list(self.tokenizer.sentences()))
 
                 # aggregate all the metadata of the sentence parts
-                annotated_sentences: List[Tuple[str, Dict[str, MetadataValue]]] = [('', {})]
+                annotated_sentences = [('', {})] # type: ignore
 
                 for (text, metadata, newline) in self.annotate_parts(
                         division.parts, sentence_emitter):
@@ -142,7 +142,7 @@ class TeiReader(Reader):
             # TODO: get document id/path?
             yield Document(collected_file, utterances, doc_metadata)
 
-    def determine_id(self, file_name, doc_metadata, sentence_metadata, unique_ids):
+    def determine_id(self, file_name, doc_metadata, sentence_metadata, unique_ids: Dict[str, int]):
         if 'id' in doc_metadata:
             sentence_id = escape_id(doc_metadata['id'].value)
         elif 'id' in sentence_metadata:
@@ -152,7 +152,7 @@ class TeiReader(Reader):
 
         if sentence_id in unique_ids:
             unique_ids[sentence_id] += 1
-            return f"{sentence_id}_{unique_ids[sentence_id]}"
+            return "{0}_{1}".format(sentence_id, unique_ids[sentence_id])
         else:
             unique_ids[sentence_id] = 0
             return sentence_id
@@ -170,7 +170,7 @@ class TeiReader(Reader):
                 yield (path + [division], metadata)
 
     def get_element_metadata(self, attributes) -> Dict[str, MetadataValue]:
-        metadata: Dict[str, MetadataValue] = {}
+        metadata = {} # type: ignore
         for attribute in attributes:
             if attribute.key in metadata:
                 metadata[attribute.key].value += ' | ' + attribute.text
@@ -211,7 +211,7 @@ class TeiReader(Reader):
             self, parts, sentence_emitter: TokenizedSentenceEmitter):
         for part in parts:
             text = ''
-            metadata: Dict[str, MetadataValue] = {}
+            metadata = {} # type: ignore
             empty = True
             part_metadata = self.get_element_metadata(part.attributes)
             for (subpart_text, subpart_metadata, newline) in \
@@ -244,7 +244,7 @@ class TeiReader(Reader):
                                      part_metadata,
                                      False)
 
-    def emit_part(self, text, subparts_metadata, part_metadata, newline):
+    def emit_part(self, text: str, subparts_metadata: Dict[str, MetadataValue], part_metadata: Dict[str, MetadataValue], newline):
             # Reverse priority for metadata: the attributes of the
             # highest node in the tree should take precedence.
         return self.inline_metadata(text, part_metadata), \
@@ -263,7 +263,7 @@ class TeiReader(Reader):
         if 'tei-tag' in metadata:
             tag = metadata['tei-tag'].value
             if tag == 'q':
-                return f' " {text.strip()} " '
+                return ' " {0} " '.format(text.strip())
 
         if 'id' in metadata:
             identifier = metadata['id'].value

@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 from corpus2alpino.abstracts import Target
 from corpus2alpino.models import Document
 
 from os import path, makedirs
 from pathlib import Path
-from typing import cast, TextIO, Optional
+from typing import cast, Any
 
 
 class FilesystemTarget(Target):
@@ -12,7 +13,6 @@ class FilesystemTarget(Target):
     """
 
     __current_output_path = None
-    file: Optional[TextIO]
 
     def __open_file(self, document: Document, filename: str = None, suffix: str = None):
         if not self.merge_files:
@@ -25,8 +25,8 @@ class FilesystemTarget(Target):
                 output_path = str(Path(output_path).with_suffix(cast(str, suffix)))
 
             if self.__current_output_path != output_path:
-                if self.file:
-                    self.file.close()
+                if self.file: # type: ignore
+                    self.file.close()  # type: ignore
                 self.__current_output_path = output_path
                 directory = path.split(output_path)[0]
                 makedirs(directory, exist_ok=True)
@@ -40,7 +40,7 @@ class FilesystemTarget(Target):
             # using a single file
             self.file = open(output_path, 'w', encoding='utf-8')
         else:
-            self.file = None
+            self.file = None # type: ignore
 
     def write(self,
               document: Document,

@@ -1,5 +1,5 @@
-##META text language = nld
 ##META text genre = artikel
+##META text language = nld
 
 
 ddd.010229100.mpeg21.a0095.text.p.DDD_010229100_005_alto.xml.P5_TB00001.s.1|[ @folia het LID(bep,stan,evon) Het ] [ @folia diggoel-rapport N(soort,ev,basis,onz,stan) Diggoel-Rapport ] [ @folia . LET() . ]

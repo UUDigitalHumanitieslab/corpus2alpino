@@ -32,5 +32,5 @@ converted = list(converter.convert())
 
 for test_file, output in zip(test_files, converted):
     expected_filename = test_file.replace('.xml', '_expected.txt').replace('.cha', '_expected.txt')
-    with open(expected_filename, mode='w') as expected_file:
+    with open(expected_filename, mode='w', encoding='utf-8') as expected_file:
         expected_file.write(output)

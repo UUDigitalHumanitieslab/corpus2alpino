@@ -42,7 +42,7 @@ class AlpinoAnnotator(Annotator):
 
         if self.prefix_id and match.group(0) != "42":
             raise Exception(
-                f"Unexpected sentence id: {match.group(0)} instead of 42")
+                "Unexpected sentence id: {0} instead of 42".format(match.group(0)))
 
     def annotate(self, document: Document):
         for utterance in document.utterances:
@@ -66,7 +66,7 @@ class AlpinoAnnotator(Annotator):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.host, self.port))
         if self.prefix_id:
-            line = f"{sentence_id}|{line}"
+            line = "{0}|{1}".format(sentence_id, line)
         s.sendall((line + "\n\n").encode())
         received = []
 

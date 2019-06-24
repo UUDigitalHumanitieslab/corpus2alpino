@@ -23,7 +23,7 @@ setuptools.setup(name='corpus2alpino',
       ],
       install_requires=['argparse', 'Cython', 'PyNLPl',
                         'python-ucto', 'tei-reader', 'tqdm'],
-      python_requires='>=3.6',
+      python_requires='>=3.5',
       zip_safe=True,
       entry_points={
           'console_scripts': [

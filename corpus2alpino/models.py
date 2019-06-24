@@ -23,7 +23,7 @@ class Utterance:
                  id: str,
                  metadata: Dict[str, MetadataValue] = None,
                  line: int = 0,
-                 annotations: dict = None) -> None:
+                 annotations: Dict[str, str] = None) -> None:
         self.text = text
         self.id = id
         self.metadata = metadata or {}
@@ -32,13 +32,12 @@ class Utterance:
 
 
 class Document:
-    annotations: dict = {}
-
     def __init__(self,
                  collected_file: CollectedFile,
                  utterances: List[Utterance],
                  metadata: Dict[str, MetadataValue] = None,
-                 subpath: str = '') -> None:
+                 subpath: str = '',
+                 annotations: Dict[str, str] = None) -> None:
         """
         A document found in a file.
 
@@ -52,3 +51,4 @@ class Document:
         self.utterances = utterances
         self.subpath = subpath
         self.metadata = metadata or {}
+        self.annotations = annotations or {}

@@ -1,11 +1,11 @@
-##META text sourceDesc::listBibl::id = inlMetadata
 ##META text sourceDesc::listBibl::bibl::author = William Dunbar
-##META text sourceDesc::listBibl::bibl::interpGrp::type = title
 ##META text sourceDesc::listBibl::bibl::interpGrp::interp::value = Poems-# 1: Ane Ballat of the Passioun
+##META text sourceDesc::listBibl::bibl::interpGrp::type = title
+##META text sourceDesc::listBibl::id = inlMetadata
 
-##META text tei-tag = body
-##META text page = 34
 ##META text line = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+##META text page = 34
+##META text tei-tag = body
 ##META text type = PUNC | WORD
 example_tei3.xml|Amang thir freiris within ane cloister I enterit in ane oritorie , And knelit doun with ane pater noster Befoir the michtie king of glorie , Haveing his passioun in memorie ; Syn to his mother I did inclyne , Hir halsing with ane gaude flore , And sudanlie I sleipit syne . 
 
@@ -22,13 +22,13 @@ example_tei3.xml_2|Falslie condamnit befoir ane iuge , Thay spittit in his visag
 example_tei3.xml_3|Of all his claythis thay tirvit him bair , O mankynd , for the luif of the . 
 
 
-##META text page = 34 | 35
 ##META text line = 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32
+##META text page = 34 | 35
 example_tei3.xml_4|Thay terandis , to revenge thair tein , For scorne thai cled him in to quhyt , And hid his blythfull glorious ene , To se quham angellis had delyt ; Dispituouslie syn did him smyt , Saying , ‘ Gif sone of God thow be , Quha straik the now thow tell ws tyt ’ , O mankynd , for the luif of the . 
 
 
-##META text page = 35
 ##META text line = 33 | 34
+##META text page = 35
 example_tei3.xml_5|In tene thay turvit him agane , And till ane pillar thai him band . 
 
 
@@ -60,8 +60,8 @@ example_tei3.xml_11|Ane croce that wes bayth large and lang , To beir thay gaif 
 example_tei3.xml_12|With bluid and sweit was all deflorde His face , the fude of angellis fre , His feit with stanis was rewin and scorde , O mankynd , for the luif of the . 
 
 
-##META text page = 36
 ##META text line = 57 | 58
+##META text page = 36
 example_tei3.xml_13|Agane thay turvit him bak and syd , Als brim as ony baris woid . 
 
 
@@ -93,8 +93,8 @@ example_tei3.xml_19|Betuix tue theiffis the spreit he gaif On to the fader most 
 example_tei3.xml_20|The erde did trimmill , the stanis claif , The sone obscurit of his licht , The day wox dirk as ony nicht , Deid bodies rais in the cite . 
 
 
-##META text page = 37
 ##META text line = 87 | 88
+##META text page = 37
 example_tei3.xml_21|Goddis deir sone all thus was dicht , O mankynd , for the luif of the . 
 
 
@@ -122,13 +122,13 @@ example_tei3.xml_26|Than Pane with Passioun me opprest , And evir did Petie on m
 example_tei3.xml_27|’ With greiting glaid be than come Grace , With wourdis sweit saying to me , ‘ Ordane for him ane resting place , That is so werie wrocht for the . 
 
 
-##META text page = 37 | 38
 ##META text line = 117 | 118 | 119 | 120
+##META text page = 37 | 38
 example_tei3.xml_28|The lord within thir dayis thre Sall law vndir thy lyntell bow , And in thus hous sall herbrit be Thy blissit saluatour Chryst Iesu . 
 
 
-##META text page = 38
 ##META text line = 120 | 121 | 122 | 123 | 124
+##META text page = 38
 example_tei3.xml_29|’ Than swyth Contritioun wes on steir , And did eftir Confessioun ryn , And Conscience me accusit heir And kest out mony cankerit syn . 
 
 

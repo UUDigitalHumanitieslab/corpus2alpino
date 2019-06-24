@@ -29,7 +29,7 @@ class FilesystemCollector(Collector):
         self.position = 0
         return self.yield_files(self.filepaths)
 
-    def yield_files(self, filepaths):
+    def yield_files(self, filepaths, encoding: str = 'utf-8'):
         for filepath in filepaths:
             globbed = glob.glob(filepath, recursive=True)
             self.total += len(globbed) - 1
@@ -43,6 +43,6 @@ class FilesystemCollector(Collector):
                 (relpath, filename) = path.split(
                     path.relpath(match, self.common))
                 # TODO: mime type?
-                with open(match) as file:
+                with open(match, encoding=encoding) as file:
                     yield CollectedFile(relpath, filename, '', file.read())
                 self.position += 1

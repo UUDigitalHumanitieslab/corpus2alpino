@@ -38,7 +38,7 @@ class TestCorpus2Alpino(unittest.TestCase):
         for test_file, output in zip(test_files, converted):
             print(test_file)
             expected_filename = test_file.replace('.xml', '_expected.txt').replace('.cha', '_expected.txt')
-            with open(expected_filename) as expected_file:
+            with open(expected_filename, encoding='utf-8') as expected_file:
                 self.assertEqual(
                     output,
                     expected_file.read())

@@ -30,12 +30,12 @@ class LassyWriter(Writer):
                 target.write(
                     document,
                     self.render_annotation(document, utterance),
-                    f'{index}.xml')
+                    '{0}.xml'.format(index))
                 index += 1
 
-    def render_annotation(self, document: Document, utterance: Utterance, remove_header = False):
+    def render_annotation(self, document: Document, utterance: Utterance, remove_header = False) -> str:
         metadata = { **document.metadata, **utterance.metadata }
-        annotation: str = utterance.annotations[ANNOTATION_KEY]
+        annotation = utterance.annotations[ANNOTATION_KEY]
 
         if not metadata and remove_header == False:
             return annotation
@@ -71,15 +71,15 @@ class LassyWriter(Writer):
 
         return "\n".join(lines)
 
-    def render_metadata(self, metadata: Dict[str, MetadataValue], wrap: bool):
+    def render_metadata(self, metadata: Dict[str, MetadataValue], wrap: bool) -> str:
         return ("<metadata>\n" if wrap else "") + "\n".join(
             self.render_metadata_value(key, item) for (key, item) in metadata.items()
         ) + ("\n</metadata>" if wrap else "")
 
-    def render_metadata_value(self, key: str, item: MetadataValue):
-        return f'<meta type="{item.type}" name="{key}" value="{self.escape_xml_attribute(item.value)}" />'
+    def render_metadata_value(self, key: str, item: MetadataValue) -> str:
+        return '<meta type="{0}" name="{1}" value="{2}" />'.format(item.type, key, self.escape_xml_attribute(item.value))
 
-    def escape_xml_attribute(self, value: str):
+    def escape_xml_attribute(self, value: str) -> str:
         escaped = escape(value).replace('\n', '&#10;').replace('\r', '').replace('"', '&quot;')
         # replace CHAT time alignment character with middot because it borks lxml
         return escaped.replace('\x15', '&#183;')

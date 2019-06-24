@@ -1,5 +1,3 @@
-##META text language = nld
-##META text publisher = Instituut voor Nederlandse Geschiedenis
 ##META text authorLevel1 = De Veth
 ##META text biblScope_page = 345-
 ##META text biblScope_volume = 17
@@ -15,6 +13,7 @@
 ##META text ingestTime = 2017-06-24T08:09
 ##META text ipr = extern
 ##META text isbn = 90-5216-104-6
+##META text language = nld
 ##META text medium = boek
 ##META text pid = INT_ffea60c0-bf90-4161-95a1-aacb0738710a
 ##META text placePublication = 's Gravenhage
@@ -22,6 +21,7 @@
 ##META text processingMethod = ongecorrigeerde OCR
 ##META text pubYear_from = 1998
 ##META text pubYear_to = 1998
+##META text publisher = Instituut voor Nederlandse Geschiedenis
 ##META text resourceURI = http://resources.huygens.knaw.nl/retroboeken/heinsius/
 ##META text sourceID = heinsius:vol17:454
 ##META text statusText = geen vertaling

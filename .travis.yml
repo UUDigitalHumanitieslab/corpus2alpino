@@ -1,5 +1,7 @@
 sudo: required
 language: python
+python:
+  - 3.6
 services:
   - docker
 before_install:
@@ -15,6 +17,7 @@ install:
 before_script:
   - docker exec lamachine env LANG=C.UTF-8
 script:
-  - docker exec lamachine python3 -m unittest
+  - docker exec -w /tmp lamachine python3 -m unittest
   - docker stop lamachine
+  - pip install mypy
   - mypy **/*.py --ignore-missing-imports

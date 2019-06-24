@@ -27,7 +27,7 @@ class FilesystemTarget(Target):
             if self.__current_output_path != output_path:
                 if self.file: # type: ignore
                     self.file.close()  # type: ignore
-                self.__current_output_path = output_path
+                self.__current_output_path = output_path # type: ignore
                 directory = path.split(output_path)[0]
                 makedirs(directory, exist_ok=True)
                 self.file = open(output_path, 'w', encoding='utf-8')

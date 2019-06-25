@@ -14,10 +14,8 @@ install:
   # needed for nltk
   - docker exec lamachine sudo pip3 install singledispatch
   - docker exec lamachine sudo pip3 install -r /tmp/requirements.txt
-before_script:
-  - docker exec lamachine env LANG=C.UTF-8
 script:
-  - docker exec -w /tmp lamachine python3 -m unittest
+  - docker exec lamachine sh -c "export LANG=C.UTF-8 && cd /tmp && python3 -m unittest"
   - docker stop lamachine
   - pip install mypy
   - mypy **/*.py --ignore-missing-imports

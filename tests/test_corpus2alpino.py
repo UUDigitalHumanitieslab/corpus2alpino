@@ -22,11 +22,11 @@ class TestCorpus2Alpino(unittest.TestCase):
 
     def test_get_sentences(self):
         """
-        Test that sentences in a FoLiA/TEI file can be converted to Alpino-compatible input.
+        Test that sentences in a CHAT/FoLiA/TEI file can be converted to Alpino-compatible input.
         """
 
         paqu_writer = PaQuWriter()
-        test_files = self.get_files('*.xml')
+        test_files = self.get_files('*.xml') + self.get_files('*.cha')
         converter = Converter(
             FilesystemCollector(test_files),
             target=MemoryTarget(),
@@ -37,8 +37,8 @@ class TestCorpus2Alpino(unittest.TestCase):
 
         for test_file, output in zip(test_files, converted):
             print(test_file)
-            expected_filename = test_file.replace('.xml', '_expected.txt')
-            with open(expected_filename) as expected_file:
+            expected_filename = test_file.replace('.xml', '_expected.txt').replace('.cha', '_expected.txt')
+            with open(expected_filename, encoding='utf-8') as expected_file:
                 self.assertEqual(
                     output,
                     expected_file.read())

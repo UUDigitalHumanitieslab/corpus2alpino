@@ -1,0 +1,41 @@
+##META text charencoding = UTF8
+##META text media = example, audio
+##META text session = example_chat
+
+##META text SES = 
+##META text age = 11;00.
+##META text childage = 11;00.
+##META int childmonths = 132
+##META text corpus = PRELAN
+##META text custom = 
+##META text education = 
+##META text group = premature
+##META text language = nld
+##META int months = 132
+##META text origutt = dus pakte zij gereedschap .
+##META text role = Target_Child
+##META text sex = male
+##META text speaker = CHI
+##META int uttendlineno = 8
+##META int uttid = 0
+##META int uttstartlineno = 8
+1|dus pakte zij gereedschap .
+
+##META text origutt = toen <ging zij &-eh haar &+ma ging zij> [//] wou zij de auto maken . 21792_23475
+##META int uttendlineno = 10
+##META int uttid = 1
+##META int uttstartlineno = 9
+2|toen wou zij de auto maken .
+
+##META text origutt = maar toen reed de auto er vandoor .
+##META int uttendlineno = 11
+##META int uttid = 2
+##META int uttstartlineno = 11
+3|maar toen reed de auto er vandoor .
+
+##META text origutt = toen <kwam de> [//] deden ze een wedstrijdje met een andere bus .
+##META int uttendlineno = 12
+##META int uttid = 3
+##META int uttstartlineno = 12
+4|toen deden ze een wedstrijdje met een andere bus .
+

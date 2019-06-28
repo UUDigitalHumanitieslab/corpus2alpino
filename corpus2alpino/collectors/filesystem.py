@@ -11,7 +11,7 @@ from corpus2alpino.models import CollectedFile
 class FilesystemCollector(Collector):
     position = 0
 
-    def __clear_pattern(self, filepath):
+    def __clear_pattern(self, filepath: str) -> str:
         realpath = filepath.split('*')[0]
         if path.isdir(realpath):
             return realpath
@@ -20,8 +20,8 @@ class FilesystemCollector(Collector):
 
     def __init__(self, filepaths: List[str]) -> None:
         # Only determine common directory up to the first pattern
-        self.common = path.commonpath(
-            self.__clear_pattern(filepath) for filepath in filepaths)
+        self.common = path.commonpath(list(
+            self.__clear_pattern(filepath) for filepath in filepaths))
         self.filepaths = filepaths
         self.total = len(filepaths)
 
@@ -29,7 +29,7 @@ class FilesystemCollector(Collector):
         self.position = 0
         return self.yield_files(self.filepaths)
 
-    def yield_files(self, filepaths):
+    def yield_files(self, filepaths, encoding: str = 'utf-8'):
         for filepath in filepaths:
             globbed = glob.glob(filepath, recursive=True)
             self.total += len(globbed) - 1
@@ -43,6 +43,6 @@ class FilesystemCollector(Collector):
                 (relpath, filename) = path.split(
                     path.relpath(match, self.common))
                 # TODO: mime type?
-                with open(match) as file:
+                with open(match, encoding=encoding) as file:
                     yield CollectedFile(relpath, filename, '', file.read())
                 self.position += 1

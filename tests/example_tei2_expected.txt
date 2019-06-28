@@ -1,11 +1,11 @@
-##META text fileDesc::titleStmt::title = Quotes en andere talen
-##META text fileDesc::titleStmt::author = Sheean Spoel
 ##META text fileDesc::editionStmt::edition = 2018-03-05T13:38:37.229008088
+##META text fileDesc::titleStmt::author = Sheean Spoel
+##META text fileDesc::titleStmt::title = Quotes en andere talen
 
-##META text tei-tag = p
-##META text note = Misschien question gebruiken ? 
 ##META text id = foo
+##META text note = Misschien question gebruiken ? 
 ##META text rend = italic
+##META text tei-tag = p
 ##META text xml:lang = de
 foo|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheisse tekst om het importeren van TEI-geformatteerde tekst te evalueren . 
 

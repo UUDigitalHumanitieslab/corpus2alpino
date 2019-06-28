@@ -5,17 +5,19 @@ Wrapper for the Alpino parser.
 
 ANNOTATION_KEY = 'alpino'
 
-from xml.sax.saxutils import escape
 import socket
 import re
 
 from corpus2alpino.abstracts import Annotator
 from corpus2alpino.models import Document
 
+closing_punctuation = re.compile(r'([^\s])([\.?!])$')
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
+timealign_symbol = re.compile(r'\u0015')
 
 
 class AlpinoAnnotator(Annotator):
+
     """
     Wrapper for connecting to an Alpino parser server.
     """
@@ -25,10 +27,10 @@ class AlpinoAnnotator(Annotator):
         self.port = port
 
         self.prefix_id = True
-        parsed = self.parse_line("hallo wereld !", '42', {})
+        parsed = self.parse_line("hallo wereld !", '42')
         if '"42|hallo"' in parsed:
             self.prefix_id = False  # Add it ourselves
-            parsed = self.parse_line("hallo wereld !", '42', {})
+            parsed = self.parse_line("hallo wereld !", '42')
             if not '"hallo"' in parsed:
                 raise Exception("Alpino has unsupported sentence ID behavior")
 
@@ -40,16 +42,16 @@ class AlpinoAnnotator(Annotator):
 
         if self.prefix_id and match.group(0) != "42":
             raise Exception(
-                f"Unexpected sentence id: {match.group(0)} instead of 42")
+                "Unexpected sentence id: {0} instead of 42".format(match.group(0)))
 
     def annotate(self, document: Document):
         for utterance in document.utterances:
-            utterance.annotations[ANNOTATION_KEY] = self.parse_line(
-                utterance.text,
-                utterance.id,
-                utterance.metadata)
+            # replace the symbol with a middot to prevent XML parsing errors
+            utterance.annotations[ANNOTATION_KEY] = timealign_symbol.sub(
+                "·",
+                self.parse_line(utterance.text, utterance.id))
 
-    def parse_line(self, line, sentence_id, metadata):
+    def parse_line(self, line, sentence_id):
         """
         Parse a line using the Alpino parser.
 
@@ -58,10 +60,13 @@ class AlpinoAnnotator(Annotator):
             strip: remove the xml header and remove the trailing newline
         """
 
+        # add a whitespace before the closing punctuation when it's missing
+        line = closing_punctuation.sub(lambda m: m.group(1) + ' ' + m.group(2), line)
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.host, self.port))
         if self.prefix_id:
-            line = f"{sentence_id}|{line}"
+            line = "{0}|{1}".format(sentence_id, line)
         s.sendall((line + "\n\n").encode())
         received = []
 
@@ -76,20 +81,4 @@ class AlpinoAnnotator(Annotator):
         if not self.prefix_id:
             xml = sentence_id_matcher.sub(sentence_id, xml)
 
-        # escape CHAT time alignment character
-        xml = xml.replace('', '&#21;')
-
-        lines = xml.splitlines()
-
-        if metadata:
-            lines.insert(-1, self.render_metadata(metadata))
-
-        return "\n".join(lines)
-
-    def render_metadata(self, metadata):
-        return "<metadata>\n" + "\n".join(
-            f'<meta type="{item.type}" name="{key}" value="{self.escape_xml_attribute(item.value)}" />' for (key, item) in metadata.items()
-        ) + "\n</metadata>"
-
-    def escape_xml_attribute(self, value):
-        return escape(value).replace('\n', '&#10;').replace('\r', '')
+        return xml

@@ -2,7 +2,7 @@
 
 # FoLiA and TEI to Alpino XML
 
-Converts [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
+Converts [CHAT](https://childes.talkbank.org/), [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
 
 ## Usage
 
@@ -50,18 +50,23 @@ python -m unittest
 
 ### Upload to PyPi
 
+See: https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives
+
+Make sure `setuptools` and `wheel` are installed. Then from the virtualenv:
+
 ```bash
-python setup.py sdist
+python setup.py sdist bdist_wheel
 twine upload dist/*
 ```
 
 ## Requirements
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
-* Python 3.6 or higher (developed using 3.6.3).
+* Python 3.5 or higher (developed using 3.6.3).
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
 * [libicu-dev](https://packages.ubuntu.com/bionic/libicu-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 * [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
 * [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
 * [ucto](https://packages.ubuntu.com/bionic/ucto)
+* [tqdm](https://pypi.org/project/tqdm/)

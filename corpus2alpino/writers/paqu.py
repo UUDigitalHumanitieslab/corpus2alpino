@@ -51,11 +51,11 @@ class PaQuWriter(Writer):
             metadata = {**metadata, **doc_metadata, **utterance.metadata}
             metadata_display = '\n'.join(self.output_metadata_items(
                 metadata, prev_metadata)) + '\n' if metadata else ''
-            yield f'{metadata_display}{utterance.id}|{utterance.text}\n\n'
+            yield '{0}{1}|{2}\n\n'.format(metadata_display, utterance.id, utterance.text)
             prev_metadata = {**prev_metadata, **metadata}
 
     def output_metadata_items(self, metadata, prev_metadata=None):
-        for key, item in metadata.items():
+        for key, item in sorted(metadata.items()):
             if prev_metadata == None or not key in prev_metadata or \
                     prev_metadata[key].value != item.value:
-                yield f'##META {item.type} {key} = {item.value}'
+                yield '##META {0} {1} = {2}'.format(item.type, key, item.value)

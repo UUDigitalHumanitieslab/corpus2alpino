@@ -1,5 +1,7 @@
 sudo: required
 language: python
+python:
+  - 3.6
 services:
   - docker
 before_install:
@@ -9,9 +11,11 @@ before_install:
   - docker cp files.tar lamachine:/tmp/
   - docker exec lamachine tar -xf /tmp/files.tar -C /tmp
 install:
-  - docker exec lamachine pip install -r /tmp/requirements.txt
-  - docker exec lamachine pip install mypy
+  # needed for nltk
+  - docker exec lamachine sudo pip3 install singledispatch
+  - docker exec lamachine sudo pip3 install -r /tmp/requirements.txt
 script:
-  - docker exec lamachine python -m mypy **/*.py --ignore-missing-imports
-  - docker exec lamachine python -m unittest
+  - docker exec lamachine sh -c "export LANG=C.UTF-8 && cd /tmp && python3 -m unittest"
   - docker stop lamachine
+  - pip install mypy
+  - mypy **/*.py --ignore-missing-imports

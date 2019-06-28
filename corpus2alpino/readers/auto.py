@@ -10,6 +10,7 @@ import ucto
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue
 
+from corpus2alpino.readers.chat import ChatReader
 from corpus2alpino.readers.folia import FoliaReader
 from corpus2alpino.readers.tei import TeiReader
 
@@ -21,7 +22,7 @@ class AutoReader(Reader):
 
     def __init__(self):
         tokenizer = ucto.Tokenizer("tokconfig-nld")
-        self.readers = [FoliaReader(tokenizer), TeiReader(tokenizer)]
+        self.readers = [ChatReader(), FoliaReader(tokenizer), TeiReader(tokenizer)]
 
     def read(self, file):
         for reader in self.readers:

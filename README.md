@@ -68,5 +68,11 @@ twine upload dist/*
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 * [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
 * [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
-* [ucto](https://packages.ubuntu.com/bionic/ucto)
-* [tqdm](https://pypi.org/project/tqdm/)
+* [ucto](https://packages.ubuntu.com/bionic/ucto) Note: a newer version might be needed than provided in Ubuntu.
+
+### Installation Instructions for Ubuntu
+
+```bash
+sudo apt install libfolia-dev libicu-dev libxml2-dev libticcutils2-dev ucto libucto-dev
+pip install -r requirements.txt
+```

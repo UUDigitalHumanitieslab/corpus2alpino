@@ -13,6 +13,7 @@ from datetime import date
 
 from corpus2alpino.abstracts import Annotator
 from corpus2alpino.models import Document, MetadataValue
+from corpus2alpino.log import LogSingleton
 
 closing_punctuation = re.compile(r'([^\s])([\.?!])$')
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
@@ -69,7 +70,7 @@ class AlpinoAnnotator(Annotator):
                 if self.version_date:
                     utterance.metadata['alpino_version_date'] = MetadataValue(self.version_date.isoformat(), 'date')
             except:
-                raise Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text))
+                LogSingleton.get().error(Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text)))
 
     def parse_line(self, line, sentence_id):
         """

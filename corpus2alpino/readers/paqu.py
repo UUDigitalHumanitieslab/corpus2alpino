@@ -52,7 +52,7 @@ class PaQuReader(Reader):
                         collected_file,
                         self.parse_utterances(metadata, text_lines),
                         {**(file_metadata or {}), **(metadata or {})},
-                        metadata['messageid'].value) # TODO: generic implementation
+                        self.get_subpath(metadata))
                     metadata = {}
                     text_lines = []
                 (type, var, value) = metadata_match.groups()
@@ -71,7 +71,7 @@ class PaQuReader(Reader):
             yield Document(collected_file,
                            self.parse_utterances(metadata, text_lines),
                            {**(file_metadata or {}), **(metadata or {})},
-                           metadata['messageid'].value) # TODO: generic implementation
+                           self.get_subpath(metadata))
 
     def parse_utterances(self, metadata: Dict[str, MetadataValue], text_lines: List[Tuple[str, str]]):
         for i in range(0, len(text_lines)):
@@ -96,3 +96,12 @@ class PaQuReader(Reader):
         """
 
         return file.filename[-3:].upper() == 'TXT'
+
+    def get_subpath(self, metadata: Dict[str, MetadataValue]) -> str:
+        for key in ['id', 'messageid']:
+            try:
+                return metadata[key].value
+            except KeyError:
+                pass
+        return ''
+        

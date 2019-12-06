@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Union
+from typing import cast, Union
 
 from corpus2alpino.abstracts import Target
 from corpus2alpino.models import CollectedFile, Document
@@ -44,7 +44,7 @@ class LogSingleton:
     def get() -> Log:
         if LogSingleton._instance == None:
             LogSingleton._instance = Log(LogTarget(ConsoleTarget()))
-        return LogSingleton._instance
+        return cast(Log, LogSingleton._instance)
 
     @staticmethod
     def set(log: Log):

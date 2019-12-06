@@ -8,7 +8,7 @@ sys.path.append(".")
 from glob import glob
 import unittest
 import re
-from typing import Sequence
+from typing import cast, List, Sequence
 from os import path
 
 from corpus2alpino.converter import Converter
@@ -23,7 +23,7 @@ else:
     patterns = ['*.xml', '*.txt', '*.cha']
 
 paqu_writer = PaQuWriter()
-test_files = []
+test_files = cast(List[str], [])
 for pattern in patterns:
     test_files += (f for f in glob(path.join(path.dirname(__file__), pattern))
                  if '_expected' not in f)

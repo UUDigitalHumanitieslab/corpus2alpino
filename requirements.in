@@ -1,5 +1,5 @@
 argparse
-chamd>=0.4.5
+chamd>=0.5.0
 Cython
 PyNLPl>=1.2.7
 python-ucto>=0.5.0

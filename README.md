@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino)
 
-# FoLiA and TEI to Alpino XML
+# CHAT, FoLiA, PaQu metadata, plaintext and TEI to Alpino XML or PaQu metadata format
 
-Converts [CHAT](https://childes.talkbank.org/), [FoLiA](https://proycon.github.io/folia/) and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
+Converts [CHAT](https://childes.talkbank.org/), [FoLiA](https://proycon.github.io/folia/), [PaQu metadata](https://dspace.library.uu.nl/bitstream/1874/356078/1/AnnCor_Annotation_2017_05_11_2017_05_11.pdf), plaintext and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.
 
 ## Usage
 
@@ -68,5 +68,11 @@ twine upload dist/*
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 * [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
 * [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
-* [ucto](https://packages.ubuntu.com/bionic/ucto)
-* [tqdm](https://pypi.org/project/tqdm/)
+* [ucto](https://packages.ubuntu.com/bionic/ucto) Note: a newer version might be needed than provided in Ubuntu.
+
+### Installation Instructions for Ubuntu
+
+```bash
+sudo apt install libfolia-dev libicu-dev libxml2-dev libticcutils2-dev ucto libucto-dev
+pip install -r requirements.txt
+```

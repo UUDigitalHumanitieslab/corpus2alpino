@@ -19,15 +19,20 @@ class FilesystemTarget(Target):
             output_path = path.join(self.output_path,
                                     document.collected_file.relpath,
                                     document.collected_file.filename)
+
+            if document.subpath:
+                output_path = path.join(output_path, document.subpath)
+
             if filename != None:
                 output_path = path.join(output_path, cast(str, filename))
             if suffix != None:
-                output_path = str(Path(output_path).with_suffix(cast(str, suffix)))
+                output_path = str(
+                    Path(output_path).with_suffix(cast(str, suffix)))
 
             if self.__current_output_path != output_path:
-                if self.file: # type: ignore
+                if self.file:  # type: ignore
                     self.file.close()  # type: ignore
-                self.__current_output_path = output_path # type: ignore
+                self.__current_output_path = output_path  # type: ignore
                 directory = path.split(output_path)[0]
                 makedirs(directory, exist_ok=True)
                 self.file = open(output_path, 'w', encoding='utf-8')
@@ -40,7 +45,7 @@ class FilesystemTarget(Target):
             # using a single file
             self.file = open(output_path, 'w', encoding='utf-8')
         else:
-            self.file = None # type: ignore
+            self.file = None  # type: ignore
 
     def write(self,
               document: Document,

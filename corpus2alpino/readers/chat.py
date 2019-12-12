@@ -7,7 +7,6 @@ from chamd import ChatReader as ChatParser
 
 import os
 import re
-import ucto
 
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Dict, List
+from typing import Dict, List, Iterable
 
 
 class CollectedFile:
@@ -34,7 +34,7 @@ class Utterance:
 class Document:
     def __init__(self,
                  collected_file: CollectedFile,
-                 utterances: List[Utterance],
+                 utterances: Iterable[Utterance],
                  metadata: Dict[str, MetadataValue] = None,
                  subpath: str = '',
                  annotations: Dict[str, str] = None) -> None:
@@ -48,7 +48,7 @@ class Document:
 
         """
         self.collected_file = collected_file
-        self.utterances = utterances
+        self.utterances = list(utterances)
         self.subpath = subpath
         self.metadata = metadata or {}
         self.annotations = annotations or {}

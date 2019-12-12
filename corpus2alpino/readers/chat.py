@@ -44,7 +44,7 @@ class ChatReader(Reader):
                             {
                                 **self.parse_metadata(line.metadata),
                                 **self.parse_tiers(line.tiers),
-                                UTTERANCE_NUMBER_ID: MetadataValue(number, 'int')
+                                UTTERANCE_NUMBER_ID: MetadataValue(str(number), 'int')
                             },
                             int(line.metadata['uttstartlineno'].text))
 

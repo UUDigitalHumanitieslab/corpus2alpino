@@ -54,7 +54,8 @@ class LassyWriter(Writer):
 
         if remove_header:
             # remove the xml header and remove the trailing newline
-            lines = lines[1:]
+            if '<?xml' in lines[0]:
+                lines = lines[1:]
             lines[-1] = lines[-1].rstrip()
 
         existing_metadata = -1
@@ -69,10 +70,12 @@ class LassyWriter(Writer):
                         '<meta .*name="([^"]+)".*?/>', line)
                     if meta_name_search:
                         name = meta_name_search.group(1)
-                        item = metadata[name]
-                        if item:
+                        try:
+                            item = metadata[name]
                             lines[i] = self.render_metadata_value(name, item)
                             del metadata[name]
+                        except KeyError:
+                            pass
                     elif '</metadata>' in line:
                         existing_metadata = i
                         break

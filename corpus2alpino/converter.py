@@ -20,7 +20,7 @@ class Converter:
                  collector: Collector,
                  annotators: List[Annotator] = [],
                  reader: Reader = AutoReader(),
-                 writer: Writer= PaQuWriter(),
+                 writer: Writer = PaQuWriter(),
                  target: Target = ConsoleTarget()) -> None:
         self.collector = collector
         self.annotators = annotators

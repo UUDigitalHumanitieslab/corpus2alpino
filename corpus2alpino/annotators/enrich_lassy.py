@@ -2,7 +2,7 @@
 """
 Allows enriching nodes of a Lassy annotation using a dictionary
 """
-from typing import Dict
+from typing import cast, Dict, List
 
 import csv
 from lxml import etree
@@ -52,10 +52,9 @@ class EnrichLassyAnnotator(Annotator):
                 else:
                     assigners[header] = i
 
-            self.enrichments = []
+            self.enrichments = cast(List[Enrichment], [])
 
             for row in reader:
-                enrichment = {}
                 for i, value in enumerate(row):
                     self.enrichments.append(Enrichment(
                         {

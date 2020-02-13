@@ -1,0 +1,10 @@
+##META text charencoding = UTF8
+##META text corpus = VanKampen
+##META text language = nld
+##META text name = Jacqueline
+##META text origutt = waarom niet?
+##META text role = Mother
+##META text speaker = JAC
+##META int uttid = 999
+1000|waarom niet ?
+

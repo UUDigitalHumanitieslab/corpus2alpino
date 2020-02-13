@@ -61,14 +61,15 @@ class AlpinoAnnotator(Annotator):
     def annotate(self, document: Document):
         for utterance in document.utterances:
             try:
-                # replace the symbol with a middot to prevent XML parsing errors
-                utterance.annotations[ANNOTATION_KEY] = timealign_symbol.sub(
-                    "·",
-                    self.parse_line(utterance.text, utterance.id))
-                if self.version:
-                    utterance.metadata['alpino_version'] = MetadataValue(self.version)
-                if self.version_date:
-                    utterance.metadata['alpino_version_date'] = MetadataValue(self.version_date.isoformat(), 'date')
+                if not ANNOTATION_KEY in utterance.annotations:
+                    # replace the symbol with a middot to prevent XML parsing errors
+                    utterance.annotations[ANNOTATION_KEY] = timealign_symbol.sub(
+                        "·",
+                        self.parse_line(utterance.text, utterance.id))
+                    if self.version:
+                        utterance.metadata['alpino_version'] = MetadataValue(self.version)
+                    if self.version_date:
+                        utterance.metadata['alpino_version_date'] = MetadataValue(self.version_date.isoformat(), 'date')
             except:
                 LogSingleton.get().error(Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text)))
 

@@ -26,7 +26,7 @@ class TestCorpus2Alpino(unittest.TestCase):
         """
 
         paqu_writer = PaQuWriter()
-        test_files = self.get_files('*.xml') + self.get_files('*.cha')
+        test_files = self.get_files('example*.xml') + self.get_files('example*.cha')
         converter = Converter(
             FilesystemCollector(test_files),
             target=MemoryTarget(),

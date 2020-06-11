@@ -2,11 +2,11 @@
 from typing import Dict
 
 import re
+import logging
 from xml.sax.saxutils import escape
 
 from corpus2alpino.annotators.alpino import ANNOTATION_KEY
 from corpus2alpino.abstracts import Writer, Target
-from corpus2alpino.log import LogSingleton
 from corpus2alpino.models import Document, MetadataValue, Utterance
 
 
@@ -36,7 +36,7 @@ class LassyWriter(Writer):
         try:
             annotation = utterance.annotations[ANNOTATION_KEY]
         except KeyError:
-            LogSingleton.get().warning(
+            logging.getLogger().warning(
                 'Annotation missing for: {0}|{1} ({2})'.format(utterance.id, utterance.text, document.subpath))
             return
 

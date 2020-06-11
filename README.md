@@ -44,6 +44,20 @@ parses = converter.convert()
 print(''.join(parses)) # <treebank><alpino_ds ... /></treebank>
 ```
 
+### Enrichment
+
+It is possible to add custom properties to (existing) Lassy/Alpino files. This is done using a csv-file containing the node attributes and values to look for and the custom properties to assign.
+
+For example:
+
+```bash
+python -m corpus2alpino tests/example_lassy.xml -e tests/enrichment.csv -of lassy
+```
+
+See [`corpus2alpino.annotators.enrich_lassy`](corpus2alpino/annotators/enrich_lassy.py) for more information.
+
+## Development
+
 ### Unit Test
 
 ```bash

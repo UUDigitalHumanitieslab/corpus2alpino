@@ -7,6 +7,7 @@ import socket
 import re
 import os
 import errno
+import logging
 
 from subprocess import run, PIPE
 from datetime import date
@@ -15,7 +16,6 @@ from tempfile import TemporaryDirectory
 
 from corpus2alpino.abstracts import Annotator
 from corpus2alpino.models import Document, MetadataValue
-from corpus2alpino.log import LogSingleton
 
 closing_punctuation = re.compile(r'([^\s])([\.?!])$')
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
@@ -170,9 +170,9 @@ class AlpinoProcessClient:
                          encoding="utf8")
 
             if result.stdout:
-                LogSingleton.get().warning(result.stdout)
+                logging.getLogger().warning(result.stdout)
             if result.stderr:
-                LogSingleton.get().warning(result.stderr)
+                logging.getLogger().warning(result.stderr)
 
             with open(os.path.join(tmp, f"{sentence_id}.xml"), "r", encoding="utf-8") as f:
                 xml = f.read()

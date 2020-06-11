@@ -8,6 +8,7 @@ import argparse
 from tqdm import tqdm
 
 from corpus2alpino.annotators.alpino import AlpinoAnnotator
+from corpus2alpino.annotators.enrich_lassy import EnrichLassyAnnotator
 from corpus2alpino.collectors.filesystem import FilesystemCollector
 from corpus2alpino.targets.filesystem import FilesystemTarget
 from corpus2alpino.writers.lassy import LassyWriter
@@ -33,11 +34,20 @@ def main(args=None):
             '-s', '--server', metavar='SERVER', type=str,
             help='host:port of Alpino server')
         parser.add_argument(
+            '-e', '--enrichment', metavar='ENRICHMENT', type=str,
+            help='Path to a CSV-file to use for enriching Lassy nodes with additional attributes'
+        )
+        parser.add_argument(
             '-sp', '--subprocess', metavar='SUBPROCESS', type=str, nargs='+',
             help='Path to Alpino executable followed by the arguments (e.g. /opt/Alpino -veryfast debug=0), MUST BE GIVEN AS LAST ARGUMENT')
         parser.add_argument(
             '-o', '--output_path', metavar='OUTPUT', type=str,
             help='Output path')
+        parser.add_argument(
+            '-of', '--output_format', metavar='OUTPUT_FORMAT', type=str,
+            default='paqu',
+            help='Output format: can be lassy, paqu (default)'
+        )
         parser.add_argument(
             '-p', '--progress', metavar="BOOL", type=bool,
             help='Show progress bar, automatically turned on file output')
@@ -58,11 +68,11 @@ def main(args=None):
 
         collector = FilesystemCollector(options.file_names)
         converter = Converter(collector)
-        if options.server != None or subprocess != None:
+        if options.server != None or options.output_format == "lassy" or subprocess != None:
             if options.server != None:
                 [host, port] = options.server.split(":")
                 converter.annotators.append(AlpinoAnnotator(host, int(port)))
-            else:
+            elif subprocess != None:
                 executable = subprocess[0]
                 arguments = [arg for arg in subprocess[1:]] \
                     + subprocess[2:]
@@ -70,6 +80,9 @@ def main(args=None):
                     AlpinoAnnotator(executable, arguments))
 
             converter.writer = LassyWriter(not options.split_treebanks)
+        
+        if options.enrichment != None:
+            converter.annotators.append(EnrichLassyAnnotator(options.enrichment))
 
         if options.output_path != None:
             converter.target = FilesystemTarget(

@@ -5,6 +5,7 @@ Wrapper for the Alpino parser.
 
 import re
 import os
+import logging
 
 from typing import cast, Union, List
 
@@ -12,7 +13,6 @@ ANNOTATION_KEY = 'alpino'
 
 from corpus2alpino.abstracts import Annotator
 from corpus2alpino.models import Document, MetadataValue
-from corpus2alpino.log import LogSingleton
 
 from .alpino_client import AlpinoProcessClient, AlpinoServerClient
 
@@ -51,5 +51,5 @@ class AlpinoAnnotator(Annotator):
                         utterance.metadata['alpino_version_date'] = MetadataValue(
                             self.client.version_date.isoformat(), 'date')
             except Exception as exception:
-                LogSingleton.get().error(
+                logging.getLogger().error(
                     Exception("Problem parsing: {0}|{1}\n{2}".format(utterance.id, utterance.text, exception)))

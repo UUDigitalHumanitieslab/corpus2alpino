@@ -33,9 +33,22 @@ class FilesystemTarget(Target):
                 if self.file:  # type: ignore
                     self.file.close()  # type: ignore
                 self.__current_output_path = output_path  # type: ignore
-                directory = path.split(output_path)[0]
+                directory, filename = path.split(output_path)
                 makedirs(directory, exist_ok=True)
-                self.file = open(output_path, 'w', encoding='utf-8')
+                self.file = self.__open_unique(directory, filename)
+
+    def __open_unique(self, directory: str, filename: str):
+        attempts = 0
+        prefix = ""
+        while True:
+            if attempts > 0:
+                prefix = f"{attempts}-"
+
+            target = Path(path.join(directory, prefix + filename))
+            if not target.is_file():
+                # new file!
+                return target.open('w', encoding='utf-8')
+            attempts += 1
 
     def __init__(self, output_path: str, merge_files=False) -> None:
         self.output_path = output_path

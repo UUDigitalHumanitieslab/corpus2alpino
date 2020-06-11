@@ -22,9 +22,11 @@ sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
 sentence_tag_matcher = re.compile(r'(?<=<sentence)(?![\w-])')
 
 
-def determine_alpino_version(alpino_directory: str):
+def determine_alpino_version(alpino_directory: Union[str, None]):
     try:
-        version_path = os.path.join(alpino_directory, 'version')
+        if alpino_directory == None:
+            raise KeyError
+        version_path = os.path.join(cast(str, alpino_directory), 'version')
         version = cast(Union[str, None], open(version_path).read().strip())
         version_date = cast(Union[date, None], date.fromtimestamp(
             os.path.getmtime(version_path)))
@@ -63,9 +65,11 @@ class AlpinoServerClient:
                     "Unexpected sentence id: {0} instead of 42".format(match.group(0)))
 
         # detect version
-        if self.host == 'localhost':
-            self.version, self.version_date = determine_alpino_version(
-                os.environ['ALPINO_HOME'])
+        try:
+            alpino_home = cast(Union[str, None], os.environ['ALPINO_HOME'])
+        except KeyError:
+            alpino_home = None
+        self.version, self.version_date = determine_alpino_version(alpino_home)
 
     def parse_line(self, line: str, sentence_id: str) ->str:
         """Parse a line using the Alpino parser.

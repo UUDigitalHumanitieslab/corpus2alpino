@@ -50,6 +50,6 @@ class AlpinoAnnotator(Annotator):
                     if self.client.version_date:
                         utterance.metadata['alpino_version_date'] = MetadataValue(
                             self.client.version_date.isoformat(), 'date')
-            except:
+            except Exception as exception:
                 LogSingleton.get().error(
-                    Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text)))
+                    Exception("Problem parsing: {0}|{1}\n{2}".format(utterance.id, utterance.text, exception)))

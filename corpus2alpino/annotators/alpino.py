@@ -8,12 +8,12 @@ ANNOTATION_KEY = 'alpino'
 import socket
 import re
 import os
+import logging
 
 from datetime import date
 
 from corpus2alpino.abstracts import Annotator
 from corpus2alpino.models import Document, MetadataValue
-from corpus2alpino.log import LogSingleton
 
 closing_punctuation = re.compile(r'([^\s])([\.?!])$')
 sentence_id_matcher = re.compile(r'(?<=sentid=")[^"]+(?=")')
@@ -51,9 +51,11 @@ class AlpinoAnnotator(Annotator):
         # detect version
         if self.host == 'localhost':
             try:
-                version_path = os.path.join(os.environ['ALPINO_HOME'], 'version')
+                version_path = os.path.join(
+                    os.environ['ALPINO_HOME'], 'version')
                 self.version = open(version_path).read().strip()
-                self.version_date = date.fromtimestamp(os.path.getmtime(version_path))
+                self.version_date = date.fromtimestamp(
+                    os.path.getmtime(version_path))
             except KeyError:
                 self.version = None
                 self.version_date = None
@@ -67,11 +69,14 @@ class AlpinoAnnotator(Annotator):
                         "·",
                         self.parse_line(utterance.text, utterance.id))
                     if self.version:
-                        utterance.metadata['alpino_version'] = MetadataValue(self.version)
+                        utterance.metadata['alpino_version'] = MetadataValue(
+                            self.version)
                     if self.version_date:
-                        utterance.metadata['alpino_version_date'] = MetadataValue(self.version_date.isoformat(), 'date')
+                        utterance.metadata['alpino_version_date'] = MetadataValue(
+                            self.version_date.isoformat(), 'date')
             except:
-                LogSingleton.get().error(Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text)))
+                logging.getLogger().error(
+                    Exception("Problem parsing: {0}|{1}".format(utterance.id, utterance.text)))
 
     def parse_line(self, line, sentence_id):
         """
@@ -83,7 +88,8 @@ class AlpinoAnnotator(Annotator):
         """
 
         # add a whitespace before the closing punctuation when it's missing
-        line = closing_punctuation.sub(lambda m: m.group(1) + ' ' + m.group(2), line)
+        line = closing_punctuation.sub(
+            lambda m: m.group(1) + ' ' + m.group(2), line)
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.host, self.port))

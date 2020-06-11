@@ -42,7 +42,8 @@ def main(args=None):
             help='Output path')
         parser.add_argument(
             '-of', '--output_format', metavar='OUTPUT_FORMAT', type=str,
-            help='Output format: can be lassy'
+            default='paqu',
+            help='Output format: can be lassy, paqu (default)'
         )
         parser.add_argument(
             '-p', '--progress', metavar="BOOL", type=bool,

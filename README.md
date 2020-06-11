@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino)
 
+[PyPi/corpus2alpino](https://pypi.org/project/corpus2alpino/)
+
 # CHAT, FoLiA, PaQu metadata, plaintext and TEI to Alpino XML or PaQu metadata format
 
 Converts [CHAT](https://childes.talkbank.org/), [FoLiA](https://proycon.github.io/folia/), [PaQu metadata](https://dspace.library.uu.nl/bitstream/1874/356078/1/AnnCor_Annotation_2017_05_11_2017_05_11.pdf), plaintext and [TEI](http://www.tei-c.org) XML files to [Alpino](https://www.let.rug.nl/vannoord/alp/Alpino) XML files. Each sentence in the input file is parsed separately.

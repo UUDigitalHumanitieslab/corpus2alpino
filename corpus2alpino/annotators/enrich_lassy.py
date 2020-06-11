@@ -20,7 +20,7 @@ class EnrichLassyAnnotator(Annotator):
         file.
 
         Arguments:
-            enrichment_file {str} -- Path to a comma-separated enrichment file
+            enrichment_file {str} -- Path to a comma-separated enrichment file.
             matching attributes columns should be prefixed with @, assignments
             without. For example the following CSV would match 
             <node pos="noun" num="pl" /> and add penn_pos="NNS":

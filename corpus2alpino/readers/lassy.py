@@ -5,12 +5,14 @@ Module for reading Lassy/Alpino xml files.
 
 from typing import Iterable
 from lxml import etree
+import re
 
 from .alpino_brackets import escape_id, escape_word, format_add_lex, format_folia
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.annotators.alpino import ANNOTATION_KEY
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
 
+xml_header = re.compile(r'<\?xml +version="\d.\d" +encoding="UTF-?8"\?>', re.IGNORECASE)
 
 class LassyReader(Reader):
     """
@@ -19,16 +21,17 @@ class LassyReader(Reader):
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         try:
-            if '<treebank' in collected_file.content[0:400]:
-                treebank = etree.fromstring(collected_file.content)
+            # Unicode strings with encoding declaration are not supported.
+            content = xml_header.sub("", collected_file.content)
+            root = etree.fromstring(content)
+            if '<treebank' in content[0:400]:
                 yield Document(
                     collected_file,
-                    [self.get_utterance(tree) for tree in treebank.iter("alpino_ds")])
+                    [self.get_utterance(tree) for tree in root.iter("alpino_ds")])
             else:
-                tree = etree.fromstring(collected_file.content)
                 yield Document(
                     collected_file,
-                    [self.get_utterance(tree)])
+                    [self.get_utterance(root)])
         except Exception as e:
             raise Exception(collected_file.relpath + "/" +
                             collected_file.filename) from e

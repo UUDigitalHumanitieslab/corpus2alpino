@@ -34,7 +34,7 @@
             </node>
             <node begin="3" end="4" frame="punct(vraag)" his="normal" his_1="normal" id="7" lcat="punct" lemma="?" pos="punct" postag="LET()" pt="let" rel="--" root="?" sense="?" special="vraag" word="?"/>
         </node>
-        <sentence sentid="174-1">moest ze vasthouden ?</sentence>
+<sentence sentid="16-1">moest ze vasthouden ?</sentence>
         <metadata>
             <meta type="text" name="charencoding" value="UTF8" />
             <meta type="text" name="childage" value="6;6" />

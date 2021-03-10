@@ -27,7 +27,7 @@ class LassyReader(Reader):
             if '<treebank' in content[0:400]:
                 yield Document(
                     collected_file,
-                    [self.get_utterance(tree) for tree in root.iter("alpino_ds")])
+                    [self.get_utterance(tree, lineno+1) for (lineno, tree) in enumerate(root.iter("alpino_ds"))])
             else:
                 yield Document(
                     collected_file,
@@ -36,7 +36,7 @@ class LassyReader(Reader):
             raise Exception(collected_file.relpath + "/" +
                             collected_file.filename) from e
 
-    def get_utterance(self, tree) -> Utterance:
+    def get_utterance(self, tree, line_number: int = 1) -> Utterance:
         """
         Read Alpino lxml Element and returns an Utterance object.
         """
@@ -45,7 +45,7 @@ class LassyReader(Reader):
             sentence.text,
             sentence.attrib['sentid'],
             self.get_metadata(tree),
-            int(sentence.attrib['sentid'], 10))
+            line_number)
         metadata_element = tree.find("metadata")
         if metadata_element is not None:
             # remove metadata element from output,

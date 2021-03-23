@@ -1,0 +1,25 @@
+##META text charencoding = UTF8
+##META text corpus = VanKampen
+##META text language = nld
+##META text name = Jacqueline
+##META text origutt = waarom niet?
+##META text role = Mother
+##META text speaker = JAC
+##META int uttid = 999
+0-0|waarom niet ?
+
+##META text age = 6;6
+##META text childage = 6;6
+##META int childmonths = 78
+##META text corpus = 
+##META text language = 
+##META text name = chi
+##META text origutt = 
+##META text role = 
+##META text session = TARSP_09
+##META text speaker = CHI
+##META int uttendlineno = 16
+##META int uttid = 5
+##META int uttstartlineno = 16
+16-1|moest ze vasthouden ?
+

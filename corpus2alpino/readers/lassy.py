@@ -41,10 +41,21 @@ class LassyReader(Reader):
         Read Alpino lxml Element and returns an Utterance object.
         """
         sentence = tree.find("sentence")
+        metadata = self.get_metadata(tree)
+        try:
+            sentid = sentence.attrib['sentid']
+        except KeyError:
+            # If no sentid, use uttid
+            uttid = metadata.get('uttid')
+            if uttid:
+                sentid = uttid.value
+            # If all else fails, use the line number
+            else:
+                sentid = line_number
         utterance = Utterance(
             sentence.text,
-            sentence.attrib['sentid'],
-            self.get_metadata(tree),
+            sentid,
+            metadata,
             line_number)
         metadata_element = tree.find("metadata")
         if metadata_element is not None:

@@ -6,15 +6,15 @@
 #
 argparse==1.4.0
     # via -r requirements.in
-beautifulsoup4==4.6.0
+beautifulsoup4==4.10.0
     # via tei-reader
 certifi==2021.10.8
     # via requests
-chamd==0.5.1
+chamd==0.5.4
     # via -r requirements.in
 charset-normalizer==2.0.10
     # via requests
-cython==0.27.3
+cython==0.29.26
     # via
     #   -r requirements.in
     #   python-ucto
@@ -22,27 +22,29 @@ folia==2.5.7
     # via -r requirements.in
 idna==3.3
     # via requests
-isodate==0.6.0
+isodate==0.6.1
     # via rdflib
-lxml==4.1.1
+lxml==4.7.1
     # via
     #   folia
     #   tei-reader
-pyparsing==2.2.0
+pyparsing==3.0.6
     # via rdflib
-python-ucto==0.5.0
+python-ucto==0.5.3
     # via -r requirements.in
-rdflib==4.2.2
+rdflib==5.0.0
     # via folia
 requests==2.27.1
     # via folia
-six==1.11.0
-    # via isodate
+six==1.16.0
+    # via rdflib
+soupsieve==2.3.1
+    # via beautifulsoup4
 tei-reader==0.0.17
     # via -r requirements.in
-tqdm==4.24.0
+tqdm==4.62.3
     # via -r requirements.in
-typing==3.6.4
+typing==3.7.4.3
     # via -r requirements.in
 urllib3==1.26.8
     # via requests

@@ -6,11 +6,14 @@ Module for converting FoLiA xml files to parsable utterances.
 from typing import Iterable
 
 import ucto
-from pynlpl.formats import folia
-
-from .alpino_brackets import escape_id, escape_word, format_add_lex, format_folia
 from corpus2alpino.abstracts import Reader
-from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
+from corpus2alpino.models import (CollectedFile, Document, MetadataValue,
+                                  Utterance)
+
+import folia.main as folia
+
+from .alpino_brackets import (escape_id, escape_word, format_add_lex,
+                              format_folia)
 
 
 class FoliaReader(Reader):

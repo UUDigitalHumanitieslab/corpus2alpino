@@ -28,7 +28,7 @@ lxml==4.7.1
     # via
     #   folia
     #   tei-reader
-pyparsing==3.0.6
+pyparsing==3.0.7
     # via rdflib
 python-ucto==0.5.3
     # via -r requirements.in

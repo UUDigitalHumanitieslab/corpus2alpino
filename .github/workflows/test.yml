@@ -27,7 +27,7 @@ jobs:
   
     - name: Install dependencies
       run: |
-        apt install libfolia-dev libxml2-dev
+        sudo apt install libfolia-dev libxml2-dev
         pip install -r /tmp/requirements.txt
     
     - name: Lint with flake8

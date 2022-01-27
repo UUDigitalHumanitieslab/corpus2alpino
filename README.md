@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino.svg?branch=master)](https://travis-ci.org/UUDigitalHumanitieslab/corpus2alpino)
+[![Actions Status](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/workflows/Unit%20tests/badge.svg)](https://github.com/UUDigitalHumanitiesLab/I-analyzer/actions)
 
 [PyPi/corpus2alpino](https://pypi.org/project/corpus2alpino/)
 

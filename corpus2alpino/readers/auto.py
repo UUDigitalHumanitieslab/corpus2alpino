@@ -5,8 +5,6 @@ Module for automatically detecting the reader to use for a file
 
 from typing import Iterable
 
-import ucto
-
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue
 
@@ -15,7 +13,7 @@ from corpus2alpino.readers.folia import FoliaReader
 from corpus2alpino.readers.lassy import LassyReader
 from corpus2alpino.readers.paqu import PaQuReader
 from corpus2alpino.readers.tei import TeiReader
-
+from corpus2alpino.readers.tokenizer import tokenizer
 
 class AutoReader(Reader):
     """
@@ -23,7 +21,6 @@ class AutoReader(Reader):
     """
 
     def __init__(self):
-        tokenizer = ucto.Tokenizer("tokconfig-nld")
         self.readers = [ChatReader(), FoliaReader(tokenizer), LassyReader(), PaQuReader(tokenizer), TeiReader(tokenizer)]
 
     def read(self, file):

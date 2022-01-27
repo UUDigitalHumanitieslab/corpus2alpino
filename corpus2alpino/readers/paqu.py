@@ -6,10 +6,10 @@ from typing import Dict, Iterable, List, Tuple
 
 import os
 import re
-import ucto
 
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
+from corpus2alpino.readers.tokenizer import tokenizer
 
 metadata_pattern = re.compile(r'^##META ([^\s]+) ([^\s]+) ?= ?(.*)$')
 id_pattern = re.compile(r'([^\s]+)\|(.*)$')
@@ -21,9 +21,8 @@ class PaQuReader(Reader):
     Class for converting a PaQu metadata or plain text file to documents.
     """
 
-    def __init__(self, tokenizer=None) ->None:
-        self.tokenizer = tokenizer if tokenizer else ucto.Tokenizer(
-            "tokconfig-nld")
+    def __init__(self, custom_tokenizer=None) ->None:
+        self.tokenizer = custom_tokenizer if custom_tokenizer else tokenizer
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         file_metadata = None
@@ -83,7 +82,7 @@ class PaQuReader(Reader):
                     id = str(i)
             self.tokenizer.process(text)
             j = 0
-            for sentence in self.tokenizer.sentences():
+            for sentence in self.tokenizer(text):
                 yield Utterance(sentence,
                                 '{0}-{1}'.format(id, j),
                                 metadata,

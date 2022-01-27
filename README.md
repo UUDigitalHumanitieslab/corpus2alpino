@@ -80,15 +80,11 @@ twine upload dist/*
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
 * Python 3.5 or higher (developed using 3.6.3).
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
-* [libicu-dev](https://packages.ubuntu.com/bionic/libicu-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
-* [libticcutils2-dev](https://packages.ubuntu.com/bionic/libticcutils2-dev)
-* [libucto-dev](https://packages.ubuntu.com/bionic/libucto-dev)
-* [ucto](https://packages.ubuntu.com/bionic/ucto) Note: a newer version might be needed than provided in Ubuntu.
 
 ### Installation Instructions for Ubuntu
 
 ```bash
-sudo apt install libfolia-dev libicu-dev libxml2-dev libticcutils2-dev ucto libucto-dev
+sudo apt install libfolia-dev libxml2-dev
 pip install -r requirements.txt
 ```

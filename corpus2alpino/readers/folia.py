@@ -5,10 +5,10 @@ Module for converting FoLiA xml files to parsable utterances.
 
 from typing import Iterable
 
-import ucto
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import (CollectedFile, Document, MetadataValue,
                                   Utterance)
+from corpus2alpino.readers.tokenizer import tokenizer
 
 import folia.main as folia
 
@@ -21,9 +21,8 @@ class FoliaReader(Reader):
     Class for converting FoLiA xml files to documents.
     """
 
-    def __init__(self, tokenizer=None) -> None:
-        self.tokenizer = tokenizer if tokenizer else ucto.Tokenizer(
-            "tokconfig-nld")
+    def __init__(self, custom_tokenizer=None) -> None:
+        self.tokenizer = custom_tokenizer if custom_tokenizer else tokenizer
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         try:
@@ -59,10 +58,10 @@ class FoliaReader(Reader):
         text = ''
         for textContent in paragraph.select(folia.TextContent):
             text += textContent.text()
-        self.tokenizer.process(text)
-        for line in self.tokenizer.sentences():
+        sentences = self.tokenizer(text)
+        for line in sentences:
             sentence = paragraph.add(folia.Sentence)
-            for word in line.split(' '):
+            for word in line.tokens():
                 if word:
                     sentence.add(folia.Word, word)
 

@@ -2,20 +2,10 @@ sudo: required
 language: python
 python:
   - 3.6
-services:
-  - docker
-before_install:
-  - tar -cvf files.tar *
-  - docker pull proycon/lamachine
-  - docker run -t -d --name lamachine proycon/lamachine
-  - docker cp files.tar lamachine:/tmp/
-  - docker exec lamachine tar -xf /tmp/files.tar -C /tmp
 install:
-  # needed for nltk
-  - docker exec lamachine sudo pip3 install singledispatch
-  - docker exec lamachine sudo pip3 install -r /tmp/requirements.txt
+  - apt install libfolia-dev libxml2-dev
+  - pip install -r /tmp/requirements.txt
 script:
-  - docker exec lamachine sh -c "export LANG=C.UTF-8 && cd /tmp && python3 -m unittest"
-  - docker stop lamachine
+  - python -m unittest
   - pip install mypy
   - mypy **/*.py --ignore-missing-imports

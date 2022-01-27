@@ -13,7 +13,7 @@ from corpus2alpino.readers.folia import FoliaReader
 from corpus2alpino.readers.lassy import LassyReader
 from corpus2alpino.readers.paqu import PaQuReader
 from corpus2alpino.readers.tei import TeiReader
-from corpus2alpino.readers.tokenizer import tokenizer
+from corpus2alpino.readers.tokenizer import Tokenizer
 
 class AutoReader(Reader):
     """
@@ -21,6 +21,7 @@ class AutoReader(Reader):
     """
 
     def __init__(self):
+        tokenizer = Tokenizer()
         self.readers = [ChatReader(), FoliaReader(tokenizer), LassyReader(), PaQuReader(tokenizer), TeiReader(tokenizer)]
 
     def read(self, file):

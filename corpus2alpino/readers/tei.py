@@ -14,25 +14,10 @@ from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
 
 from corpus2alpino.readers.alpino_brackets import escape_id, format_folia
-from corpus2alpino.readers.tokenizer import tokenizer
+from corpus2alpino.readers.tokenizer import Tokenizer
 
 alignable_characters = re.compile(r'[A-Za-zàéëüïóò,\.:;0123456789]')
 nonalignable_characters = re.compile(r'[^A-Za-zàéëüïóò,\.:;0123456789]')
-
-ucto_ligatures = {
-    'æ': "ae",
-    'Æ': "AE",
-    'œ': "oe",
-    'Œ': "OE",
-    'ĳ': "ij",
-    'Ĳ': "IJ",
-    'ﬂ': "fl",
-    'ﬀ': "ff",
-    'ﬃ': "ffi",
-    'ﬄ': "ffl",
-    'ﬅ': "st",
-    'ß': "ss"
-}
 
 
 class TokenizedSentenceEmitter:
@@ -42,7 +27,7 @@ class TokenizedSentenceEmitter:
         self.sentences = sentences
 
     def __get_alignable_text(self, text: str) -> str:
-        return nonalignable_characters.sub('', ''.join([ucto_ligatures[c] if c in ucto_ligatures else c for c in text]))
+        return nonalignable_characters.sub('', text)
 
     def get_sentences(self, part_text: str, part_offset: int=0) -> Iterable[str]:
         if not self.sentences:
@@ -92,7 +77,7 @@ class TeiReader(Reader):
 
     def __init__(self, custom_tokenizer=None) ->None:
         self.reader = TeiParser()
-        self.tokenizer = custom_tokenizer if custom_tokenizer else tokenizer
+        self.tokenizer = custom_tokenizer if custom_tokenizer else Tokenizer()
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         corpora = self.reader.read_string(collected_file.content)
@@ -108,7 +93,7 @@ class TeiReader(Reader):
 
                 self.tokenizer.process(division.text)
                 sentence_emitter = TokenizedSentenceEmitter(
-                    list(self.tokenizer.sentences()))
+                    list(' '.join(sentence.tokens()) for sentence in self.tokenizer.sentences()))
 
                 # aggregate all the metadata of the sentence parts
                 annotated_sentences = [('', {})] # type: ignore

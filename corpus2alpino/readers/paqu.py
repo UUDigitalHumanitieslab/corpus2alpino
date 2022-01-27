@@ -9,7 +9,7 @@ import re
 
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
-from corpus2alpino.readers.tokenizer import tokenizer
+from corpus2alpino.readers.tokenizer import Tokenizer
 
 metadata_pattern = re.compile(r'^##META ([^\s]+) ([^\s]+) ?= ?(.*)$')
 id_pattern = re.compile(r'([^\s]+)\|(.*)$')
@@ -22,7 +22,7 @@ class PaQuReader(Reader):
     """
 
     def __init__(self, custom_tokenizer=None) ->None:
-        self.tokenizer = custom_tokenizer if custom_tokenizer else tokenizer
+        self.tokenizer = custom_tokenizer if custom_tokenizer else Tokenizer()
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         file_metadata = None
@@ -80,10 +80,9 @@ class PaQuReader(Reader):
                     id = metadata["uttid"].value
                 except KeyError:
                     id = str(i)
-            self.tokenizer.process(text)
             j = 0
-            for sentence in self.tokenizer(text):
-                yield Utterance(sentence,
+            for sentence in self.tokenizer.process(text):
+                yield Utterance(sentence.text(),
                                 '{0}-{1}'.format(id, j),
                                 metadata,
                                 i)

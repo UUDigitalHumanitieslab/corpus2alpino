@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Script for updating the output files using the current behavior.
 """

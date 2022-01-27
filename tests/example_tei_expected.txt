@@ -6,16 +6,16 @@
 
 ##META text id = bar
 ##META text tei-tag = head
-bar|Goedendag ! 
+bar|Goedendag !
 
 
 ##META text id = foo
 ##META text rend = italic
 ##META text tei-tag = p
-foo|Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit TEI-formaat naar Alpino / Lassy-formaat . 
+foo|Dit is een voorbeeldtekst om te demonstreren dat het mogelijk is tekst om te zetten vanuit TEI-formaat naar Alpino/Lassy-formaat .
 
 
 ##META text rend = underline
-foo_1|Een fijne dag nog ! 
+foo_1|Een fijne dag nog !
 
 

@@ -8,7 +8,7 @@ from typing import Iterable
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import (CollectedFile, Document, MetadataValue,
                                   Utterance)
-from corpus2alpino.readers.tokenizer import tokenizer
+from corpus2alpino.readers.tokenizer import Tokenizer
 
 import folia.main as folia
 
@@ -22,7 +22,7 @@ class FoliaReader(Reader):
     """
 
     def __init__(self, custom_tokenizer=None) -> None:
-        self.tokenizer = custom_tokenizer if custom_tokenizer else tokenizer
+        self.tokenizer = custom_tokenizer if custom_tokenizer else Tokenizer()
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         try:
@@ -58,7 +58,7 @@ class FoliaReader(Reader):
         text = ''
         for textContent in paragraph.select(folia.TextContent):
             text += textContent.text()
-        sentences = self.tokenizer(text)
+        sentences = self.tokenizer.process(text)
         for line in sentences:
             sentence = paragraph.add(folia.Sentence)
             for word in line.tokens():

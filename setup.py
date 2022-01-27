@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setuptools.setup(name='corpus2alpino',
-                 version='0.3.6',
+                 version='0.3.7',
       description='Converts FoLiA and TEI files to Alpino XML files',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -21,9 +21,9 @@ setuptools.setup(name='corpus2alpino',
           "License :: OSI Approved :: MIT License",
           "Operating System :: OS Independent",
       ],
-      install_requires=['argparse', 'chamd>=0.5.1', 'Cython', 'PyNLPl',
-                        'python-ucto', 'tei-reader', 'tqdm'],
-      python_requires='>=3.5',
+      install_requires=['argparse', 'chamd>=0.5.1', 'folia',
+                        'spacy', 'tei-reader', 'typing', 'tqdm'],
+      python_requires='>=3.6',
       zip_safe=True,
       entry_points={
           'console_scripts': [

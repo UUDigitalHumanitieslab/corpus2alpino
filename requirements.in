@@ -1,8 +1,0 @@
-argparse
-chamd>=0.5.1
-Cython
-PyNLPl>=1.2.7
-python-ucto>=0.5.0
-tei-reader>=0.0.17
-typing
-tqdm

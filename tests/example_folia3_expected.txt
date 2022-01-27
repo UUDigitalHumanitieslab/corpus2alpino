@@ -57,17 +57,14 @@ TEI.1.text.1.body.1.div1.1.p.2.s.2|Soo is ’t dat drie dagen daernaer twee schi
 TEI.1.text.1.body.1.div1.1.p.2.s.3|Ik hebbe hierop een expresse gesonden naer den secretaris van den heer envojé Goes , omme daertegens te protesteren en ’t Geheym Conseyl te vragen met wat meninghe dit was geschiet .
 
 
-TEI.1.text.1.body.1.div1.1.p.2.s.4|Dogh alsoo deselve expresse nogh niet weder terugh is gekomen , soo kan U Ed .
+TEI.1.text.1.body.1.div1.1.p.2.s.4|Dogh alsoo deselve expresse nogh niet weder terugh is gekomen , soo kan U Ed. Ghestr .
 
 
-TEI.1.text.1.body.1.div1.1.p.2.s.5|Ghestr .
-
-
-TEI.1.text.1.body.1.div1.1.p.2.s.6|daervan geen verdre onderregtingh geven , dogh twijfele niet of sulx sal door den voorn , secretaris geschieden ; hebbende van mijn plight geoordeelt van dit voorgevalle kennisse te geven , en blijven -
+TEI.1.text.1.body.1.div1.1.p.2.s.5|daervan geen verdre onderregtingh geven , dogh twijfele niet of sulx sal door den voorn , secretaris geschieden ; hebbende van mijn plight geoordeelt van dit voorgevalle kennisse te geven , en blijven -
 
 
 TEI.1.text.1.body.1.div1.1.p.3.s.1|L. de Veth .
 
 
-TEI.1.text.1.body.1.div1.1.p.4.s.1|Actum in ’s Lants schip ’ Gelderlant ’ , ten anker in de Zont , den 24 septemb / 1715 .
+TEI.1.text.1.body.1.div1.1.p.4.s.1|Actum in ’s Lants schip ’ Gelderlant ’ , ten anker in de Zont , den 24 septemb/ 1715 .
 

@@ -7,15 +7,16 @@
 ##META text rend = italic
 ##META text tei-tag = p
 ##META text xml:lang = de
-foo|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheisse tekst om het importeren van TEI-geformatteerde tekst te evalueren . 
+foo|Hier [ @folia staan WW(pv,tgw,met-t) staat ] wat scheiße tekst om het importeren van TEI-geformatteerde tekst te evalueren .
 
 
 ##META text id = 
 ##META text xml:lang = fr
-example_tei2.xml|Zij zei hierover tegen hem " wat is de raison d ’ être van deze tekst ? " 
+example_tei2.xml|Zij zei hierover tegen hem " wat is de raison d ’ être van deze tekst ? " ,
+
 
 ##META text rend = 
 ##META text xml:lang = 
-example_tei2.xml_1|, niets dan ontzag volgde op deze vraag . 
+example_tei2.xml_1|niets dan ontzag volgde op deze vraag .
 
 

@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/workflows/Unit%20tests/badge.svg)](https://github.com/UUDigitalHumanitiesLab/I-analyzer/actions)
+[![Actions Status](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/workflows/Unit%20tests/badge.svg)](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/actions)
 
 [PyPi/corpus2alpino](https://pypi.org/project/corpus2alpino/)
 

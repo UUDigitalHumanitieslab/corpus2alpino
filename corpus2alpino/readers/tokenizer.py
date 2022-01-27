@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 from spacy.tokens.span import Span
-from spacy.tokenizer import Tokenizer
 from spacy.lang.nl import Dutch
 
 

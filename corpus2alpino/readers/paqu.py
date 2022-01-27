@@ -2,7 +2,7 @@
 """
 Module for reading (PaQu metadata) plain text files to parsable utterances.
 """
-from typing import Dict, Iterable, List, Tuple
+from typing import cast, Dict, Iterable, List, Tuple, Optional
 
 import os
 import re
@@ -29,7 +29,7 @@ class PaQuReader(Reader):
         metadata = {} # type: ignore
         # files can start with its own metadata
         reading_file_metadata = True
-        text_lines = [] # type: ignore
+        text_lines = cast(List[Tuple[Optional[str], str]], [])
 
         for line in collected_file.content.splitlines():
             stripped_line = line.strip()
@@ -62,7 +62,7 @@ class PaQuReader(Reader):
                     # id for utterance
                     (id, text) = id_match.groups()
                 else:
-                    id = None # type: ignore
+                    id = None
                     text = stripped_line
                 text_lines += [(id, text)]
 
@@ -72,7 +72,7 @@ class PaQuReader(Reader):
                            {**(file_metadata or {}), **(metadata or {})},
                            self.get_subpath(metadata))
 
-    def parse_utterances(self, metadata: Dict[str, MetadataValue], text_lines: List[Tuple[str, str]]):
+    def parse_utterances(self, metadata: Dict[str, MetadataValue], text_lines: List[Tuple[Optional[str], str]]):
         for i in range(0, len(text_lines)):
             (id, text) = text_lines[i]
             if id == None:

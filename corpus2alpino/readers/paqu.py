@@ -2,14 +2,14 @@
 """
 Module for reading (PaQu metadata) plain text files to parsable utterances.
 """
-from typing import Dict, Iterable, List, Tuple
+from typing import cast, Dict, Iterable, List, Tuple, Optional
 
 import os
 import re
-import ucto
 
 from corpus2alpino.abstracts import Reader
 from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
+from corpus2alpino.readers.tokenizer import Tokenizer
 
 metadata_pattern = re.compile(r'^##META ([^\s]+) ([^\s]+) ?= ?(.*)$')
 id_pattern = re.compile(r'([^\s]+)\|(.*)$')
@@ -21,16 +21,15 @@ class PaQuReader(Reader):
     Class for converting a PaQu metadata or plain text file to documents.
     """
 
-    def __init__(self, tokenizer=None) ->None:
-        self.tokenizer = tokenizer if tokenizer else ucto.Tokenizer(
-            "tokconfig-nld")
+    def __init__(self, custom_tokenizer=None) ->None:
+        self.tokenizer = custom_tokenizer if custom_tokenizer else Tokenizer()
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         file_metadata = None
         metadata = {} # type: ignore
         # files can start with its own metadata
         reading_file_metadata = True
-        text_lines = [] # type: ignore
+        text_lines = cast(List[Tuple[Optional[str], str]], [])
 
         for line in collected_file.content.splitlines():
             stripped_line = line.strip()
@@ -63,7 +62,7 @@ class PaQuReader(Reader):
                     # id for utterance
                     (id, text) = id_match.groups()
                 else:
-                    id = None # type: ignore
+                    id = None
                     text = stripped_line
                 text_lines += [(id, text)]
 
@@ -73,7 +72,7 @@ class PaQuReader(Reader):
                            {**(file_metadata or {}), **(metadata or {})},
                            self.get_subpath(metadata))
 
-    def parse_utterances(self, metadata: Dict[str, MetadataValue], text_lines: List[Tuple[str, str]]):
+    def parse_utterances(self, metadata: Dict[str, MetadataValue], text_lines: List[Tuple[Optional[str], str]]):
         for i in range(0, len(text_lines)):
             (id, text) = text_lines[i]
             if id == None:
@@ -81,10 +80,9 @@ class PaQuReader(Reader):
                     id = metadata["uttid"].value
                 except KeyError:
                     id = str(i)
-            self.tokenizer.process(text)
             j = 0
-            for sentence in self.tokenizer.sentences():
-                yield Utterance(sentence,
+            for sentence in self.tokenizer.process(text):
+                yield Utterance(sentence.text(),
                                 '{0}-{1}'.format(id, j),
                                 metadata,
                                 i)

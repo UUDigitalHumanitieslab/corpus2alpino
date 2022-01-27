@@ -7,152 +7,152 @@
 ##META text page = 34
 ##META text tei-tag = body
 ##META text type = PUNC | WORD
-example_tei3.xml|Amang thir freiris within ane cloister I enterit in ane oritorie , And knelit doun with ane pater noster Befoir the michtie king of glorie , Haveing his passioun in memorie ; Syn to his mother I did inclyne , Hir halsing with ane gaude flore , And sudanlie I sleipit syne . 
+example_tei3.xml|Amang thir freiris within ane cloister I enterit in ane oritorie , And knelit doun with ane pater noster Befoir the michtie king of glorie , Haveing his passioun in memorie ; Syn to his mother I did inclyne , Hir halsing with ane gaude flore , And sudanlie I sleipit syne .
 
 
 ##META text line = 10 | 11 | 12 | 13 | 14 | 15 | 16 | 9
-example_tei3.xml_1|Methocht Iudas with mony ane Iow Tuik blissit Iesu our saluatour , And schot him furth with mony ane schow , With schamefull wourdis of dishonour , And lyk ane theif or ane tratour Thay leid that hewinlie prince most hie , With manassing attour messour , O mankynd , for the luif of the . 
+example_tei3.xml_1|Methocht Iudas with mony ane Iow Tuik blissit Iesu our saluatour , And schot him furth with mony ane schow , With schamefull wourdis of dishonour , And lyk ane theif or ane tratour Thay leid that hewinlie prince most hie , With manassing attour messour , O mankynd , for the luif of the .
 
 
 ##META text line = 17 | 18 | 19 | 20 | 21 | 22
-example_tei3.xml_2|Falslie condamnit befoir ane iuge , Thay spittit in his visage fayr , And as lyounis with awfull ruge In yre thay hurlit him heir and thair , And gaif him mony buffat sair That it wes sorow for to se . 
+example_tei3.xml_2|Falslie condamnit befoir ane iuge , Thay spittit in his visage fayr , And as lyounis with awfull ruge In yre thay hurlit him heir and thair , And gaif him mony buffat sair That it wes sorow for to se .
 
 
 ##META text line = 23 | 24
-example_tei3.xml_3|Of all his claythis thay tirvit him bair , O mankynd , for the luif of the . 
+example_tei3.xml_3|Of all his claythis thay tirvit him bair , O mankynd , for the luif of the .
 
 
 ##META text line = 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32
 ##META text page = 34 | 35
-example_tei3.xml_4|Thay terandis , to revenge thair tein , For scorne thai cled him in to quhyt , And hid his blythfull glorious ene , To se quham angellis had delyt ; Dispituouslie syn did him smyt , Saying , ‘ Gif sone of God thow be , Quha straik the now thow tell ws tyt ’ , O mankynd , for the luif of the . 
+example_tei3.xml_4|Thay terandis , to revenge thair tein , For scorne thai cled him in to quhyt , And hid his blythfull glorious ene , To se quham angellis had delyt ; Dispituouslie syn did him smyt , Saying , ‘ Gif sone of God thow be , Quha straik the now thow tell ws tyt ’ , O mankynd , for the luif of the .
 
 
 ##META text line = 33 | 34
 ##META text page = 35
-example_tei3.xml_5|In tene thay turvit him agane , And till ane pillar thai him band . 
+example_tei3.xml_5|In tene thay turvit him agane , And till ane pillar thai him band .
 
 
 ##META text line = 35 | 36
-example_tei3.xml_6|Quhill blude birst out at everie vane , Thay scurgit him bayth fut and hand . 
+example_tei3.xml_6|Quhill blude birst out at everie vane , Thay scurgit him bayth fut and hand .
 
 
 ##META text line = 37 | 38
-example_tei3.xml_7|At everie straik ran furth on strand Quhilk mycht haue ransonit warldis thre . 
+example_tei3.xml_7|At everie straik ran furth on strand Quhilk mycht haue ransonit warldis thre .
 
 
 ##META text line = 39 | 40
-example_tei3.xml_8|He baid in stour quhill he mycht stand , O mankynd , for the luif of the . 
+example_tei3.xml_8|He baid in stour quhill he mycht stand , O mankynd , for the luif of the .
 
 
 ##META text line = 41 | 42 | 43 | 44
-example_tei3.xml_9|Nixt all in purpyr thay him cled , And syn with thornis scharp and kene His saikles blude agane thay sched , Persing his heid with pykis grene . 
+example_tei3.xml_9|Nixt all in purpyr thay him cled , And syn with thornis scharp and kene His saikles blude agane thay sched , Persing his heid with pykis grene .
 
 
 ##META text line = 45 | 46 | 47 | 48
-example_tei3.xml_10|Vnneis with lyf he micht sustene That croun on thrungin with crueltie , Quhill flude of blude blindit his ene , O mankynd , for the luif of the . 
+example_tei3.xml_10|Vnneis with lyf he micht sustene That croun on thrungin with crueltie , Quhill flude of blude blindit his ene , O mankynd , for the luif of the .
 
 
 ##META text line = 49 | 50 | 51 | 52
-example_tei3.xml_11|Ane croce that wes bayth large and lang , To beir thay gaif this blissit lord , Syn fullelie as theif to hang Thay harlit him furth with raip and corde . 
+example_tei3.xml_11|Ane croce that wes bayth large and lang , To beir thay gaif this blissit lord , Syn fullelie as theif to hang Thay harlit him furth with raip and corde .
 
 
 ##META text line = 53 | 54 | 55 | 56
-example_tei3.xml_12|With bluid and sweit was all deflorde His face , the fude of angellis fre , His feit with stanis was rewin and scorde , O mankynd , for the luif of the . 
+example_tei3.xml_12|With bluid and sweit was all deflorde His face , the fude of angellis fre , His feit with stanis was rewin and scorde , O mankynd , for the luif of the .
 
 
 ##META text line = 57 | 58
 ##META text page = 36
-example_tei3.xml_13|Agane thay turvit him bak and syd , Als brim as ony baris woid . 
+example_tei3.xml_13|Agane thay turvit him bak and syd , Als brim as ony baris woid .
 
 
 ##META text line = 59 | 60 | 61 | 62
-example_tei3.xml_14|The clayth that claif to his cleir hyd Thay raif away with ruggis rude , Quhill fersly followit flesche and blude , That iy was pietie for to se . 
+example_tei3.xml_14|The clayth that claif to his cleir hyd Thay raif away with ruggis rude , Quhill fersly followit flesche and blude , That iy was pietie for to se .
 
 
 ##META text line = 63 | 64
-example_tei3.xml_15|Na kynd of torment he ganestude , O mankynd , for the luif of the . 
+example_tei3.xml_15|Na kynd of torment he ganestude , O mankynd , for the luif of the .
 
 
 ##META text line = 65 | 66 | 67 | 68 | 69 | 70 | 71 | 72
-example_tei3.xml_16|On to the crose of breid and lenth To gar his lymmis langar wax , Thay straitit him with all thair strenth , Quhill to the rude thay gart him rax , Syn tyit him on with greit irne takkis , And him all nakit on the tre , Thay raissit on loft be houris sax , O mankynd , for the luif of the . 
+example_tei3.xml_16|On to the crose of breid and lenth To gar his lymmis langar wax , Thay straitit him with all thair strenth , Quhill to the rude thay gart him rax , Syn tyit him on with greit irne takkis , And him all nakit on the tre , Thay raissit on loft be houris sax , O mankynd , for the luif of the .
 
 
 ##META text line = 73 | 74 | 75 | 76 | 77
-example_tei3.xml_17|Quhen he was bendit so on breid , Quhill all his vanis brist and brak , To gar his cruell pane exceid Thay leit him fall doun with ane swak , Quhill cors and corps and all did crak . 
+example_tei3.xml_17|Quhen he was bendit so on breid , Quhill all his vanis brist and brak , To gar his cruell pane exceid Thay leit him fall doun with ane swak , Quhill cors and corps and all did crak .
 
 
 ##META text line = 78 | 79 | 80
-example_tei3.xml_18|Agane thay rasit him on hie , Reddie may turmentis for to tak , O mankynd , for the luif of the . 
+example_tei3.xml_18|Agane thay rasit him on hie , Reddie may turmentis for to tak , O mankynd , for the luif of the .
 
 
 ##META text line = 81 | 82
-example_tei3.xml_19|Betuix tue theiffis the spreit he gaif On to the fader most of micht . 
+example_tei3.xml_19|Betuix tue theiffis the spreit he gaif On to the fader most of micht .
 
 
 ##META text line = 83 | 84 | 85 | 86
-example_tei3.xml_20|The erde did trimmill , the stanis claif , The sone obscurit of his licht , The day wox dirk as ony nicht , Deid bodies rais in the cite . 
+example_tei3.xml_20|The erde did trimmill , the stanis claif , The sone obscurit of his licht , The day wox dirk as ony nicht , Deid bodies rais in the cite .
 
 
 ##META text line = 87 | 88
 ##META text page = 37
-example_tei3.xml_21|Goddis deir sone all thus was dicht , O mankynd , for the luif of the . 
+example_tei3.xml_21|Goddis deir sone all thus was dicht , O mankynd , for the luif of the .
 
 
 ##META text line = 89 | 90 | 91 | 92
-example_tei3.xml_22|In weir that he wes # it on lyf Thay rane ane rude speir in his syde , And did his precious body riff Quhill blude and watter did furth glyde . 
+example_tei3.xml_22|In weir that he wes # it on lyf Thay rane ane rude speir in his syde , And did his precious body riff Quhill blude and watter did furth glyde .
 
 
 ##META text line = 93 | 94 | 95 | 96
-example_tei3.xml_23|Thus Iesus with his woundis wyde Ane marter sufferit for to de , And tholit to be crucifyid , O mankynd , for the luif of the . 
+example_tei3.xml_23|Thus Iesus with his woundis wyde Ane marter sufferit for to de , And tholit to be crucifyid , O mankynd , for the luif of the .
 
 
 ##META text line = 100 | 101 | 102 | 103 | 104 | 97 | 98 | 99
-example_tei3.xml_24|Methocht Compassioun , vode of feiris , Than straik at me with mony ane stound , And soir Contritioun , bathit in teiris , My visage all in watter drownit , And Reuth in to my eir ay rounde : ‘ For schame allace , behald , man , how Beft is with mony bludy wound Thy blissit saluatour Iesu ’ . 
+example_tei3.xml_24|Methocht Compassioun , vode of feiris , Than straik at me with mony ane stound , And soir Contritioun , bathit in teiris , My visage all in watter drownit , And Reuth in to my eir ay rounde : ‘ For schame allace , behald , man , how Beft is with mony bludy wound Thy blissit saluatour Iesu ’ .
 
 
 ##META text line = 105 | 106 | 107 | 108
-example_tei3.xml_25|Than rudlie come Remembrance , Ay rugging me withouttin rest , Quhilk crose and nalis , scharp scurge and lance , And bludy crowne befoir me kest . 
+example_tei3.xml_25|Than rudlie come Remembrance , Ay rugging me withouttin rest , Quhilk crose and nalis , scharp scurge and lance , And bludy crowne befoir me kest .
 
 
 ##META text line = 109 | 110 | 111 | 112
-example_tei3.xml_26|Than Pane with Passioun me opprest , And evir did Petie on me pow , Saying , ‘ Behald how Iowis hes drest Thy blissit saluatour Chryst Iesu . 
+example_tei3.xml_26|Than Pane with Passioun me opprest , And evir did Petie on me pow , Saying , ‘ Behald how Iowis hes drest Thy blissit saluatour Chryst Iesu . ’
 
 
-##META text line = 112 | 113 | 114 | 115 | 116
-example_tei3.xml_27|’ With greiting glaid be than come Grace , With wourdis sweit saying to me , ‘ Ordane for him ane resting place , That is so werie wrocht for the . 
+##META text line = 113 | 114 | 115 | 116
+example_tei3.xml_27|With greiting glaid be than come Grace , With wourdis sweit saying to me , ‘ Ordane for him ane resting place , That is so werie wrocht for the .
 
 
 ##META text line = 117 | 118 | 119 | 120
 ##META text page = 37 | 38
-example_tei3.xml_28|The lord within thir dayis thre Sall law vndir thy lyntell bow , And in thus hous sall herbrit be Thy blissit saluatour Chryst Iesu . 
+example_tei3.xml_28|The lord within thir dayis thre Sall law vndir thy lyntell bow , And in thus hous sall herbrit be Thy blissit saluatour Chryst Iesu . ’
 
 
-##META text line = 120 | 121 | 122 | 123 | 124
+##META text line = 121 | 122 | 123 | 124
 ##META text page = 38
-example_tei3.xml_29|’ Than swyth Contritioun wes on steir , And did eftir Confessioun ryn , And Conscience me accusit heir And kest out mony cankerit syn . 
+example_tei3.xml_29|Than swyth Contritioun wes on steir , And did eftir Confessioun ryn , And Conscience me accusit heir And kest out mony cankerit syn .
 
 
 ##META text line = 125 | 126
-example_tei3.xml_30|To rys Repentence did begin , And out at the # ettis did schow . 
+example_tei3.xml_30|To rys Repentence did begin , And out at the # ettis did schow .
 
 
 ##META text line = 127 | 128
-example_tei3.xml_31|Pennance did walk the hous within , Byding our saluitour Chryst Iesu . 
+example_tei3.xml_31|Pennance did walk the hous within , Byding our saluitour Chryst Iesu .
 
 
 ##META text line = 129 | 130 | 131 | 132
-example_tei3.xml_32|Grace become gyd and gouernour To keip the hous in sicker stait , Ay reddie till our saluatour , Quhill that he come , air or lait . 
+example_tei3.xml_32|Grace become gyd and gouernour To keip the hous in sicker stait , Ay reddie till our saluatour , Quhill that he come , air or lait .
 
 
 ##META text line = 133 | 134 | 135 | 136
-example_tei3.xml_33|Repentence ay with cheikis wait No pane nor pennence did eschew , The hous within evir to debait , Onlie for luif of sweit Iesu . 
+example_tei3.xml_33|Repentence ay with cheikis wait No pane nor pennence did eschew , The hous within evir to debait , Onlie for luif of sweit Iesu .
 
 
 ##META text line = 137 | 138 | 139 | 140
-example_tei3.xml_34|For grit terrour of Chrystis deid The erde did trymmill quhair I lay , Quhairthrow I waiknit in that steid , With spreit halflingis in effray . 
+example_tei3.xml_34|For grit terrour of Chrystis deid The erde did trymmill quhair I lay , Quhairthrow I waiknit in that steid , With spreit halflingis in effray .
 
 
 ##META text line = 141 | 142 | 143 | 144
-example_tei3.xml_35|Than wrayt I all without delay , Richt heir as I haue schawin to # ow , Quhat me befell on Gud Fryday Befoir the crose of sweit Iesu . 
+example_tei3.xml_35|Than wrayt I all without delay , Richt heir as I haue schawin to # ow , Quhat me befell on Gud Fryday Befoir the crose of sweit Iesu .
 
 

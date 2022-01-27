@@ -18,12 +18,12 @@ class Converter:
 
     def __init__(self,
                  collector: Collector,
-                 annotators: List[Annotator] = [],
+                 annotators: List[Annotator] = None,
                  reader: Reader = AutoReader(),
                  writer: Writer = PaQuWriter(),
                  target: Target = ConsoleTarget()) -> None:
         self.collector = collector
-        self.annotators = annotators
+        self.annotators = annotators or []
         self.reader = reader
         self.writer = writer
         self.target = target

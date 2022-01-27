@@ -21,9 +21,9 @@ setuptools.setup(name='corpus2alpino',
           "License :: OSI Approved :: MIT License",
           "Operating System :: OS Independent",
       ],
-      install_requires=['argparse', 'chamd>=0.5.1', 'Cython', 'folia',
-                        'python-ucto', 'tei-reader', 'tqdm'],
-      python_requires='>=3.5',
+      install_requires=['argparse', 'chamd>=0.5.1', 'folia',
+                        'spacy', 'tei-reader', 'typing', 'tqdm'],
+      python_requires='>=3.6',
       zip_safe=True,
       entry_points={
           'console_scripts': [

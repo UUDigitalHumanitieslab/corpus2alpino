@@ -22,7 +22,7 @@ setuptools.setup(name='corpus2alpino',
           "Operating System :: OS Independent",
       ],
       install_requires=['argparse', 'chamd>=0.5.1', 'folia',
-                        'spacy', 'tei-reader', 'typing', 'tqdm'],
+                        'spacy', 'tei-reader', 'tqdm'],
       python_requires='>=3.6',
       zip_safe=True,
       entry_points={

@@ -29,13 +29,16 @@ class FilesystemTarget(Target):
                 output_path = str(
                     Path(output_path).with_suffix(cast(str, suffix)))
 
-            if self.__current_output_path != output_path:
-                if self.file:  # type: ignore
-                    self.file.close()  # type: ignore
-                self.__current_output_path = output_path  # type: ignore
-                directory, filename = path.split(output_path)
-                makedirs(directory, exist_ok=True)
-                self.file = self.__open_unique(directory, filename)
+            # always open a new file when splitting in separate files
+            self.__current_output_path = None
+
+        if self.__current_output_path != output_path:
+            if self.file:  # type: ignore
+                self.file.close()  # type: ignore
+            self.__current_output_path = output_path  # type: ignore
+            directory, filename = path.split(output_path)
+            makedirs(directory, exist_ok=True)
+            self.file = self.__open_unique(directory, filename)
 
     def __open_unique(self, directory: str, filename: str):
         attempts = 0

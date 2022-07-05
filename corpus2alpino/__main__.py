@@ -49,12 +49,12 @@ def main(args=None):
             help='Output format: can be lassy, paqu (default)'
         )
         parser.add_argument(
-            '-p', '--progress', metavar="BOOL", type=bool,
+            '-p', '--progress',
+            action='store_true',
             help='Show progress bar, automatically turned on file output')
-        parser.add_argument('-t', '--split_treebanks', action='store_true',
+        parser.add_argument('-t', '--split_treebanks',
+                            action='store_true',
                             help='Split treebanks to separate files')
-
-        parser.set_defaults(split_treebanks=False)
 
         # passthrough the subprocess arguments
         subprocess = None
@@ -80,7 +80,7 @@ def main(args=None):
                     AlpinoAnnotator(executable, arguments))
 
             converter.writer = LassyWriter(not options.split_treebanks)
-        
+
         if options.enrichment != None:
             converter.annotators.append(EnrichLassyAnnotator(options.enrichment))
 

@@ -78,7 +78,7 @@ twine upload dist/*
 ## Requirements
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
-* Python 3.6 or higher (developed using 3.7.12).
+* Python 3.7 or higher
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 

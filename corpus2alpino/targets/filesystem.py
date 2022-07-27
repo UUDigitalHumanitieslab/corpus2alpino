@@ -15,27 +15,33 @@ class FilesystemTarget(Target):
     __current_output_path = None
 
     def __open_file(self, document: Document, filename: str = None, suffix: str = None):
-        if not self.merge_files:
-            output_path = path.join(self.output_path,
-                                    document.collected_file.relpath,
-                                    document.collected_file.filename)
+        if self.merge_files:
+            # when merge_files = True, a file is already open
+            return 
+        
+        output_path = path.join(self.output_path,
+                                document.collected_file.relpath,
+                                document.collected_file.filename)
 
-            if document.subpath:
-                output_path = path.join(output_path, document.subpath)
+        if document.subpath:
+            output_path = path.join(output_path, document.subpath)
 
-            if filename != None:
-                output_path = path.join(output_path, cast(str, filename))
-            if suffix != None:
-                output_path = str(
-                    Path(output_path).with_suffix(cast(str, suffix)))
+        if filename != None:
+            output_path = path.join(output_path, cast(str, filename))
+        if suffix != None:
+            output_path = str(
+                Path(output_path).with_suffix(cast(str, suffix)))
 
-            if self.__current_output_path != output_path:
-                if self.file:  # type: ignore
-                    self.file.close()  # type: ignore
-                self.__current_output_path = output_path  # type: ignore
-                directory, filename = path.split(output_path)
-                makedirs(directory, exist_ok=True)
-                self.file = self.__open_unique(directory, filename)
+        # always open a new file when splitting in separate files
+        self.__current_output_path = None
+
+        if self.__current_output_path != output_path:
+            if self.file:  # type: ignore
+                self.file.close()  # type: ignore
+            self.__current_output_path = output_path  # type: ignore
+            directory, filename = path.split(output_path)
+            makedirs(directory, exist_ok=True)
+            self.file = self.__open_unique(directory, filename)
 
     def __open_unique(self, directory: str, filename: str):
         attempts = 0
@@ -56,6 +62,7 @@ class FilesystemTarget(Target):
         self.merge_files = merge_files
         if self.merge_files:
             # using a single file
+            makedirs(path.dirname(output_path), exist_ok=True)
             self.file = open(output_path, 'w', encoding='utf-8')
         else:
             self.file = None  # type: ignore

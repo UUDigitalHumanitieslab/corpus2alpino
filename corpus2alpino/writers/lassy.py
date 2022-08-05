@@ -41,11 +41,10 @@ class LassyWriter(Writer):
             return
 
         target.write(document, self.render_annotation(
-            document, utterance, not filename), filename)
+            document, utterance, annotation, not filename), filename)
 
-    def render_annotation(self, document: Document, utterance: Utterance, remove_header=False) -> str:
+    def render_annotation(self, document: Document, utterance: Utterance, annotation: str, remove_header=False) -> str:
         metadata = {**document.metadata, **utterance.metadata}
-        annotation = utterance.annotations[ANNOTATION_KEY]
 
         if not metadata and remove_header == False:
             return annotation

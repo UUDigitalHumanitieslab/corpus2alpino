@@ -62,7 +62,9 @@ class FilesystemTarget(Target):
         self.merge_files = merge_files
         if self.merge_files:
             # using a single file
-            makedirs(path.dirname(output_path), exist_ok=True)
+            output_dir = path.dirname(output_path)
+            if output_dir != "":
+                makedirs(output_dir, exist_ok=True)
             self.file = open(output_path, 'w', encoding='utf-8')
         else:
             self.file = None  # type: ignore

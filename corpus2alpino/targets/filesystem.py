@@ -4,7 +4,7 @@ from corpus2alpino.models import Document
 
 from os import path, makedirs
 from pathlib import Path
-from typing import cast, Any
+from typing import Optional, cast
 
 
 class FilesystemTarget(Target):
@@ -14,14 +14,16 @@ class FilesystemTarget(Target):
 
     __current_output_path = None
 
-    def __open_file(self, document: Document, filename: str = None, suffix: str = None):
+    def __open_file(self, document: Document, filename: Optional[str] = None, suffix: Optional[str] = None):
         if self.merge_files:
             # when merge_files = True, a file is already open
-            return 
-        
-        output_path = path.join(self.output_path,
-                                document.collected_file.relpath,
-                                document.collected_file.filename)
+            return
+
+        output_path = path.join(
+            self.output_path,
+            document.collected_file.relpath,
+            document.collected_file.filename,
+        )
 
         if document.subpath:
             output_path = path.join(output_path, document.subpath)
@@ -29,8 +31,7 @@ class FilesystemTarget(Target):
         if filename != None:
             output_path = path.join(output_path, cast(str, filename))
         if suffix != None:
-            output_path = str(
-                Path(output_path).with_suffix(cast(str, suffix)))
+            output_path = str(Path(output_path).with_suffix(cast(str, suffix)))
 
         # always open a new file when splitting in separate files
         self.__current_output_path = None
@@ -53,7 +54,7 @@ class FilesystemTarget(Target):
             target = Path(path.join(directory, prefix + filename))
             if not target.is_file():
                 # new file!
-                return target.open('w', encoding='utf-8')
+                return target.open("w", encoding="utf-8")
             attempts += 1
 
     def __init__(self, output_path: str, merge_files=False) -> None:
@@ -63,15 +64,17 @@ class FilesystemTarget(Target):
         if self.merge_files:
             # using a single file
             makedirs(path.dirname(output_path), exist_ok=True)
-            self.file = open(output_path, 'w', encoding='utf-8')
+            self.file = open(output_path, "w", encoding="utf-8")
         else:
             self.file = None  # type: ignore
 
-    def write(self,
-              document: Document,
-              content: str,
-              filename: str = None,
-              suffix: str = None):
+    def write(
+        self,
+        document: Document,
+        content: str,
+        filename: Optional[str] = None,
+        suffix: Optional[str] = None,
+    ):
         self.__open_file(document, filename, suffix)
         if self.file:
             self.file.write(content)

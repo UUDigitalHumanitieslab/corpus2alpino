@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable, Optional
 
 
 class CollectedFile:
-    def __init__(self, relpath: str, filename: str, mimetype: str,
-                 content: str) -> None:
+    def __init__(
+        self, relpath: str, filename: str, mimetype: str, content: str
+    ) -> None:
         self.relpath = relpath
         self.filename = filename
         self.mimetype = mimetype
@@ -12,18 +13,20 @@ class CollectedFile:
 
 
 class MetadataValue:
-    def __init__(self, value: str, type: str='text') -> None:
+    def __init__(self, value: str, type: str = "text") -> None:
         self.value = value
         self.type = type
 
 
 class Utterance:
-    def __init__(self,
-                 text: str,
-                 id: str,
-                 metadata: Dict[str, MetadataValue] = None,
-                 line: int = 0,
-                 annotations: Dict[str, str] = None) -> None:
+    def __init__(
+        self,
+        text: str,
+        id: str,
+        metadata: Optional[Dict[str, MetadataValue]] = None,
+        line: int = 0,
+        annotations: Optional[Dict[str, str]] = None,
+    ) -> None:
         self.text = text
         self.id = id
         self.metadata = metadata or {}
@@ -32,19 +35,21 @@ class Utterance:
 
 
 class Document:
-    def __init__(self,
-                 collected_file: CollectedFile,
-                 utterances: Iterable[Utterance],
-                 metadata: Dict[str, MetadataValue] = None,
-                 subpath: str = '',
-                 annotations: Dict[str, str] = None) -> None:
+    def __init__(
+        self,
+        collected_file: CollectedFile,
+        utterances: Iterable[Utterance],
+        metadata: Optional[Dict[str, MetadataValue]] = None,
+        subpath: str = "",
+        annotations: Optional[Dict[str, str]] = None,
+    ) -> None:
         """
         A document found in a file.
 
         subpath: if a file has an internal structure, this
             contains a string representation of that relative to
             the file. E.g. if a tei.xml contains a document A at the
-            root and a document B 
+            root and a document B
 
         """
         self.collected_file = collected_file

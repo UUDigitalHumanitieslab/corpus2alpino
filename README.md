@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/workflows/Unit%20tests/badge.svg)](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/actions)
 
-[PyPi/corpus2alpino](https://pypi.org/project/corpus2alpino/)
+[![PyPi/corpus2alpino](https://img.shields.io/pypi/v/corpus2alpino)](https://pypi.org/project/corpus2alpino/)
 
 # CHAT, FoLiA, PaQu metadata, plaintext and TEI to Alpino XML or PaQu metadata format
 

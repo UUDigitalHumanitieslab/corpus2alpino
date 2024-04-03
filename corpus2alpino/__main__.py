@@ -51,7 +51,7 @@ def main(args=None):
         parser.add_argument(
             '-p', '--progress',
             action='store_true',
-            help='Show progress bar, automatically turned on file output')
+            help='Show progress bar, automatically turned on for file output')
         parser.add_argument('-t', '--split_treebanks',
                             action='store_true',
                             help='Split treebanks to separate files')
@@ -88,7 +88,7 @@ def main(args=None):
             converter.target = FilesystemTarget(
                 options.output_path, not options.split_treebanks)
 
-        show_progress = options.progress if options.progress != None else options.output_path != None
+        show_progress = options.output_path != None or options.progress
 
         if show_progress:
             with tqdm(converter.convert(), total=len(options.file_names), unit='file') as progress:

@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/workflows/Unit%20tests/badge.svg)](https://github.com/UUDigitalHumanitiesLab/corpus2alpino/actions)
 
-[PyPi/corpus2alpino](https://pypi.org/project/corpus2alpino/)
+[![PyPi/corpus2alpino](https://img.shields.io/pypi/v/corpus2alpino)](https://pypi.org/project/corpus2alpino/)
 
 # CHAT, FoLiA, PaQu metadata, plaintext and TEI to Alpino XML or PaQu metadata format
 
@@ -71,14 +71,15 @@ See: https://packaging.python.org/tutorials/packaging-projects/#generating-distr
 Make sure `setuptools` and `wheel` are installed. Then from the virtualenv:
 
 ```bash
-python setup.py sdist bdist_wheel
+pip install build
+python -m build
 twine upload dist/*
 ```
 
 ## Requirements
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
-* Python 3.7 or higher
+* Python 3.8 or higher
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 

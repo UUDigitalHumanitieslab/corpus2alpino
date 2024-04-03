@@ -3,6 +3,9 @@
 Wrapper for the Alpino parser.
 """
 
+from .alpino_client import AlpinoProcessClient, AlpinoServerClient
+from corpus2alpino.models import Document, MetadataValue
+from corpus2alpino.abstracts import Annotator
 import re
 import os
 import logging
@@ -11,10 +14,6 @@ from typing import cast, Union, List
 
 ANNOTATION_KEY = 'alpino'
 
-from corpus2alpino.abstracts import Annotator
-from corpus2alpino.models import Document, MetadataValue
-
-from .alpino_client import AlpinoProcessClient, AlpinoServerClient
 
 timealign_symbol = re.compile(r'\u0015')
 
@@ -52,4 +51,15 @@ class AlpinoAnnotator(Annotator):
                             self.client.version_date.isoformat(), 'date')
             except Exception as exception:
                 logging.getLogger().error(
-                    Exception("Problem parsing: {0}|{1}\n{2}".format(utterance.id, utterance.text, exception)))
+                    Exception("Problem parsing: {0}:{1}|{2}\n{3}".format(self.__document_path(document), utterance.id, utterance.text, exception)))
+
+    def __document_path(self, document: Document):
+        value = document.collected_file.filename
+
+        if document.collected_file.relpath:
+            value = document.collected_file.relpath + '/' + value
+
+        if document.subpath:
+            value += '//' + document.subpath
+
+        return value

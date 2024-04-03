@@ -71,14 +71,15 @@ See: https://packaging.python.org/tutorials/packaging-projects/#generating-distr
 Make sure `setuptools` and `wheel` are installed. Then from the virtualenv:
 
 ```bash
-python setup.py sdist bdist_wheel
+pip install build
+python -m build
 twine upload dist/*
 ```
 
 ## Requirements
 
 * [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino) running as a server: `Alpino batch_command=alpino_server -notk server_port=7001`
-* Python 3.7 or higher
+* Python 3.8 or higher
 * [libfolia-dev](https://packages.ubuntu.com/bionic/libfolia-dev)
 * [libxml2-dev](https://packages.ubuntu.com/bionic/libxml2-dev)
 

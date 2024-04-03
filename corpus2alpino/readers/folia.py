@@ -6,14 +6,12 @@ Module for converting FoLiA xml files to parsable utterances.
 from typing import Iterable
 
 from corpus2alpino.abstracts import Reader
-from corpus2alpino.models import (CollectedFile, Document, MetadataValue,
-                                  Utterance)
+from corpus2alpino.models import CollectedFile, Document, MetadataValue, Utterance
 from corpus2alpino.readers.tokenizer import Tokenizer
 
 import folia.main as folia
 
-from .alpino_brackets import (escape_id, escape_word, format_add_lex,
-                              format_folia)
+from .alpino_brackets import escape_id, escape_word, format_add_lex, format_folia
 
 
 class FoliaReader(Reader):
@@ -26,41 +24,54 @@ class FoliaReader(Reader):
 
     def read(self, collected_file: CollectedFile) -> Iterable[Document]:
         try:
-            doc = folia.Document(string=collected_file.content,
-                                 autodeclare=True,
-                                 loadsetdefinitions=False)
+            doc = folia.Document(
+                string=collected_file.content,
+                autodeclare=True,
+                loadsetdefinitions=False,
+            )
             self.tokenize(doc)
             doc_metadata = self.get_metadata_dict(doc.metadata.items())
 
-            yield Document(collected_file,
-                           list(self.get_utterances(doc, doc_metadata)),
-                           doc_metadata)
+            yield Document(
+                collected_file,
+                list(self.get_utterances(doc, doc_metadata)),
+                doc_metadata,
+            )
         except Exception as e:
-            raise Exception(collected_file.relpath + "/" +
-                            collected_file.filename) from e
+            raise Exception(
+                collected_file.relpath + "/" + collected_file.filename
+            ) from e
 
     def tokenize(self, element):
         """
         Tokenizes all the text which isn't tokenized yet.
         """
+        if len(element) == 0:
+            # no sub elements
+            if isinstance(element, folia.Text):
+                self.tokenize_element(element.text(), element)
+            return
 
         for item in element:
             if isinstance(item, folia.AbstractElement):
                 if isinstance(item, folia.Paragraph):
-                    for sentence in item.sentences():
+                    for _ in item.sentences():
                         break
                     else:
                         self.tokenize_paragraph(item)
                 else:
                     self.tokenize(item)
 
-    def tokenize_paragraph(self, paragraph):
-        text = ''
-        for textContent in paragraph.select(folia.TextContent):
-            text += textContent.text()
+    def tokenize_paragraph(self, paragraph: folia.Paragraph):
+        text = ""
+        for text_content in paragraph.select(folia.TextContent):
+            text += text_content.text()
+        self.tokenize_element(text, paragraph)
+
+    def tokenize_element(self, text: str, element: folia.AbstractElement):
         sentences = self.tokenizer.process(text)
         for line in sentences:
-            sentence = paragraph.add(folia.Sentence)
+            sentence = element.add(folia.Sentence)
             for word in line.tokens():
                 if word:
                     sentence.add(folia.Word, word)
@@ -88,7 +99,9 @@ class FoliaReader(Reader):
             if word_sentence != sentence or word_paragraph != paragraph:
                 if words:
                     if sentence or paragraph:
-                        yield self.create_utterance(paragraph, sentence, words, doc_metadata)
+                        yield self.create_utterance(
+                            paragraph, sentence, words, doc_metadata
+                        )
                     words = []
                 sentence = word_sentence
                 paragraph = word_paragraph
@@ -104,7 +117,7 @@ class FoliaReader(Reader):
         """
 
         word_strings = map(lambda word: self.get_word_string(word), words)
-        line = " ".join(filter(lambda word: word != '', word_strings))
+        line = " ".join(filter(lambda word: word != "", word_strings))
 
         if sentence:
             container = sentence
@@ -113,8 +126,8 @@ class FoliaReader(Reader):
 
         sentence_id = escape_id(container.id)
         sentence_metadata = self.get_metadata_dict(
-            container.getmetadata().items(),
-            doc_metadata)
+            container.getmetadata().items(), doc_metadata
+        )
 
         return Utterance(line, sentence_id, sentence_metadata, line)
 
@@ -135,7 +148,7 @@ class FoliaReader(Reader):
                     text = item.text()
                     break
             else:
-                return ''
+                return ""
 
         try:
             correction = word.getcorrection()
@@ -159,8 +172,11 @@ class FoliaReader(Reader):
     def get_metadata_dict(self, native_metadata, filter_by=None):
         metadata = {}
         for key, value in native_metadata:
-            if filter_by == None or not key in filter_by \
-                    or filter_by[key].value != value:
+            if (
+                filter_by == None
+                or key not in filter_by
+                or filter_by[key].value != value
+            ):
                 metadata[key] = MetadataValue(value)
         return metadata
 
@@ -169,4 +185,4 @@ class FoliaReader(Reader):
         Determine whether this is a FoLiA XML file
         """
 
-        return '<FoLiA' in file.content[0:400]
+        return "<FoLiA" in file.content[0:400]

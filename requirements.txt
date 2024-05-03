@@ -112,7 +112,7 @@ tei-reader==0.0.17
     # via corpus2alpino (setup.py)
 thinc==8.2.3
     # via spacy
-tqdm==4.66.2
+tqdm==4.66.3
     # via
     #   corpus2alpino (setup.py)
     #   spacy

@@ -26,11 +26,11 @@
 ##META text origutt = toen <ging zij &-eh haar &+ma ging zij> [//] wou zij de auto maken . 21792_23475
 ##META text parsefile = PRELAN_example_chat_u00000000002.xml
 ##META int uttendlineno = 10
-##META int uttid = 42
+##META int uttid = 2
 ##META int uttno = 2
 ##META int uttstartlineno = 9
 ##META text xsid = 42
-42|toen wou zij de auto maken .
+2|toen wou zij de auto maken .
 
 ##META text origutt = maar toen reed de auto er vandoor .
 ##META text parsefile = PRELAN_example_chat_u00000000003.xml

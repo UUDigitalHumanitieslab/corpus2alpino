@@ -126,7 +126,7 @@ typing-extensions==4.10.0
     #   pydantic
     #   pydantic-core
     #   typer
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
 wasabi==1.1.2
     # via
